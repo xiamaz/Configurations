@@ -1,0 +1,82 @@
+execute pathogen#infect()
+
+syntax on
+set number
+
+let g:solarized_menu=0
+filetype plugin indent on
+
+set grepprg=grep\ -nH\ $*
+
+" vim-latexsuite settings
+let g:tex_flavor = "latex"
+let g:Tex_ViewRule_dvi = 'evince'
+let g:Tex_ViewRule_pdf = 'evince'
+let g:Tex_DefaultTargetFormat = 'pdf'
+
+" set tabs as spaces and indentation as 4 spaces
+set expandtab tabstop=4 shiftwidth=4 
+set softtabstop=4
+set autoindent smarttab
+
+
+" ignore case when making searches
+set ignorecase
+" session options
+set ssop-=options    " do not store global and local values in a session
+set ssop-=folds      " do not store folds
+
+" add toggle folding with space key
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
+" always solarized since urxvt
+if &term=~"screen"
+    set background=dark
+endif
+
+if has('gui_running')
+    colorscheme solarized
+	set background=light
+	set guioptions-=T " remove the toolbar
+	set guioptions-=r " remove scroll bar
+    set lines=50 columns=100
+else
+"	set background=dark "only for solarized terminal
+    set t_Co=16
+endif
+
+" toggle linebreak
+noremap <silent> <Leader>w :call ToggleWrap()<CR>
+function ToggleWrap()
+      if &wrap
+        echo "Wrap OFF"
+        setlocal nowrap
+        set virtualedit=all
+        silent! nunmap <buffer> <Up>
+        silent! nunmap <buffer> <Down>
+        silent! nunmap <buffer> <Home>
+        silent! nunmap <buffer> <End>
+        silent! iunmap <buffer> <Up>
+        silent! iunmap <buffer> <Down>
+        silent! iunmap <buffer> <Home>
+        silent! iunmap <buffer> <End>
+    else
+        echo "Wrap ON"
+        setlocal wrap linebreak nolist
+        set virtualedit=
+        setlocal display+=lastline
+        noremap  <buffer> <silent> <Up>   gk
+        noremap  <buffer> <silent> <Down> gj
+        noremap  <buffer> <silent> <Home> g<Home>
+        noremap  <buffer> <silent> <End>  g<End>
+        inoremap <buffer> <silent> <Up>   <C-o>gk
+        inoremap <buffer> <silent> <Down> <C-o>gj
+        inoremap <buffer> <silent> <Home> <C-o>g<Home>
+        inoremap <buffer> <silent> <End>  <C-o>g<End>
+    endif
+endfunction
+
+" set pastetoggle to cope with scrambled copy
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
