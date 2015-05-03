@@ -1,0 +1,19 @@
+call plug#begin()
+Plug 'tpope/vim-sensible'
+" Plug 'scrooloose/syntastic' " external dependencies needed for each language
+Plug 'fholgado/minibufexpl.vim'
+Plug 'klen/python-mode', { 'for' : 'python' }
+Plug 'vim-latex/vim-latex', { 'for': 'tex' }
+Plug 'WolfgangMehner/vim-plugins', {'rtp': 'c-support', 'for': ['c', 'cpp']}
+call plug#end()
+"other default settings
+syntax on
+filetype plugin indent on
+set number
+set ignorecase smartcase " only case sensitive when using uppercase
+"set colorscheme for gvim
+if has("gui_running")
+	colorscheme zenburn
+else
+	colorscheme monokai
+endif
