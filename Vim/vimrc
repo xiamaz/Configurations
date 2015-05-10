@@ -5,7 +5,7 @@ Plug 'fholgado/minibufexpl.vim'
 Plug 'klen/python-mode', { 'for' : 'python' }
 Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 " cvim plugin code checking needs eg splint, cppcheck
-Plug 'WolfgangMehner/vim-plugins', {'rtp': 'c-support', 'for': ['c', 'cpp']}
+Plug 'WolfgangMehner/vim-plugins', {'for': ['c', 'cpp']}
 call plug#end()
 "other default settings
 syntax on
@@ -18,7 +18,7 @@ if has("gui_running")
 	colorscheme zenburn
 	set guioptions-=r
 	set guioptions-=T
-	set lines=46 columns=85
+	set lines=46 columns=90
 	set guifont=Terminus\ 16
 else
 	colorscheme monokai
