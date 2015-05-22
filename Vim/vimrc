@@ -6,13 +6,27 @@ Plug 'klen/python-mode', { 'for' : 'python' }
 Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 " cvim plugin code checking needs eg splint, cppcheck
 Plug 'WolfgangMehner/vim-plugins', {'for': ['c', 'cpp']}
+" vimwiki plugin for personal wiki
+Plug 'vimwiki/vimwiki'
 call plug#end()
 "other default settings
+set nocompatible
 syntax on
 filetype plugin indent on
 set number
 set ignorecase smartcase " only case sensitive when using uppercase
 set mouse=a
+"setup wordwrap
+set wrap linebreak nolist formatoptions-=t breakindent
+"setup arrowkeys for visual scroll
+noremap  <buffer> <silent> <Up>   gk
+noremap  <buffer> <silent> <Down> gj
+noremap  <buffer> <silent> <Home> g<Home>
+noremap  <buffer> <silent> <End>  g<End>
+inoremap <buffer> <silent> <Up>   <C-o>gk
+inoremap <buffer> <silent> <Down> <C-o>gj
+inoremap <buffer> <silent> <Home> <C-o>g<Home>
+inoremap <buffer> <silent> <End>  <C-o>g<End>
 "set colorscheme for gvim
 if has("gui_running")
 	colorscheme zenburn
@@ -20,6 +34,7 @@ if has("gui_running")
 	set guioptions-=T
 	set lines=46 columns=90
 	set guifont=Terminus\ 16
+	autocmd GUIEnter * set visualbell t_vb=
 else
 	colorscheme monokai
 endif
