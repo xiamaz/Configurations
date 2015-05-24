@@ -2,10 +2,17 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 " Plug 'scrooloose/syntastic' " external dependencies needed for each language
 Plug 'fholgado/minibufexpl.vim'
+Plug 'majutsushi/tagbar'
 Plug 'klen/python-mode', { 'for' : 'python' }
 Plug 'vim-latex/vim-latex', { 'for': 'tex' }
+" Plugins for c/c++ programming
 " cvim plugin code checking needs eg splint, cppcheck
 Plug 'WolfgangMehner/vim-plugins', {'for': ['c', 'cpp']}
+Plug 'scrooloose/syntastic', {'for': ['c', 'cpp']}
+Plug 'justmao945/vim-clang', {'for': ['c', 'cpp']}
+"lisp plugins
+Plug 'kovisoft/slimv', { 'for' : 'lisp' }
+
 " vimwiki plugin for personal wiki
 Plug 'vimwiki/vimwiki'
 call plug#end()
@@ -18,15 +25,6 @@ set ignorecase smartcase " only case sensitive when using uppercase
 set mouse=a
 "setup wordwrap
 set wrap linebreak nolist formatoptions-=t breakindent
-"setup arrowkeys for visual scroll
-noremap  <buffer> <silent> <Up>   gk
-noremap  <buffer> <silent> <Down> gj
-noremap  <buffer> <silent> <Home> g<Home>
-noremap  <buffer> <silent> <End>  g<End>
-inoremap <buffer> <silent> <Up>   <C-o>gk
-inoremap <buffer> <silent> <Down> <C-o>gj
-inoremap <buffer> <silent> <Home> <C-o>g<Home>
-inoremap <buffer> <silent> <End>  <C-o>g<End>
 "set colorscheme for gvim
 if has("gui_running")
 	colorscheme zenburn
@@ -40,3 +38,20 @@ else
 endif
 "no beeping
 set vb t_vb=
+
+""" Keyboard remaps
+"tagbar toggle
+nmap <F8> :TagbarToggle<CR>
+"minibufexpl mappings
+map <Leader>mbe :MBEOpen<cr>
+map <Leader>mbc :MBEClose<cr>
+map <Leader>mbt :MBEToggle<cr>
+"setup arrowkeys for visual scroll
+noremap  <buffer> <silent> <Up>   gk
+noremap  <buffer> <silent> <Down> gj
+noremap  <buffer> <silent> <Home> g<Home>
+noremap  <buffer> <silent> <End>  g<End>
+inoremap <buffer> <silent> <Up>   <C-o>gk
+inoremap <buffer> <silent> <Down> <C-o>gj
+inoremap <buffer> <silent> <Home> <C-o>g<Home>
+inoremap <buffer> <silent> <End>  <C-o>g<End>
