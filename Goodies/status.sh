@@ -15,5 +15,5 @@ m5=$(awk '{print $2}' <<< $load)
 m15=$(awk '{print $3}' <<< $load)
 
 # combine into status string
-line="<span font_weight='bold'><span fgcolor='#D0B03C'>CPU</span> <span fgcolor='#FFE377'>$m1 $m5 $m15</span><span fgcolor='#72B3CC'>  RAM</span> <span fgcolor='#9CD9F0'>${used}M/${total}M</span> <span fgcolor='#C75646'>Temp</span> <span fgcolor='#E09690'>${temp%.*}°C</span></span>"
+line="<span font_weight='bold'><span fgcolor='#D0B03C'>CPU</span> <span fgcolor='#FFE377'>$m1 $m5 $m15</span><span fgcolor='#72B3CC'>  RAM</span> <span fgcolor='#9CD9F0'>${used}M used</span> <span fgcolor='#C75646'>Temp</span> <span fgcolor='#E09690'>${temp%.*}°C</span></span>"
 echo "<txt>$line</txt>"
