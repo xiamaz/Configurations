@@ -119,7 +119,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Blank screen' 'xset dpms force off' -b 'Shutdown instead' 'systemctl poweroff' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -203,6 +203,10 @@ bindsym $mod+n mode "focused"
 # start xsettingsd as an independent settings manager for enabling correct font rendering
 exec xsettingsd
 # add extra keyboard bindings
+# program shortcuts
+bindsym $mod+F1 exec firefox
+bindsym $mod+F2 exec qutebrowser
+bindsym $mod+F3 exec thunar
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
@@ -213,15 +217,15 @@ bindsym XF86AudioMicMute exec pactl set-source-mute 0 toggle
 #bindsym XF86Launch1 exec gnome-control-center
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+#bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec $HOME/.config/i3/toggletouchpad.sh
+#bindsym XF86TouchpadToggle exec $HOME/.config/i3/toggletouchpad.sh
 
 # control suspend and hibernate
-bindsym XF86Sleep exec systemctl suspend
-bindsym XF86Suspend exec systemctl hibernate
+#bindsym XF86Sleep exec systemctl suspend
+#bindsym XF86Suspend exec systemctl hibernate
 # additional comfort
 # exec --no-startup-id /usr/libexec/gnome-settings-daemon
 # exec "xautolock -time 1 -locker 'xset dpms force off' -nowlocker 'xset dpms force off' -detectsleep -corners 0+00 -cornerdelay 3"
