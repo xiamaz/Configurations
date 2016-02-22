@@ -57,6 +57,6 @@ inoremap <buffer> <silent> <Home> <C-o>g<Home>
 inoremap <buffer> <silent> <End>  <C-o>g<End>
 
 "put swap files in own folder
-set backupdir=~/.local/vim/backup//
-set directory=~/.local/vim/swap//
-set undodir=~/.local/vim/undo//
+set backupdir=~/.local/share/vim/backup//
+set directory=~/.local/share/vim/swap//
+set undodir=~/.local/share/vim/undo//

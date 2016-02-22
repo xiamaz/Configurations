@@ -14,7 +14,7 @@ general {
 order += "disk /home/"
 order += "load"
 order += "cpu_temperature 0"
-order += "battery 0"
+# order += "battery 0"
 order += "volume master"
 order += "tztime local"
 
@@ -35,7 +35,7 @@ tztime local {
 }
 
 load {
-        format = "Load: %1min"
+        format = "Load: %1min %5min %15min"
 }
 
 cpu_temperature 0 {
