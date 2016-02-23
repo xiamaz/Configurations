@@ -1,1 +1,1 @@
-/home/max/Gits/Configurations/Vim/vimrc
+../vimrc
