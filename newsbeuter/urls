@@ -1,2 +1,11 @@
-http://www.tagesschau.de/xml/rss2
-http://feeds.bbci.co.uk/news/rss.xml?edition=int
+http://www.tagesschau.de/xml/rss2 news
+http://www.taz.de/!p4608;rss/ news
+http://www.faz.net/rss/aktuell/ news
+http://feeds.bbci.co.uk/news/rss.xml?edition=int news
+https://lwn.net/headlines/rss linux
+https://www.archlinux.org/feeds/news/ linux
+http://rss.slashdot.org/slashdot/slashdotMain?format=xml tech
+http://www.anandtech.com/rss/ tech
+http://feeds.arstechnica.com/arstechnica/features tech
+http://feeds.feedburner.com/codinghorror/ tech
+https://www.schneier.com/blog/atom.xml tech
