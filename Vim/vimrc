@@ -5,8 +5,10 @@ Plug 'altercation/vim-colors-solarized'
 " Plug 'fholgado/minibufexpl.vim'
 " somehow sensible tagging, will need ctags installed
 Plug 'majutsushi/tagbar'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc', { 'for' : ['python', 'c', 'cpp'] }
+Plug 'xolox/vim-easytags', { 'for' : ['python', 'c', 'cpp'] }
+set tags=./tags
+let g:easytags_dynamic_files = 1
 " autocompletion, might need to be recompiled
 " Plug 'Shougo/neocomplete.vim'
 Plug 'ervandew/supertab'
@@ -20,6 +22,10 @@ Plug 'scrooloose/syntastic', {'for': ['c', 'cpp']}
 Plug 'kovisoft/slimv', { 'for' : 'lisp' }
 " vimwiki plugin for personal wiki
 Plug 'vimwiki/vimwiki'
+"better status
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_theme='solarized'
 
 " special neovim plugins
 if has('nvim')
@@ -37,6 +43,8 @@ if has('nvim')
 	nnoremap <A-j> <C-w>j
 	nnoremap <A-k> <C-w>k
 	nnoremap <A-l> <C-w>l
+	" config easytag for better performance
+	let g:easytags_async = 1
 else
 	Plug 'davidhalter/jedi-vim', { 'for' : 'python' }
 	Plug 'justmao945/vim-clang', {'for': ['c', 'cpp']}
@@ -88,3 +96,4 @@ inoremap <buffer> <silent> <End>  <C-o>g<End>
 set backupdir=~/.local/share/vim/backup//
 set directory=~/.local/share/vim/swap//
 set undodir=~/.local/share/vim/undo//
+
