@@ -2,7 +2,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'altercation/vim-colors-solarized'
 " Plug 'scrooloose/syntastic' " external dependencies needed for each language
-Plug 'fholgado/minibufexpl.vim'
+" Plug 'fholgado/minibufexpl.vim'
 " somehow sensible tagging, will need ctags installed
 Plug 'majutsushi/tagbar'
 Plug 'xolox/vim-misc'
@@ -16,7 +16,6 @@ Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 " cvim plugin code checking needs eg splint, cppcheck
 Plug 'WolfgangMehner/vim-plugins', {'for': ['c', 'cpp']}
 Plug 'scrooloose/syntastic', {'for': ['c', 'cpp']}
-Plug 'justmao945/vim-clang', {'for': ['c', 'cpp']}
 "lisp plugins
 Plug 'kovisoft/slimv', { 'for' : 'lisp' }
 " vimwiki plugin for personal wiki
@@ -40,6 +39,7 @@ if has('nvim')
 	nnoremap <A-l> <C-w>l
 else
 	Plug 'davidhalter/jedi-vim', { 'for' : 'python' }
+	Plug 'justmao945/vim-clang', {'for': ['c', 'cpp']}
 endif
 call plug#end()
 "other default settings
