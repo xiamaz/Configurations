@@ -3,8 +3,14 @@ Plug 'tpope/vim-sensible'
 Plug 'altercation/vim-colors-solarized'
 " Plug 'scrooloose/syntastic' " external dependencies needed for each language
 Plug 'fholgado/minibufexpl.vim'
+" somehow sensible tagging, will need ctags installed
 Plug 'majutsushi/tagbar'
-Plug 'klen/python-mode', { 'for' : 'python' }
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+" autocompletion, might need to be recompiled
+" Plug 'Shougo/neocomplete.vim'
+Plug 'ervandew/supertab'
+" Plug 'klen/python-mode', { 'for' : 'python' }
 Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 " Plugins for c/c++ programming
 " cvim plugin code checking needs eg splint, cppcheck
@@ -13,9 +19,28 @@ Plug 'scrooloose/syntastic', {'for': ['c', 'cpp']}
 Plug 'justmao945/vim-clang', {'for': ['c', 'cpp']}
 "lisp plugins
 Plug 'kovisoft/slimv', { 'for' : 'lisp' }
-
 " vimwiki plugin for personal wiki
 Plug 'vimwiki/vimwiki'
+
+" special neovim plugins
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'zchee/deoplete-jedi', { 'for' : 'python' }
+	Plug 'Rip-Rip/clang_complete', {'for': ['c', 'cpp']}
+	let g:deoplete#enable_at_startup = 1
+	" set up neovim keybinds
+	tnoremap <Esc> <C-\><C-n>
+	tnoremap <A-h> <C-\><C-n><C-w>h
+	tnoremap <A-j> <C-\><C-n><C-w>j
+	tnoremap <A-k> <C-\><C-n><C-w>k
+	tnoremap <A-l> <C-\><C-n><C-w>l
+	nnoremap <A-h> <C-w>h
+	nnoremap <A-j> <C-w>j
+	nnoremap <A-k> <C-w>k
+	nnoremap <A-l> <C-w>l
+else
+	Plug 'davidhalter/jedi-vim', { 'for' : 'python' }
+endif
 call plug#end()
 "other default settings
 set nocompatible
