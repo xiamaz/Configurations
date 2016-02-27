@@ -1,5 +1,6 @@
 call plug#begin()
 Plug 'tpope/vim-sensible'
+Plug 'altercation/vim-colors-solarized'
 " Plug 'scrooloose/syntastic' " external dependencies needed for each language
 Plug 'fholgado/minibufexpl.vim'
 Plug 'majutsushi/tagbar'
@@ -27,14 +28,16 @@ set mouse=a
 set wrap linebreak nolist formatoptions-=t breakindent
 "set colorscheme for gvim
 if has("gui_running")
-	colorscheme zenburn
+	colorscheme solarized
+	set background=light
 	set guioptions-=r
 	set guioptions-=T
 	set lines=46 columns=90
-	set guifont=Terminus\ 16
+	set guifont=Terminus\ 12
 	autocmd GUIEnter * set visualbell t_vb=
 else
-	colorscheme monokai
+	colorscheme solarized
+	set background=dark
 endif
 "no beeping
 set vb t_vb=
