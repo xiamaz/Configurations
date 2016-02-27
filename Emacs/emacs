@@ -1,0 +1,54 @@
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
+(customize-set-variable 'frame-background-mode 'light)
+(load-theme 'solarized t)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default)))
+ '(fringe-mode 0 nil (fringe))
+ '(scroll-bar-mode nil)
+ '(tool-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Terminus" :foundry "xos4" :slant normal :weight normal :height 120 :width normal)))))
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(package-initialize)
+
+(setq evil-want-C-u-scroll t)
+(require 'evil)
+(evil-mode 1)
+(load "elscreen" "ELScreen" t)
+(elscreen-start)
+(define-key evil-normal-state-map (kbd "C-w t") 'elscreen-create) ;creat tab
+(define-key evil-normal-state-map (kbd "C-w x") 'elscreen-kill) ;kill tab
+(define-key evil-normal-state-map "gT" 'elscreen-previous) ;previous tab
+(define-key evil-normal-state-map "gt" 'elscreen-next) ;next tab
+
+   ;;; C-c as general purpose escape key sequence.
+   ;;;
+   (defun my-esc (prompt)
+     "Functionality for escaping generally.  Includes exiting Evil insert state and C-g binding. "
+     (cond
+      ;; If we're in one of the Evil states that defines [escape] key, return [escape] so as
+      ;; Key Lookup will use it.
+      ((or (evil-insert-state-p) (evil-normal-state-p) (evil-replace-state-p) (evil-visual-state-p)) [escape])
+      ;; This is the best way I could infer for now to have C-c work during evil-read-key.
+      ;; Note: As long as I return [escape] in normal-state, I don't need this.
+      ;;((eq overriding-terminal-local-map evil-read-key-map) (keyboard-quit) (kbd ""))
+      (t (kbd "C-g"))))
+   (define-key key-translation-map (kbd "C-c") 'my-esc)
+   ;; Works around the fact that Evil uses read-event directly when in operator state, which
+   ;; doesn't use the key-translation-map.
+   (define-key evil-operator-state-map (kbd "C-c") 'keyboard-quit)
+   ;; Not sure what behavior this changes, but might as well set it, seeing the Elisp manual's
+   ;; documentation of it.
+   (set-quit-char "C-c")
