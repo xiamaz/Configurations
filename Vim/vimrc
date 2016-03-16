@@ -1,6 +1,8 @@
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
+Plug 'jamessan/vim-gnupg'
 " Plug 'scrooloose/syntastic' " external dependencies needed for each language
 " Plug 'fholgado/minibufexpl.vim'
 " somehow sensible tagging, will need ctags installed
@@ -61,7 +63,7 @@ set mouse=a
 set wrap linebreak nolist formatoptions-=t breakindent
 "set colorscheme for gvim
 if has("gui_running")
-	colorscheme solarized
+	colorscheme base16-tomorrow
 	set background=light
 	set guioptions-=r
 	set guioptions-=T
@@ -69,7 +71,7 @@ if has("gui_running")
 	set guifont=Terminus\ 12
 	autocmd GUIEnter * set visualbell t_vb=
 else
-	colorscheme solarized
+	colorscheme base16-tomorrow
 	set background=dark
 endif
 "no beeping
