@@ -29,7 +29,7 @@ let g:airline_theme='solarized'
 
 " special neovim plugins
 if has('nvim')
-	Plug 'Shougo/deoplete.nvim'
+	Plug 'Shougo/deoplete.nvim', { 'for' : ['python', 'c', 'cpp'] }
 	Plug 'zchee/deoplete-jedi', { 'for' : 'python' }
 	Plug 'Rip-Rip/clang_complete', {'for': ['c', 'cpp']}
 	let g:deoplete#enable_at_startup = 1
