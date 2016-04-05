@@ -24,10 +24,31 @@ Plug 'scrooloose/syntastic', {'for': ['c', 'cpp']}
 Plug 'kovisoft/slimv', { 'for' : 'lisp' }
 " vimwiki plugin for personal wiki
 Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'
+
 "better status
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='solarized'
+Plug 'rust-lang/rust.vim'
+
+so ~/.vimrc.local
+let mapleader=","
+autocmd FileType vimwiki map d :VimwikiMakeDiaryNote
+function! ToggleCalendar()
+  execute ":Calendar"
+  if exists("g:calendar_open")
+    if g:calendar_open == 1
+      execute "q"
+      unlet g:calendar_open
+    else
+      g:calendar_open = 1
+    end
+  else
+    let g:calendar_open = 1
+  end
+endfunction
+autocmd FileType vimwiki map c :call ToggleCalendar()<CR>
 
 " special neovim plugins
 if has('nvim')
@@ -62,8 +83,9 @@ set mouse=a
 "setup wordwrap
 set wrap linebreak nolist formatoptions-=t breakindent
 "set colorscheme for gvim
+let base16colorspace=256
+colorscheme base16-tomorrow
 if has("gui_running")
-	colorscheme base16-tomorrow
 	set background=light
 	set guioptions-=r
 	set guioptions-=T
@@ -71,7 +93,6 @@ if has("gui_running")
 	set guifont=Terminus\ 12
 	autocmd GUIEnter * set visualbell t_vb=
 else
-	colorscheme base16-tomorrow
 	set background=dark
 endif
 "no beeping
