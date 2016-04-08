@@ -5,7 +5,7 @@ STATUS=$(wmctrl -lx | grep urxvt.URxvt)
 echo $STATUS
 if [ "$STATUS" ];
 then
-	wmctrl -ax urxvt.URxvt
+	wmctrl -a urxvt.URxvt -x
 else
 	urxvt
 fi
