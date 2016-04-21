@@ -6,6 +6,12 @@ https://lwn.net/headlines/rss linux
 https://www.archlinux.org/feeds/news/ linux
 http://rss.slashdot.org/slashdot/slashdotMain?format=xml tech
 http://www.anandtech.com/rss/ tech
+http://www.heise.de/newsticker/heise-atom.xml tech
+http://www.heise.de/open/news/news-atom.xml tech
+http://www.heise.de/security/news/news-atom.xml tech
 http://feeds.arstechnica.com/arstechnica/features tech
 http://feeds.feedburner.com/codinghorror/ tech
 https://www.schneier.com/blog/atom.xml tech
+
+http://www.heise.de/foto/rss/news-atom.xml photography
+http://www.heise.de/tp/rss/news-xl.rdf commentary
