@@ -1,5 +1,5 @@
 browser elinks
-#html-renderer elinks -dump
+html-renderer elinks -dump
 
 unbind-key l
 
@@ -15,10 +15,12 @@ bind-key l next article
 bind-key h prev article
 bind-key i toggle-show-read-feeds 
 
-macro o set browser "qutebrowser %u"; open-in-browser ; set browser "elinks %u"
-user-agent "Liferea/1.4.14 (Linux; en_US.UTF8; http://liferea.sf.net/)"
+bind-key y toggle-article-read
 
-#highlight article "(^Feed:.*|^Title:.*|^Author:.*)" default default bold
+macro o set browser "qutebrowser %u"; open-in-browser ; set browser "elinks %u"
+# user-agent "Liferea/1.4.14 (Linux; en_US.UTF8; http://liferea.sf.net/)"
+
+# highlight article "(^Feed:.*|^Title:.*|^Author:.*)" default default bold
 # highlight article "(^Link:.*|^Date:.*)" default default bold
 
 color background   default   default

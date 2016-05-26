@@ -32,6 +32,9 @@ Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='solarized'
 Plug 'rust-lang/rust.vim'
 
+"work with git
+Plug 'jreybert/vimagit'
+
 so ~/.vimrc.local
 let mapleader=","
 let g:calendar_monday = 1
@@ -122,3 +125,5 @@ set backupdir=~/.local/share/vim/backup//
 set directory=~/.local/share/vim/swap//
 set undodir=~/.local/share/vim/undo//
 
+"remove highlight with space
+map <Space> :noh<cr>
