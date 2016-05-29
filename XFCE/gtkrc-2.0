@@ -4,5 +4,6 @@ style "my-tasklist-padding"
 {
         xthickness      = 1
         ythickness      = 1
+	font_name 	= "bold"
 }
 widget "*Xfce*Panel*" style:highest "my-tasklist-padding"

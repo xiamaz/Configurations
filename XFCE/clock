@@ -1,0 +1,2 @@
+# custom clock format
+<span color='#B0B0B0'>%a %e %b</span><span color='#F7F7F7'> %R</span>
