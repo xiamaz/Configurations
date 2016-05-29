@@ -1,0 +1,8 @@
+##############################################################################
+### Window button padding
+style "my-tasklist-padding" 
+{
+        xthickness      = 1
+        ythickness      = 1
+}
+widget "*Xfce*Panel*" style:highest "my-tasklist-padding"
