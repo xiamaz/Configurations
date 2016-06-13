@@ -1,0 +1,12 @@
+alt + Return
+	$HOME/Git/Configurations/Goodies/urxvt-open.sh
+alt + d
+	rofi -show drun
+Super_L
+	skippy-xd --toggle-window-picker
+Print
+	xfce4-screenshooter
+XF86Screensaver
+	xflock4
+XF86KbdLightOnOff
+	kbd_backlight
