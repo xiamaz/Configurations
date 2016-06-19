@@ -6,8 +6,10 @@ BACKUPDIR=/mnt/sys_backup
 BACKUPUUID="11516d58-a773-4100-9739-f00f9810c688"
 
 function backup {
-	rsync -aAXW --inplace --delete --exclude-from=/backup/exclude.list /* $BACKUPDIR || {
+	rsync -aAXWv --inplace --delete --exclude-from=/backup/exclude.list /* $BACKUPDIR > /backup/process.log || {
 		echo "Error in backup process on $(date)." >> /backup/backup.log
+		echo "=== RSYNC PROCESS INFORMATION $(date) ===" >> /backup/error.log
+		cat /backup/process.log >> /backup/error.log
 		exit 1
 	}
 	echo "Finished backup to external drive successfully"
@@ -30,12 +32,12 @@ if [ ! -d $BACKUPDIR ]; then
 	echo "Mountpoint does not exist. Created now."
 fi
 
-if mount | grep $BACKUPDIR > /dev/null; then
-	backup
-else
+if ! mount | grep $BACKUPDIR > /dev/null; then
 	mount -U $BACKUPUUID $BACKUPDIR || {
-		echo "Mount failed. No backup drive detected or the UUID is not correct."
+		echo "=== BACKUP SCRIPT $(date) ===" >> /backup/error.log
+		echo "Mount failed. No backup drive detected or the UUID is not correct." >> /backup/error.log
+		echo "Error in drive mounting on $(date)." >> /backup/backup.log
 		exit 1
 	}
-	backup
 fi
+backup
