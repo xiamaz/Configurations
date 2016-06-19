@@ -1,0 +1,19 @@
+# root directories to exclude
+/dev/*
+/proc/*
+/sys/*
+/tmp/*
+/run/*
+/mnt/*
+/mount/*
+/media/*
+/lost+found
+# home directories to exclude
+# /home
+# /home/lost+found
+# /home/max/.thumbnails/*
+# /home/max/.cache/thumbnails/*
+# /home/max/.cache/mozilla/*
+# /home/max/.cache/google-chrome/*
+# /home/max/.local/share/Trash/*
+# /home/max/.gvfs

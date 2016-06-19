@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -u # dont accept empty variables
+set -e # stop bash when errors occur
+
+BACKUPDIR=/mnt/sys_backup
+BACKUPUUID="11516d58-a773-4100-9739-f00f9810c688"
+
+function backup {
+	rsync -aAXW --inplace --delete --exclude-from=/backup/exclude.list /* $BACKUPDIR || {
+		echo "Error in backup process on $(date)." >> /backup/backup.log
+		exit 1
+	}
+	echo "Finished backup to external drive successfully"
+	echo "Successful backup on $(date)" >> /backup/backup.log
+	exit 0
+}
+
+# save package list to /backup, check for folders
+if [ -d "/backup" ]; then
+	pacman -Qqe > /backup/allpkg.list
+	echo "All explicitly installed packages saved to list in allpkg.list"
+	pacman -Qqem > /backup/aurpkg.list
+	echo "All explicitly installed packages from arch user repository in aurpkg.list"
+else
+	mkdir -p /backup
+fi
+
+if [ ! -d $BACKUPDIR ]; then
+	mkdir -p $BACKUPDIR
+	echo "Mountpoint does not exist. Created now."
+fi
+
+if mount | grep $BACKUPDIR > /dev/null; then
+	backup
+else
+	mount -U $BACKUPUUID $BACKUPDIR || {
+		echo "Mount failed. No backup drive detected or the UUID is not correct."
+		exit 1
+	}
+	backup
+fi
