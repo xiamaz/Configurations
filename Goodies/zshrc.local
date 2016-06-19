@@ -1,0 +1,15 @@
+NNTPSERVER=news.eternal-september.org && export NNTPSERVER
+export PATH=~/.local/bin:.:$PATH
+export GPG_AGENT_INFO=""
+
+# custom greeting
+echo "$(tput bold)$(tput setaf $(shuf -i1-6 -n1))Greetings.$(tput sgr0)"
+lastBackup=$(cat /backup/backup.epoch)
+currentTime=$(date +%s)
+timeGap=$((currentTime - lastBackup)) 
+remindDays=2
+if [ $timeGap -gt $((remindDays * 86000)) ]; then
+	echo "Backup Status: Your last backup was more than $((timeGap / 86000)) days ago. Your data has feelings too."
+else
+	echo "Backup Status: Your data is fine. For now."	
+fi
