@@ -28,3 +28,4 @@ if ! xrandr | grep -q "1280x1024_85"; then
 fi
 xrandr --output $output --auto --left-of $primary
 echo "Configuring output layout for docking station usage."
+notify-send -t 10 "Setting up displaylink"
