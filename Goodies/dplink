@@ -3,12 +3,12 @@ set -e
 set -u
 
 primary="LVDS1"
-intdriver="intel"
+intdriver="Intel"
 extdriver="modesetting"
 providernumber=$( xrandr --listproviders | grep number | grep -o '[0-9]*' )
 extgpu=$( xrandr --listproviders | grep $extdriver | grep -o '^Provider [0-9]*' | awk '{print $2 }' )
 intgpu=$( xrandr --listproviders | grep $intdriver | grep -o '^Provider [0-9]*' | awk '{print $2 }' )
-if (( $providernumber >= 2 )) && [[ -z $extgpu ]]; then
+if (( $providernumber >= 2 )) && [[ -n $extgpu ]]; then
 	echo "Setting up external gpu"
 	xrandr --setprovideroutputsource $extgpu $intgpu
 fi
