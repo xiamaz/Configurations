@@ -1,0 +1,31 @@
+#!/bin/bash
+set -e
+set -u
+
+primary="LVDS1"
+intdriver="Intel"
+extdriver="modesetting"
+providernumber=$( xrandr --listproviders | grep number | grep -o '[0-9]*' )
+extgpu=$( xrandr --listproviders | grep $extdriver | grep -o '^Provider [0-9]*' | awk '{print $2 }' )
+intgpu=$( xrandr --listproviders | grep $intdriver | grep -o '^Provider [0-9]*' | awk '{print $2 }' )
+if (( $providernumber >= 2 )) && [[ -n $extgpu ]]; then
+	echo "Setting up external gpu"
+	xrandr --setprovideroutputsource $extgpu $intgpu
+fi
+
+output=$(xrandr | grep -m 1 'DVI.* connected' | awk '{print $1 }')
+if [ -z $output ]; then
+	echo "No connected DVI-Device found. Either no displaylink device has been connected, or the device has not been activated properly."
+	exit 1
+fi
+
+# 1280x1024 84.84 Hz (CVT 1.31M4) hsync: 91.46 kHz; pclk: 159.50 MHz
+if ! xrandr | grep -q "1280x1024_85"; then
+	echo $output
+	xrandr --newmode "1280x1024_85.00"  159.50  1280 1376 1512 1744  1024 1027 1034 1078 -hsync +vsync
+	xrandr --addmode $output "1280x1024_85.00"
+	echo "No mode detected, adding mode to external display output"
+fi
+xrandr --output $output --auto --left-of $primary
+echo "Configuring output layout for docking station usage."
+notify-send -t 10 "Setting up displaylink"

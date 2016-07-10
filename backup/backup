@@ -14,6 +14,7 @@ function backup {
 	}
 	echo "Finished backup to external drive successfully"
 	echo "Successful backup on $(date)" >> /backup/backup.log
+	echo $(date +%s) >> /backup/backup.epoch
 	exit 0
 }
 
