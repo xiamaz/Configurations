@@ -1,0 +1,13 @@
+#!/usr/bin/sh
+# check touchpad state and set it to enabled or disabled afterwards
+touchpadState=$(xinput list-props 'AlpsPS/2 ALPS DualPoint TouchPad' | grep 'Device Enabled' | awk '{print $4}')
+
+statusIcon='/usr/share/icons/Arc/devices/symbolic/input-touchpad-symbolic.svg'
+
+if [ "$touchpadState" -eq 1 ]; then
+	xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad'  
+	notify-send "TouchPad disabled" -t 10 -i "$statusIcon"
+else
+	xinput enable 'AlpsPS/2 ALPS DualPoint TouchPad'  
+	notify-send "TouchPad enabled" -t 10 -i "$statusIcon"
+fi
