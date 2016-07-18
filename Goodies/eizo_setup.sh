@@ -7,8 +7,8 @@ xrandr --newmode $mode1  159.50  1280 1376 1512 1744  1024 1027 1034 1078 -hsync
 xrandr --addmode $displayName $mode1
 
 # try to add other diplay modes automatically
-mode2="1024x768_118.00"
-xrandr --newmode $mode2 135.25  1024 1104 1208 1392  768 771 775 825 -hsync +vsync
+mode2="1024x768_115.00"
+xrandr --newmode $mode2 131.75  1024 1104 1208 1392  768 771 775 824 -hsync +vsync
 xrandr --addmode $displayName $mode2
 
 mode3="1600x1200_76.00"  
