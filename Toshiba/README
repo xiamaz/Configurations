@@ -1,0 +1,8 @@
+Toshiba keyboard backlight toggle script
+
+This script is based on the instructions in this wiki article
+https://wiki.archlinux.org/index.php/Toshiba_Portege_Z30-A
+
+For usage, compile it with your favorite c compiler and setuid, so that you can bind it to a key of your choice.
+
+chmod +s $scriptname
