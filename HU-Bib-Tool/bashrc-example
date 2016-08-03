@@ -1,0 +1,13 @@
+# bib reminder
+lastBib=$(cat $HOME/.bib.epoch)
+bibGap=$(((lastBib - currentTime) / 86000))
+if [ $lastBib -eq '-1' ]; then
+	echo "$(tput bold)HU Bib Status$(tput sgr0): You currently have no books"
+elif [ $bibGap -lt '1' ]; then
+	# ~/.huub.py # execute headless huub check script
+	echo "$(tput bold)HU Bib Status$(tput sgr0): Values less than 1. You should check your account or update the view using [.huub.py]"
+elif [ $bibGap -lt '8' ]; then
+	echo "$(tput bold)HU Bib Status$(tput sgr0): $bibGap days left. You should $(tput bold)extend$(tput sgr0) or $(tput bold)return$(tput sgr0) your books."
+else
+	echo "$(tput bold)HU Bib Status$(tput sgr0): $bibGap days till expiration."
+fi

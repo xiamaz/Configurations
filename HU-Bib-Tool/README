@@ -1,0 +1,3 @@
+=== HU Berlin Bibliothek Verlängerer
+Written with Chrome selenium web driver. Simply enter your password and follow the interactive prompt.
+Sample bashrc snippet for integration into the greeting message. This will simply generate a fitting message according to the .bib.epoch file in the home directory, which is regenerated on every run of the bib tool.
