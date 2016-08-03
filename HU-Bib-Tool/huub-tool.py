@@ -45,7 +45,7 @@ assert "Berlin" in driver.title
 username = driver.find_element_by_name("bor_id")
 password = driver.find_element_by_name("bor_verification")
 pw = getpass(prompt="Insert your HU Password: ")
-elemInsert(username, "HUCH02207120")
+elemInsert(username, "DEINE_BIBNUMMER")
 elemInsert(password, pw)
 password.send_keys(Keys.RETURN)
 assert "PRIMUS" in driver.title
