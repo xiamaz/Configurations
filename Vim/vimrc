@@ -134,3 +134,22 @@ set undodir=~/.local/share/vim/undo//
 
 "remove highlight with space
 map <Space> :noh<cr>
+
+"german remaps for easier movements
+nnoremap ö (
+vnoremap ö (
+xnoremap ö (
+snoremap ö (
+nnoremap ä )
+vnoremap ä )
+xnoremap ä )
+snoremap ä )
+nnoremap Ö {
+vnoremap Ö {
+xnoremap Ö {
+snoremap Ö {
+nnoremap Ä }
+vnoremap Ä }
+xnoremap Ä }
+snoremap Ä }
+nnoremap ü <C-]>
