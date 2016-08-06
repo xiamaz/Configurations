@@ -1,6 +1,5 @@
 call plug#begin()
 Plug 'tpope/vim-sensible'
-Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 Plug 'jamessan/vim-gnupg'
 " Plug 'scrooloose/syntastic' " external dependencies needed for each language
@@ -29,8 +28,10 @@ Plug 'mattn/calendar-vim'
 "better status
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='tomorrow'
 Plug 'rust-lang/rust.vim'
+set noshowmode
 
 "work with git
 Plug 'jreybert/vimagit'
