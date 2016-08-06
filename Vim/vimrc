@@ -1,36 +1,35 @@
-call plug#begin()
+call plug#begin() 
 Plug 'tpope/vim-sensible'
 Plug 'chriskempson/base16-vim'
 Plug 'jamessan/vim-gnupg'
-" Plug 'scrooloose/syntastic' " external dependencies needed for each language
-" Plug 'fholgado/minibufexpl.vim'
+
 " somehow sensible tagging, will need ctags installed
-Plug 'majutsushi/tagbar'
-Plug 'xolox/vim-misc', { 'for' : ['python', 'c', 'cpp'] }
-Plug 'xolox/vim-easytags', { 'for' : ['python', 'c', 'cpp'] }
-set tags=./tags
-let g:easytags_dynamic_files = 1
+" Plug 'majutsushi/tagbar'
+" Plug 'xolox/vim-misc', { 'for' : ['python', 'c', 'cpp'] }
+" Plug 'xolox/vim-easytags', { 'for' : ['python', 'c', 'cpp'] }
+" set tags=./tags
+" let g:easytags_dynamic_files = 1
+ 
 " autocompletion, might need to be recompiled
-" Plug 'Shougo/neocomplete.vim'
 Plug 'ervandew/supertab'
-" Plug 'klen/python-mode', { 'for' : 'python' }
 Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 " Plugins for c/c++ programming
 " cvim plugin code checking needs eg splint, cppcheck
 Plug 'WolfgangMehner/vim-plugins', {'for': ['c', 'cpp']}
 Plug 'scrooloose/syntastic', {'for': ['c', 'cpp']}
-"lisp plugins
-Plug 'kovisoft/slimv', { 'for' : 'lisp' }
+" lisp plugins
+" Plug 'kovisoft/slimv', { 'for' : 'lisp' }
 " vimwiki plugin for personal wiki
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
+" working with rust
+" Plug 'rust-lang/rust.vim'
 
 "better status
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='base16'
-Plug 'rust-lang/rust.vim'
 set noshowmode
 
 "work with git
@@ -58,10 +57,17 @@ let g:calendar_monday = 1
 
 " special neovim plugins
 if has('nvim')
-	Plug 'Shougo/deoplete.nvim'
+        function! DoRemote(arg)
+          UpdateRemotePlugins
+        endfunction
+        Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 	Plug 'zchee/deoplete-jedi', { 'for' : 'python' }
-	Plug 'Rip-Rip/clang_complete', {'for': ['c', 'cpp']}
 	let g:deoplete#enable_at_startup = 1
+	let g:deoplete#ignore_sources = {'_': ['buffer','tag']}
+	Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
+        let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+        let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+	Plug 'Shougo/neco-vim', { 'for' : 'vim' }
 	" set up neovim keybinds
 	tnoremap <Esc> <C-\><C-n>
 	tnoremap <A-h> <C-\><C-n><C-w>h
