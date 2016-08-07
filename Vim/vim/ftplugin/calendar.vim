@@ -7,4 +7,4 @@ function! QuitCalendar()
     execute "q"
   end
 endfunction
-map <buffer> c :call QuitCalendar()<CR>
+nnoremap <buffer> c :call QuitCalendar()<CR>

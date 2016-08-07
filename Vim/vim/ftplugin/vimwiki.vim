@@ -1,4 +1,4 @@
-set shiftwidth=2 expandtab softtabstop=2
+setlocal shiftwidth=2 expandtab softtabstop=2
 function! ToggleCalendar()
   execute ":Calendar"
   if exists("g:calendar_open")
@@ -12,4 +12,4 @@ function! ToggleCalendar()
     let g:calendar_open = 1
   end
 endfunction
-map <buffer> c :call ToggleCalendar()<CR>
+nnoremap <buffer> c :call ToggleCalendar()<CR>
