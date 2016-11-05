@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/max/ownCloud/wiki/Lernzielausarbeitungen'
-let g:netrw_dirhist_2='/etc/polkit-1/rules.d'
-let g:netrw_dirhist_3='/home/max/exercism/c/hello-world'
-let g:netrw_dirhist_4='/home/max/.weechat/script'
-let g:netrw_dirhist_5='/home/max/.mutt'
