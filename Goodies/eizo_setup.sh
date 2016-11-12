@@ -1,6 +1,12 @@
 #!/bin/bash
 # script for adding undetected resolutions to our eizo crt monitor
 displayName="$1"
+
+
+mode6="1400x1050_85" 
+xrandr --newmode "$mode6" 179.50  1400 1512 1656 1912  1050 1053 1057 1105 -hsync +vsync
+xrandr --addmode $displayName $mode6
+
 # first add the most important primary mode
 mode1="1280x1024_85.00"
 xrandr --newmode $mode1  159.50  1280 1376 1512 1744  1024 1027 1034 1078 -hsync +vsync
@@ -22,5 +28,4 @@ xrandr --addmode $displayName $mode4
 mode5="640x480_160.00"  
 xrandr --newmode $mode5 73.00  640 688 752 864  480 483 487 530 -hsync +vsync
 xrandr --addmode $displayName $mode5
-
 
