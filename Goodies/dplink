@@ -28,6 +28,6 @@ if ! xrandr | grep -q "1280x1024_85"; then
 	echo "No mode detected, adding mode to external display output"
 	"$workdir"/eizo_setup.sh "$output"
 fi
-xrandr --output $output --auto --left-of $primary
+xrandr --output $output --mode "1400x1050_85.00" --auto --left-of $primary
 echo "Configuring output layout for docking station usage."
 notify-send -t 10 "Setting up displaylink"

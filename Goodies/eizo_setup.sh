@@ -3,7 +3,7 @@
 displayName="$1"
 
 
-mode6="1400x1050_85" 
+mode6="1400x1050_85.00" 
 xrandr --newmode "$mode6" 179.50  1400 1512 1656 1912  1050 1053 1057 1105 -hsync +vsync
 xrandr --addmode $displayName $mode6
 
