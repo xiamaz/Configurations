@@ -41,6 +41,7 @@ values."
      ;; spell-checking
      syntax-checking
      version-control
+     pdf-tools
      ;; more themes
      themes-megapack
      ;; (rcirc :variables rcirc-enable-authinfo-support t)
@@ -127,10 +128,10 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 18
+                               :size 14
                                :weight normal
                                :width normal
-                               :powerline-scale 1.3)
+                               :powerline-scale 1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -265,11 +266,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; (setq rcirc-server-alist
-        ;; '(("irc.freenode.net"
-           ;; :user "alcasa"
-           ;; :port "8000"
-           ;; :channels ("#emacs" "#archlinux" "#archlinux-offtopic" "##linux"))))
+  (setq neo-theme 'nerd)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
