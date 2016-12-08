@@ -1,7 +1,9 @@
 call plug#begin() 
 Plug 'tpope/vim-sensible'
 Plug 'chriskempson/base16-vim'
-Plug 'jamessan/vim-gnupg'
+Plug 'Yggdroot/indentLine'
+let g:indentLine_char = '┆'
+"Plug 'jpmv27/Smart-Tabs'
 
 " somehow sensible tagging, will need ctags installed
 " Plug 'majutsushi/tagbar'
@@ -9,64 +11,42 @@ Plug 'jamessan/vim-gnupg'
 " Plug 'xolox/vim-easytags', { 'for' : ['python', 'c', 'cpp'] }
 " set tags=./tags
 " let g:easytags_dynamic_files = 1
- 
+
 " autocompletion, might need to be recompiled
 Plug 'ervandew/supertab'
-Plug 'vim-latex/vim-latex', { 'for': 'tex' }
+"Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 " Plugins for c/c++ programming
 " cvim plugin code checking needs eg splint, cppcheck
-Plug 'WolfgangMehner/vim-plugins', {'for': ['c', 'cpp']}
-Plug 'scrooloose/syntastic', {'for': ['c', 'cpp']}
-" lisp plugins
-" Plug 'kovisoft/slimv', { 'for' : 'lisp' }
+"Plug 'WolfgangMehner/vim-plugins', {'for': ['c', 'cpp']}
+"Plug 'scrooloose/syntastic', {'for': ['c', 'cpp']}
 " vimwiki plugin for personal wiki
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
-" working with rust
-" Plug 'rust-lang/rust.vim'
+let g:calendar_monday = 1
 
 "better status
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='base16'
-set noshowmode
-
-"work with git
-Plug 'jreybert/vimagit'
+set noshowmode "do not show the insert status, since we already have airline
 
 so ~/.vimrc.local
 let mapleader=","
-let g:calendar_monday = 1
-" autocmd FileType vimwiki map d :VimwikiMakeDiaryNote
-" function! ToggleCalendar()
-"   execute ":Calendar"
-"   if exists("g:calendar_open")
-"     if g:calendar_open == 1
-"       execute "q"
-"       unlet g:calendar_open
-"     else
-"       g:calendar_open = 1
-"     end
-"   else
-"     let g:calendar_open = 1
-"   end
-" endfunction
-" autocmd FileType vimwiki map c :call ToggleCalendar()<CR>
 
 
 " special neovim plugins
 if has('nvim')
-        function! DoRemote(arg)
-          UpdateRemotePlugins
-        endfunction
-        Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-	Plug 'zchee/deoplete-jedi', { 'for' : 'python' }
+    function! DoRemote(arg)
+        UpdateRemotePlugins
+    endfunction
+    Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+	"Plug 'zchee/deoplete-jedi', { 'for' : 'python' }
 	let g:deoplete#enable_at_startup = 1
 	let g:deoplete#ignore_sources = {'_': ['buffer','tag']}
-	Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
-        let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-        let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+	"Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
+    "let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+    "let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 	Plug 'Shougo/neco-vim', { 'for' : 'vim' }
 	" set up neovim keybinds
 	tnoremap <Esc> <C-\><C-n>
@@ -79,44 +59,41 @@ if has('nvim')
 	nnoremap <A-k> <C-w>k
 	nnoremap <A-l> <C-w>l
 	" config easytag for better performance
-	let g:easytags_async = 1
+	"let g:easytags_async = 1
 else
-	Plug 'davidhalter/jedi-vim', { 'for' : 'python' }
-	Plug 'justmao945/vim-clang', {'for': ['c', 'cpp']}
+	"Plug 'davidhalter/jedi-vim', { 'for' : 'python' }
+	"Plug 'justmao945/vim-clang', {'for': ['c', 'cpp']}
+	set nocompatible
 endif
 call plug#end()
-"other default settings
-set nocompatible
+
 syntax on
+"indentation settings
 filetype plugin indent on
+set autoindent
+" smart tabs configuration - use tabs for indent and spaces for align
+set noexpandtab copyindent preserveindent softtabstop=0 shiftwidth=4 tabstop=4
+
 set number
 set ignorecase smartcase " only case sensitive when using uppercase
 set mouse=a
 "setup wordwrap
-set wrap linebreak nolist formatoptions-=t breakindent
+set wrap linebreak list formatoptions-=t breakindent
+
 "set colorscheme for gvim
 let base16colorspace=256
 colorscheme base16-tomorrow
-if has("gui_running")
-	set background=light
-	set guioptions-=r
-	set guioptions-=T
-	set lines=46 columns=90
-	set guifont=Terminus\ 12
-	autocmd GUIEnter * set visualbell t_vb=
-else
-	set background=dark
-endif
+set background=dark
 "no beeping
 set vb t_vb=
 
 """ Keyboard remaps
 "tagbar toggle
-nmap <F8> :TagbarToggle<CR>
+"nmap <F8> :TagbarToggle<CR>
 "minibufexpl mappings
-map <Leader>mbe :MBEOpen<cr>
-map <Leader>mbc :MBEClose<cr>
-map <Leader>mbt :MBEToggle<cr>
+"map <Leader>mbe :MBEOpen<cr>
+"map <Leader>mbc :MBEClose<cr>
+"map <Leader>mbt :MBEToggle<cr>
 "setup arrowkeys for visual scroll
 noremap  <buffer> <silent> <Up>   gk
 noremap  <buffer> <silent> <Down> gj
