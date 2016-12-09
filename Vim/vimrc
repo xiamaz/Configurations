@@ -82,7 +82,7 @@ set wrap linebreak list formatoptions-=t breakindent
 
 "set colorscheme for gvim
 let base16colorspace=256
-colorscheme base16-tomorrow
+colorscheme base16-tomorrow-night
 set background=dark
 "no beeping
 set vb t_vb=
