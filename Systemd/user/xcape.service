@@ -1,0 +1,12 @@
+[Unit]
+Description=Xcape Keybinding program
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/xcape -e 'Control_L=Escape'
+Type=forking
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
