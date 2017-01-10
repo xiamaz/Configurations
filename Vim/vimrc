@@ -80,10 +80,12 @@ set mouse=a
 "setup wordwrap
 set wrap linebreak list formatoptions-=t breakindent
 
-"set colorscheme for gvim
-let base16colorspace=256
-colorscheme base16-tomorrow-night
-set background=dark
+"set colorscheme for urxvt-256colors
+if $TERM =~ '256color'
+	let base16colorspace=256
+	colorscheme base16-tomorrow-night
+	set background=dark
+endif
 "no beeping
 set vb t_vb=
 
