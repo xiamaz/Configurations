@@ -28,7 +28,6 @@ let g:calendar_monday = 1
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='base16'
 set noshowmode "do not show the insert status, since we already have airline
 
 so ~/.vimrc.local
@@ -85,6 +84,7 @@ if $TERM =~ '256color'
 	let base16colorspace=256
 	colorscheme base16-tomorrow-night
 	set background=dark
+	let g:airline_theme='base16'
 endif
 "no beeping
 set vb t_vb=
