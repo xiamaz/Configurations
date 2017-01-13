@@ -1,6 +1,6 @@
 ! urxvt settings
 URxvt.scrollBar: false
-URxvt.font: xft:terminus:size=16,xft:wenquanyi bitmap song:size=14
+URxvt.font: xft:xos4 terminus:size=16,xft:wenquanyi bitmap song:size=14
 ! clickable urls in rxvt
 URxvt.perl-ext-common: default,matcher,vtwheel
 URxvt.url-launcher: /usr/bin/firefox
