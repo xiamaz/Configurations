@@ -20,14 +20,11 @@ if [ -z $output ]; then
 	exit 1
 fi
 
-# 1280x1024 84.84 Hz (CVT 1.31M4) hsync: 91.46 kHz; pclk: 159.50 MHz
 if ! xrandr | grep -q "1280x960_95"; then
 	echo $output
-# 	xrandr --newmode "1280x1024_85.00"  159.50  1280 1376 1512 1744  1024 1027 1034 1078 -hsync +vsync
-# 	xrandr --addmode $output "1280x1024_85.00"
 	echo "No mode detected, adding mode to external display output"
 	"$workdir"/eizo_setup.sh "$output"
 fi
-xrandr --output $output --mode "1400x1050_85.00" --auto --left-of $primary
+xrandr --output $output --mode "1280x960_95.00" --auto --left-of $primary
 echo "Configuring output layout for docking station usage."
 notify-send -t 10 "Setting up displaylink"
