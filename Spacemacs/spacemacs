@@ -65,7 +65,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(mips-mode smart-tabs-mode)
+   dotspacemacs-additional-packages '(smart-tabs-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -316,7 +316,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq-default c-default-style "bsd")
   (setq-default c-basic-offset 4)
-  (setq-default tab-width 4)
   )
 
 (defun dotspacemacs/user-config ()
@@ -329,9 +328,15 @@ you should place your code here."
   (setq neo-theme 'nerd)
   (spacemacs/toggle-indent-guide-globally-on)
   (smart-tabs-insinuate 'c 'python )
+  (add-hook 'prog-mode-hook 'turn-on-fci-mode)
+  (add-hook 'text-mode-hook 'turn-on-fci-mode)
   (add-hook 'c-mode-common-hook
             (lambda () (setq indent-tabs-mode t)))
   (add-hook 'python-mode-hook (lambda () (setq indent-tabs-mode t)))
+  (setq-default tab-width 4)
+
+  (setq-default fci-rule-color "dim gray")
+  (turn-on-fci-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
