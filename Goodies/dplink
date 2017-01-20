@@ -20,12 +20,12 @@ if [ -z $output ]; then
 	exit 1
 fi
 
-if ! xrandr | grep -q "1280x960_95"; then
+if ! xrandr | grep -q "1280x960_95.00"; then
 	echo $output
 	echo "No mode detected, adding mode to external display output"
-	"$workdir"/eizo_setup.sh "$output"
-else
 	"$workdir"/eizo_setup.sh "$output" first
+else
+	"$workdir"/eizo_setup.sh "$output"
 fi
 xrandr --output $output --mode "1280x960_95.00" --auto --left-of $primary
 echo "Configuring output layout for docking station usage."
