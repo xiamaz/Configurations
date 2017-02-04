@@ -1,0 +1,2 @@
+evdev:name:Toshiba input device:dmi:*
+  KEYBOARD_KEY_143=prog2
