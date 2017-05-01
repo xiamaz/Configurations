@@ -1,5 +1,5 @@
 call plug#begin() 
-Plug 'tpope/vim-sensible'
+" Plug 'tpope/vim-sensible'
 Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char = '┆'
