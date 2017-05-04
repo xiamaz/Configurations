@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+#set -e
 set -u
 
 workdir="/home/max/Gits/Configurations/Goodies"
@@ -25,8 +25,11 @@ if ! xrandr | grep -q "1280x960_95.00"; then
 	echo "No mode detected, adding mode to external display output"
 	"$workdir"/eizo_setup.sh "$output" first
 else
+	echo $output
 	"$workdir"/eizo_setup.sh "$output"
 fi
-xrandr --output $output --mode "1280x960_95.00" --auto --left-of $primary
+xrandr --output $output --auto --mode "1280x960_95.00"
+xrandr --output $output --auto --mode "1280x960_95.00" --left-of $primary
+xrandr --output $output --auto --mode "1280x960_95.00" --left-of $primary
 echo "Configuring output layout for docking station usage."
 notify-send -t 10 "Setting up displaylink"
