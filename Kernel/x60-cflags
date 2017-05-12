@@ -1,0 +1,1 @@
+CFLAGS='-march=core2 -O2 -pipe'
