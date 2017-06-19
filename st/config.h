@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "xos4 Terminus:pixelsize=14:antialias=false:autohint=false";
+static char font[] = "Terminus:pixelsize=16";
 static int borderpx = 2;
 
 /*
@@ -25,7 +25,7 @@ static char vtiden[] = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 1.0;
-static float chscale = 1.05;
+static float chscale = 1.1;
 
 /*
  * word delimiter string
@@ -84,42 +84,46 @@ static unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+	/* Normal colors */
+	"#1d1f21", /*  0: Base 00 - Black   */
+	"#cc6666", /*  1: Base 08 - Red     */
+	"#b5bd68", /*  2: Base 0B - Green   */
+	"#f0c674", /*  3: Base 0A - Yellow  */
+	"#81a2be", /*  4: Base 0D - Blue    */
+	"#b294bb", /*  5: Base 0E - Magenta */
+	"#8abeb7", /*  6: Base 0C - Cyan    */
+	"#c5c8c6", /*  7: Base 05 - White   */
 
-	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+	/* Bright colors */
+	"#969896", /*  8: Base 03 - Bright Black */
+	"#cc6666", /*  9: Base 08 - Red          */
+	"#b5bd68", /* 10: Base 0B - Green        */
+	"#f0c674", /* 11: Base 0A - Yellow       */
+	"#81a2be", /* 12: Base 0D - Blue         */
+	"#b294bb", /* 13: Base 0E - Magenta      */
+	"#8abeb7", /* 14: Base 0C - Cyan         */
+	"#ffffff", /* 15: Base 05 - Bright White */
+
+	/* A few more colors */
+
+	"#de935f", /* 16: Base 09 */
+	"#a3685a", /* 17: Base 0F */
+	"#282a2e", /* 18: Base 01 */
+	"#373b41", /* 19: Base 02 */
+	"#b4b7b4", /* 20: Base 04 */
+	"#e0e0e0", /* 21: Base 06 */
 
 	[255] = 0,
 
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
+	[256] = "#c5c8c6", /* default fg: Base 05 */
+	[257] = "#1d1f21", /* default bg: Base 00 */	
 };
 
-
-/*
- * Default colors (colorname index)
- * foreground, background, cursor, reverse cursor
- */
-static unsigned int defaultfg = 7;
-static unsigned int defaultbg = 0;
+// Foreground, background, cursor, reverse cursor
+static unsigned int defaultfg = 256;
+static unsigned int defaultbg = 257;
 static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+static unsigned int defaultrcs = 15;
 
 /*
  * Default shape of cursor
