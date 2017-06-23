@@ -1,0 +1,15 @@
+#!/bin/bash
+STATUS=$( xfconf-query -c pointers -p /SynPS2_Synaptics_TouchPad/Properties/Device_Enabled )
+TOUCHPADID=$( xinput | grep 'Synaptics' | grep -o '[0-9][0-9]' )
+echo "$STATUS"
+echo "$TOUCHPADID"
+
+if [ $STATUS -eq 1 ]; then
+	xfconf-query -c pointers -p /SynPS2_Synaptics_TouchPad/Properties/Device_Enabled -s 0
+	DISPLAY=:8 xinput set-prop $TOUCHPADID "Device Enabled" 0
+	notify-send "OFF" --icon=input-mouse -t 1
+else
+	xfconf-query -c pointers -p /SynPS2_Synaptics_TouchPad/Properties/Device_Enabled -s 1
+	DISPLAY=:8 xinput set-prop $TOUCHPADID "Device Enabled" 1
+	notify-send "ON" --icon=input-mouse -t 1
+fi
