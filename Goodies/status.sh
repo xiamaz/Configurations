@@ -4,7 +4,7 @@
 zmodload zsh/mathfunc
 LC_NUMERIC="en_US.UTF-8"
 #temp=$(sensors -u coretemp-isa-0000 | grep -i -m 1 input | grep -o "[^ ]*$")
-temp=$(($(< /sys/class/thermal/thermal_zone1/temp)/1000))
+temp=$(($(< /sys/class/thermal/thermal_zone2/temp)/1000))
 
 # get ram numbers
 ram=($(free -h))
