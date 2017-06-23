@@ -1,0 +1,7 @@
+# ibus exports
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
+# configure qt5 apps with qt5ct
+export QT_QPA_PLATFORMTHEME=qt5ct
