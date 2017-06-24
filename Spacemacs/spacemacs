@@ -46,9 +46,14 @@ values."
      common-lisp
      c-c++
      latex
+     bibtex
      yaml
      pdf-tools
      python
+     ;; elm
+     javascript
+     html
+     ;; java
      ;; rust
      (shell :variables
             shell-default-height 30
@@ -59,7 +64,7 @@ values."
      ;; more themes
      themes-megapack 
      colors
-     games
+     ;; games
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -270,8 +275,18 @@ values."
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
-   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
-   ;; derivatives. If set to `relative', also turns on relative line numbers.
+   ;; Control line numbers activation.
+   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
+   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; This variable can also be set to a property list for finer control:
+   ;; '(:relative nil
+   ;;   :disabled-for-modes dired-mode
+   ;;                       doc-view-mode
+   ;;                       markdown-mode
+   ;;                       org-mode
+   ;;                       pdf-view-mode
+   ;;                       text-mode
+   ;;   :size-limit-kb 1000)
    ;; (default nil)
    dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
@@ -326,6 +341,12 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq neo-theme 'nerd)
+  (setq neo-show-hidden-files nil)
+  (add-hook 'neotree-mode-hook
+            (lambda ()
+              (define-key neotree-mode-map (kbd "C-w") nil)
+              (define-key neotree-mode-map (kbd "C-w l") 'other-window)
+              ))
   (spacemacs/toggle-indent-guide-globally-on)
   (smart-tabs-insinuate 'c 'python )
   (add-hook 'prog-mode-hook 'turn-on-fci-mode)

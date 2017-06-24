@@ -3,11 +3,6 @@ export PATH=~/.local/bin:.:$PATH
 
 export GPG_AGENT_INFO=""
 
-# ibus exports
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
 # disable symlink generation by wine
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 
@@ -18,9 +13,6 @@ source /usr/bin/virtualenvwrapper.sh
 
 # rust cargo path
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# configure qt5 apps with qt5ct
-export QT_QPA_PLATFORMTHEME=qt5ct
 
 # ruby gems
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
