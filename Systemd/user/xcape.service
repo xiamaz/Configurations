@@ -1,9 +1,9 @@
 [Unit]
 Description=Xcape Keybinding program
-After=xorg.target
+After=xorg.target xkbload.service
 
 [Service]
-ExecStart=/usr/bin/xcape -e 'Control_L=Escape'
+ExecStart=/usr/bin/xcape -e 'Caps_Lock=Escape'
 Type=forking
 Restart=always
 RestartSec=5

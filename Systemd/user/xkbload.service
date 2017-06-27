@@ -1,0 +1,10 @@
+[Unit]
+Description=Xkb load custom keymap
+After=xorg.target
+
+[Service]
+ExecStart=/home/max/.local/bin/xkbload
+Type=oneshot
+
+[Install]
+WantedBy=default.target
