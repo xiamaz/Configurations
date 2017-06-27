@@ -1,0 +1,9 @@
+partial alphanumeric_keys
+xkb_symbols "maxkeys" {
+    // include some custom convenience keys
+
+    include "de(basic)"
+    name[Group1]="German (Max's Keys)";
+
+    key <AC05>	{ [         g,          G,    dead_greek        ]	};
+};

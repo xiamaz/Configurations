@@ -1,0 +1,14 @@
+#!/bin/zsh
+# load the keyboard definitions
+
+XKBDIR="$HOME/.xkb"
+#XKBMAPFILE="$XKBDIR/keymap/${(%):-%M}"
+XKBMAPFILE="$XKBDIR/keymap/$(hostname --fqdn)"
+[[ -r "$XKBMAPFILE" ]] || XKBMAPFILE="${XKBMAPFILE%/*}/default"
+
+#info "loading keymap from $XKBMAPFILE"
+#echo "loading keymap from $XKBMAPFILE"
+
+xkbcomp -I"$XKBDIR" "$XKBMAPFILE" "${DISPLAY%%.*}" -w3
+
+unset XKBDIR XKBMAPFILE
