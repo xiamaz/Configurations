@@ -7,5 +7,5 @@ if [ "$STATUS" ];
 then
 	wmctrl -a st-256color.st-256color -x
 else
-	st -e zsh -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER"
+	st -e zsh -c "tmux -q has-session && exec tmux attach-session -d \; new-window || exec tmux new-session -n$USER -s$USER"
 fi
