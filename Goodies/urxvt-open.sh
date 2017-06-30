@@ -7,5 +7,5 @@ if [ "$STATUS" ];
 then
 	wmctrl -a urxvt.URxvt -x
 else
-	urxvt -e zsh -c "tmux -q has-session && exec tmux attach-session -d \; new-window || exec tmux new-session -n$USER -s$USER"
+	urxvt -e zsh -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER"
 fi
