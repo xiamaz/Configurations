@@ -12,10 +12,12 @@ makedepends=('ncurses')
 url="http://st.suckless.org"
 source=(http://dl.suckless.org/st/$pkgname-$pkgver.tar.gz
         config.h
-        st-vertcenter-0.7.patch)
+        st-vertcenter-0.7.patch
+        21color.patch)
 md5sums=('29b2a599cf1511c8062ed8f025c84c63'
-         '46c691d151e472a696a7949001387a10'
-         '56792e515f1c5532ea5f2bad6f821ee4')
+         '43fe16f07f93fa3db9a01c3f8ce7bad4'
+         '56792e515f1c5532ea5f2bad6f821ee4'
+         '70d1c05af574b0cd4d551387ed748d40')
 
 prepare() {
   cd $srcdir/$pkgname-$pkgver
@@ -23,6 +25,7 @@ prepare() {
   sed -i '/\@tic /d' Makefile
   cp $srcdir/config.h config.h
   patch -p1 -i $srcdir/st-vertcenter-0.7.patch
+  patch -p1 -i $srcdir/21color.patch
 }
 
 build() {
