@@ -1,44 +1,73 @@
-call plug#begin() 
-" Plug 'tpope/vim-sensible'
-Plug 'chriskempson/base16-vim'
-Plug 'Yggdroot/indentLine'
-let g:indentLine_char = '┆'
-
-" autocompletion, might need to be recompiled
-Plug 'ervandew/supertab'
-
-" vimwiki plugin for personal wiki
+call plug#begin()
+"" VimWiki - Personal Wiki
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
-let g:calendar_monday = 1
-
-" airline status
+"" Vim Airline
 Plug 'vim-airline/vim-airline'
+"" Whitespace Plugins
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'Yggdroot/indentLine'
+"" Theme plugins
+Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
-let g:airline#extensions#tabline#enabled = 1
-" do not show the insert status, since we already have airline
-set noshowmode
-
-so ~/.vimrc.local
-let mapleader=","
-
-" backup files
-set backup
-" undo history persistent after closed file
-set undofile
-
-" special neovim plugins
+"" Neovim Plugins
 if has('nvim')
 	function! DoRemote(arg)
 		UpdateRemotePlugins
 	endfunction
-
+	Plug 'ervandew/supertab'
 	Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 	Plug 'zchee/deoplete-jedi', { 'for' : 'python' }
+	Plug 'Shougo/neco-vim', { 'for' : 'vim' }
+endif
+call plug#end()
+
+"" Basic Settings
+syntax on
+let mapleader=","
+" backup files
+set backup
+" undo history persistent after closed file
+set undofile
+" indentation settings
+filetype plugin indent on
+set autoindent
+" smart tabs configuration - use tabs for indent and spaces for align
+set noexpandtab copyindent preserveindent softtabstop=0 shiftwidth=4 tabstop=4
+set number
+set ignorecase smartcase " only case sensitive when using uppercase
+set mouse=a
+" setup wordwrap
+set wrap linebreak formatoptions-=t breakindent
+" no beeping
+set vb t_vb=
+
+"" Theme Settings
+" set colorscheme for 256-color supported terminals
+if $TERM =~ '256color'
+	let base16colorspace=256
+	colorscheme base16-tomorrow-night
+	set background=dark
+	let g:airline_theme='base16'
+endif
+
+"" Plugin Configuration
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+" do not show the insert status, since we already have airline
+set noshowmode
+" VimWiki and calendar
+let g:calendar_monday = 1
+" Whitespace - Tabs line Spaces dotted
+let g:indentLine_char = '┆'
+set list lcs=tab:\│\ 
+hi Whitespace ctermfg=19
+
+"" Neovim Settings
+if has('nvim')
+	" Deoplete settings
 	let g:deoplete#enable_at_startup = 1
 	let g:deoplete#ignore_sources = {'_': ['buffer','tag']}
-	Plug 'Shougo/neco-vim', { 'for' : 'vim' }
-
 	" set up neovim keybinds
 	tnoremap <Esc> <C-\><C-n>
 	tnoremap <A-h> <C-\><C-n><C-w>h
@@ -52,36 +81,8 @@ if has('nvim')
 else
 	set nocompatible
 endif
-call plug#end()
 
-" color trailing whitespace
-highlight ExtraWhitespace ctermbg=red
-match ExtraWhitespace /\s\+$\|\t/
-
-syntax on
-
-" indentation settings
-filetype plugin indent on
-set autoindent
-" smart tabs configuration - use tabs for indent and spaces for align
-set noexpandtab copyindent preserveindent softtabstop=0 shiftwidth=4 tabstop=4
-
-set number
-set ignorecase smartcase " only case sensitive when using uppercase
-set mouse=a
-" setup wordwrap
-set wrap linebreak list formatoptions-=t breakindent
-
-" set colorscheme for urxvt-256colors
-if $TERM =~ '256color'
-	let base16colorspace=256
-	colorscheme base16-tomorrow-night
-	set background=dark
-	let g:airline_theme='base16'
-endif
-" no beeping
-set vb t_vb=
-
+"" Custom keybindings
 " setup arrowkeys for visual scroll
 noremap  <buffer> <silent> <Up>   gk
 noremap  <buffer> <silent> <Down> gj
@@ -91,11 +92,9 @@ inoremap <buffer> <silent> <Up>   <C-o>gk
 inoremap <buffer> <silent> <Down> <C-o>gj
 inoremap <buffer> <silent> <Home> <C-o>g<Home>
 inoremap <buffer> <silent> <End>  <C-o>g<End>
-
 " remove highlight with escape in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
-
 " german remaps for easier movements
 nnoremap ö (
 vnoremap ö (
@@ -114,3 +113,6 @@ vnoremap Ä }
 xnoremap Ä }
 snoremap Ä }
 nnoremap ü <C-]>
+
+"" Source local vimrc
+so ~/.vimrc.local
