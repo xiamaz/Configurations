@@ -3,50 +3,42 @@ call plug#begin()
 Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char = '┆'
-"Plug 'jpmv27/Smart-Tabs'
-
-" somehow sensible tagging, will need ctags installed
-" Plug 'majutsushi/tagbar'
-" Plug 'xolox/vim-misc', { 'for' : ['python', 'c', 'cpp'] }
-" Plug 'xolox/vim-easytags', { 'for' : ['python', 'c', 'cpp'] }
-" set tags=./tags
-" let g:easytags_dynamic_files = 1
 
 " autocompletion, might need to be recompiled
 Plug 'ervandew/supertab'
-"Plug 'vim-latex/vim-latex', { 'for': 'tex' }
-" Plugins for c/c++ programming
-" cvim plugin code checking needs eg splint, cppcheck
-"Plug 'WolfgangMehner/vim-plugins', {'for': ['c', 'cpp']}
-"Plug 'scrooloose/syntastic', {'for': ['c', 'cpp']}
+
 " vimwiki plugin for personal wiki
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 let g:calendar_monday = 1
 
-"better status
+" airline status
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
-set noshowmode "do not show the insert status, since we already have airline
+" do not show the insert status, since we already have airline
+set noshowmode
 
 so ~/.vimrc.local
 let mapleader=","
 
+" backup files
+set backup
+" undo history persistent after closed file
+set undofile
 
 " special neovim plugins
 if has('nvim')
-    function! DoRemote(arg)
-        UpdateRemotePlugins
-    endfunction
-    Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-	"Plug 'zchee/deoplete-jedi', { 'for' : 'python' }
+	function! DoRemote(arg)
+		UpdateRemotePlugins
+	endfunction
+
+	Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+	Plug 'zchee/deoplete-jedi', { 'for' : 'python' }
 	let g:deoplete#enable_at_startup = 1
 	let g:deoplete#ignore_sources = {'_': ['buffer','tag']}
-	"Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
-    "let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-    "let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 	Plug 'Shougo/neco-vim', { 'for' : 'vim' }
+
 	" set up neovim keybinds
 	tnoremap <Esc> <C-\><C-n>
 	tnoremap <A-h> <C-\><C-n><C-w>h
@@ -57,17 +49,18 @@ if has('nvim')
 	nnoremap <A-j> <C-w>j
 	nnoremap <A-k> <C-w>k
 	nnoremap <A-l> <C-w>l
-	" config easytag for better performance
-	"let g:easytags_async = 1
 else
-	"Plug 'davidhalter/jedi-vim', { 'for' : 'python' }
-	"Plug 'justmao945/vim-clang', {'for': ['c', 'cpp']}
 	set nocompatible
 endif
 call plug#end()
 
+" color trailing whitespace
+highlight ExtraWhitespace ctermbg=red
+match ExtraWhitespace /\s\+$\|\t/
+
 syntax on
-"indentation settings
+
+" indentation settings
 filetype plugin indent on
 set autoindent
 " smart tabs configuration - use tabs for indent and spaces for align
@@ -76,27 +69,20 @@ set noexpandtab copyindent preserveindent softtabstop=0 shiftwidth=4 tabstop=4
 set number
 set ignorecase smartcase " only case sensitive when using uppercase
 set mouse=a
-"setup wordwrap
+" setup wordwrap
 set wrap linebreak list formatoptions-=t breakindent
 
-"set colorscheme for urxvt-256colors
+" set colorscheme for urxvt-256colors
 if $TERM =~ '256color'
 	let base16colorspace=256
 	colorscheme base16-tomorrow-night
 	set background=dark
 	let g:airline_theme='base16'
 endif
-"no beeping
+" no beeping
 set vb t_vb=
 
-""" Keyboard remaps
-"tagbar toggle
-"nmap <F8> :TagbarToggle<CR>
-"minibufexpl mappings
-"map <Leader>mbe :MBEOpen<cr>
-"map <Leader>mbc :MBEClose<cr>
-"map <Leader>mbt :MBEToggle<cr>
-"setup arrowkeys for visual scroll
+" setup arrowkeys for visual scroll
 noremap  <buffer> <silent> <Up>   gk
 noremap  <buffer> <silent> <Down> gj
 noremap  <buffer> <silent> <Home> g<Home>
@@ -106,15 +92,11 @@ inoremap <buffer> <silent> <Down> <C-o>gj
 inoremap <buffer> <silent> <Home> <C-o>g<Home>
 inoremap <buffer> <silent> <End>  <C-o>g<End>
 
-"put swap files in own folder
-set backupdir=~/.local/share/vim/backup//
-set directory=~/.local/share/vim/swap//
-set undodir=~/.local/share/vim/undo//
+" remove highlight with escape in normal mode
+nnoremap <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
 
-"remove highlight with space
-map <Space> :noh<cr>
-
-"german remaps for easier movements
+" german remaps for easier movements
 nnoremap ö (
 vnoremap ö (
 xnoremap ö (
