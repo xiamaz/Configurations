@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+icon="$HOME/Utilities/lock.png"
+tmpbg='/tmp/screen.png'
+
+(( $# )) && { icon=$1; }
+
+#scrot "$tmpbg"
+#maim | convert - -scale 5% -scale 2000% "$icon" -gravity center -composite "$tmpbg"
+#maim | convert png:- -scale 5% -scale 2000% "$icon" -gravity center -composite "$tmpbg"
+#maim - | I
+gm import -window root png:- | gm convert png:- -scale 3.125% -scale 3200% png:- | gm composite -gravity center "$icon"  png:- "$tmpbg"
+# convert "$tmpbg" "$icon" -gravity center -composite -matte "$tmpbg"
+revert() {
+  xset dpms 1260 0 1320
+}
+trap revert SIGHUP SIGINT SIGTERM
+xset +dpms dpms 5 5 5
+i3lock -u -i "$tmpbg"
+revert
