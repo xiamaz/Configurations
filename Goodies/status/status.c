@@ -8,9 +8,7 @@
 
 int main (int argc, char **argv) {
 	char temp_raw[30];
-	char bbs_raw[30];
 	FILE *tempfp;
-	FILE *bbsfp;
 	unsigned int zone = 1;
 	char *thermal_zone;
 	unsigned int temp;
@@ -21,7 +19,6 @@ int main (int argc, char **argv) {
 	unsigned int non_idle, total;
 	long double percentage;
 
-	char *nv_status;
 
 	FILE * loadfp;
 	double loads[3];
@@ -65,6 +62,10 @@ int main (int argc, char **argv) {
 	fclose(tempfp);
 	temp = TEMP_CALC(strtol(temp_raw, NULL, 10));
 
+#if OPTIMUS == 1
+	char *nv_status;
+	FILE *bbsfp;
+	char bbs_raw[30];
 	/* nvidia optimus state */
 	bbsfp = fopen(BBSWITCH, "r");
 	if (!bbsfp) perror("Couldn't open file."), exit(1);
@@ -73,6 +74,7 @@ int main (int argc, char **argv) {
 	strtok(bbs_raw, " \n");
 	nv_status = strtok(NULL, " \n");
 	for (char *p = nv_status; *p; ++p) *p = tolower(*p);
+#endif
 
 	/* ram information */
 	ramfp = fopen(PROC_MEM, "r");
@@ -88,9 +90,14 @@ int main (int argc, char **argv) {
 
 	for (dim = 0; available > 1000; dim++,available = available / 1000);
 
-
+#if OPTIMUS == 1
 	snprintf(out_string, sizeof(out_string), FORMAT_STRING, percentage, available,
 	         SIZES[dim], temp, nv_status, loads[0], loads[1], loads[2]);
+#else
+	snprintf(out_string, sizeof(out_string), FORMAT_STRING, percentage, available,
+	         SIZES[dim], temp, loads[0], loads[1], loads[2]);
+#endif
+
 	printf("%s\n", out_string);
 
 	return 0;
