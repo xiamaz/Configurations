@@ -1,0 +1,8 @@
+=Powerstop
+Background process, which stops all applications on another workspace and resumes them, when returning to that workspace.
+Pinned applications are ignored.
+
+Depends on libwnck.
+
+== TODO
+Depend on state of power manager (plugged/unplugged). Probably best by starting and stopping the app with powerstate change. (DBUS signal?)
