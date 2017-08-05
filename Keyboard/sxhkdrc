@@ -1,12 +1,11 @@
 alt + Return
 	$HOME/Git/Configurations/Goodies/urxvt-open.sh
 alt + d
-	rofi -show drun
-Super_L
-	skippy-xd --toggle-window-picker
+	rofi -combi-modi window,drun -show combi -modi combi
 Print
 	xfce4-screenshooter
 XF86Screensaver
 	xflock4
-XF86KbdLightOnOff
-	kbd_backlight
+# Z20T Keyboard Backlight
+#XF86KbdLightOnOff
+#	kbd_backlight
