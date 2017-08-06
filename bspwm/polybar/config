@@ -40,10 +40,10 @@ module-margin-left = 0
 module-margin-right = 6
 
 font-0 = NotoSans-Regular:size=8;0
-font-1 = MaterialIcons:size=10;2
-font-2 = Misc Termsynu:size=8:antialias=false;0
+font-1 = unifont:size=6;0
+font-2 = Termsynu:size=8:antialias=false;0
 font-3 = FontAwesome:size=10;2
-font-4 = Symbola:weight=bold:size=11;1
+font-4 = MaterialIcons:size=10;1
 
 modules-left = bspwm
 modules-right = temp cpu memory
@@ -149,7 +149,8 @@ label-empty-padding = 4
 label-monocle = 
 label-monocle-underline = ${module/bspwm.label-focused-underline}
 label-monocle-background = #33ffffff
-label-monocle-padding = 2
+label-monocle-padding = 3
+label-monocle-font = 4
 
 label-locked = 
 label-locked-foreground = #bd2c40
@@ -331,6 +332,7 @@ menu-2-1-exec = menu_open-0
 type = custom/script
 exec = /home/max/.config/polybar/ibus_status.sh
 click-left = /home/max/.config/polybar/ibus_status.sh toggle
+click-right = ibus-setup
 interval = 1
 ;format-foreground = #ccffffff
 

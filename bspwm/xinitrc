@@ -55,6 +55,10 @@ export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 export SXHKD_SHELL="/usr/bin/sh"
 
+# start gnome keyring
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
 ibus-daemon --xim -drx
 
 exec bspwm
