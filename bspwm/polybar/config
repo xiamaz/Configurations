@@ -1,33 +1,36 @@
 [bar/top]
 monitor = LVDS1
 width = 100%
-height = 34
+height = 24
 
 background = #00000000
 foreground = #ccffffff
 
 line-color = ${bar/bottom.background}
-line-size = 16
+line-size = 0
+;border-bottom-size = 1
+;border-bottom-color = #707070
 
-spacing = 2
+
 padding-right = 5
-module-margin = 4
+module-margin = 3
 
-font-0 = NotoSans-Regular:size=8;-1
-font-1 = MaterialIcons:size=10;0
-font-2 = Misc Termsynu:size=8:antialias=false;-2
-font-3 = FontAwesome:size=10;0
-font-4 = Symbola:weight=bold:size=11;-1
+font-0 = NotoSans-Regular:size=8;0
+font-1 = MaterialIcons:size=10;2
+font-2 = Misc Termsynu:size=8:antialias=false;0
+font-3 = FontAwesome:size=10;1
+font-4 = Symbola:weight=bold:size=11;1
 
 modules-left = powermenu
 modules-right = volume backlight ibus wireless-network battery date
 
+wm-restack = bspwm
 
 [bar/bottom]
 monitor = LVDS1
 bottom = true
 width = 100%
-height = 27
+height = 24
 
 background = ${bar/top.background}
 foreground = ${bar/top.foreground}
@@ -51,6 +54,7 @@ modules-left = bspwm
 modules-right = cpu memory
 
 tray-position = right
+wm-restack = bspwm
 
 [module/backlight]
 type = internal/xbacklight
@@ -146,7 +150,7 @@ label-empty-foreground = #55
 label-empty-font = 4
 label-empty-padding = 4
 
-label-monocle = 
+label-monocle = 
 label-monocle-underline = ${module/bspwm.label-focused-underline}
 label-monocle-background = #33ffffff
 label-monocle-padding = 2
@@ -210,8 +214,10 @@ ramp-coreload-7-foreground = #ff5555
 
 [module/date]
 type = internal/date
-date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
-date-alt =    %%{F#99}%A%%{F-}  %%{F#fff}%H:%M%%{F-}
+;date = %{A1:gnome-calendar:} %{F#99}%Y-%m-%d%{F-}%{A}  %{A1:gnome-clocks:} %{F#fff}%H:%M%{F-}%{A}
+date =  %{F#99}%Y-%m-%d%{F-}   %{F#fff}%H:%M%{F-}
+;date = %Y-%m-%d %H:%M%%
+;date-alt =    %%{F#99}%A%%{F-}  %%{F#fff}%H:%M%%{F-}
 
 [module/memory]
 type = internal/memory
@@ -265,7 +271,7 @@ interface = wls3
 interval = 3.0
 ping-interval = 10
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = %{A1:st -e nmtui:}<ramp-signal> <label-connected>%{A}
 label-connected = %essid%
 label-disconnected =    not connected
 label-disconnected-foreground = #66
@@ -297,7 +303,7 @@ speaker-soundcard = default
 headphone-soundcard = default
 master-mixer = Master
 
-format-volume = <ramp-volume> <label-volume>
+format-volume = %{A3:pavucontrol:}<ramp-volume> <label-volume>%{A}
 label-muted =   muted
 label-muted-foreground = #66
 
@@ -313,8 +319,9 @@ format-padding = 5
 
 label-open = 
 label-close = 
+label-separator = "  "
 
-menu-0-0 = Terminate WM
+menu-0-0 = Logout 
 menu-0-0-foreground = #fba922
 menu-0-0-exec = bspc quit -1
 menu-0-1 = Reboot
@@ -337,11 +344,6 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = Cancel
 menu-2-1-foreground = #fba922
 menu-2-1-exec = menu_open-0
-
-[module/clock]
-type = internal/date
-interval = 2
-date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
 
 [module/ibus]
 type = custom/script
