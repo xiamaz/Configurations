@@ -16,8 +16,9 @@ bspc config click_to_focus true
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Screenkey manage=off
 bspc rule -a Firefox desktop='^2'
+bspc rule -a st-256color desktop='^1' -o
 bspc rule -a Thunderbird desktop='^3'
-bspc rule -a KeePassXC desktop='^8'
+bspc rule -a keepassxc desktop='^8'
 bspc rule -a Spotify desktop='^5'
 bspc rule -a Telegram desktop='^6'
 
