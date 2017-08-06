@@ -24,7 +24,7 @@ int main (int *argc, char **argv)
 			first = 1;
 		}
 	}
-	g_print("Setting input method to %s\n", new);
+	g_print("%s\n", new);
 	ibus_bus_set_global_engine(ibb, new);
 	return 0;
 }

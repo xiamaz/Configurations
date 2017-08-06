@@ -1,0 +1,30 @@
+#! /bin/sh
+sxhkd &
+feh --bg-fill --bg-center "$HOME/Pictures/Wallpapers/BSPWM/space.png"
+
+bspc monitor -d term web mail code music chat other keepass
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config click_to_focus true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Screenkey manage=off
+bspc rule -a Firefox desktop='^2'
+bspc rule -a Thunderbird desktop='^3'
+bspc rule -a KeePassXC desktop='^8'
+bspc rule -a Spotify desktop='^5'
+bspc rule -a Telegram desktop='^6'
+
+# remove the large x
+xsetroot -cursor_name left_ptr
+
+redshift &
+polybar top &
+polybar bottom &
+xcape -e 'Caps_Lock=Escape' &
