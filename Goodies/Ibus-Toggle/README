@@ -1,0 +1,4 @@
+= Ibus Toggle
+Simple C Program to switch the input method to the next in the input method list.
+
+Should not have a bug, that the system keyboard layout is not heeded.
