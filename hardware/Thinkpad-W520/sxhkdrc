@@ -1,0 +1,12 @@
+alt + Return
+	$HOME/Git/Configurations/Utils/st-open.sh
+alt + d
+	rofi -combi-modi window,drun -show combi -modi combi
+Print
+	xfce4-screenshooter
+XF86TouchpadToggle
+	$HOME/Code/Scripts/touchpad
+XF86AudioMicMute
+	$HOME/Code/Scripts/micmute
+XF86Launch1
+	gnome-system-monitor
