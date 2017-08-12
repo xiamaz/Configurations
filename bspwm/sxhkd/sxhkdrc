@@ -1,5 +1,5 @@
 alt + Return
-	$HOME/Git/Configurations/Goodies/st-open.sh
+	$HOME/Git/Configurations/Utils/st-open.sh
 alt + shift + Return
 	st
 alt + d
