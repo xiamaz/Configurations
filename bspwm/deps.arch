@@ -9,4 +9,5 @@ feh
 sxhkd
 wmctrl
 st
-dunst
+xfce4-notifyd
+pamixer
