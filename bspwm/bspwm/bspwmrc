@@ -1,6 +1,6 @@
 #! /bin/sh
-sxhkd &
-feh --bg-fill --bg-center "$HOME/Pictures/Wallpapers/BSPWM/space.png"
+sxhkd -c $HOME/.config/sxhkd/sxhkdrc.bspwm &
+feh --bg-fill "$HOME/Pictures/Wallpapers/Unsplash/sam-ferrara-136526.jpg"
 
 bspc monitor -d term web mail code music chat other keepass
 
@@ -14,19 +14,21 @@ bspc config gapless_monocle      true
 bspc config click_to_focus true
 bspc config pointer_modifier mod1
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Gimp state=floating focus=on
 bspc rule -a Screenkey manage=off
-bspc rule -a Firefox desktop='^2'
-bspc rule -a st-256color desktop='^1' -o
-bspc rule -a Thunderbird desktop='^3'
+bspc rule -a Firefox desktop='^2' focus=on follow=on
+bspc rule -a st-256color desktop='^1' -o focus=on follow=on
+bspc rule -a Thunderbird desktop='^3' focus=on follow=on
 bspc rule -a keepassxc desktop='^8'
-bspc rule -a Spotify desktop='^5'
-bspc rule -a Telegram desktop='^6'
+bspc rule -a Spotify desktop='^5' focus=on follow=on
+bspc rule -a Telegram desktop='^6' focus=on follow=on
 
 # remove the large x
 xsetroot -cursor_name left_ptr
 
+# start xfce4-notifyd as notification handler simply by installing it
 redshift &
+compton &
+$HOME/SystemSettings/KeepassAutostart/keepass.sh &
 polybar top &
 polybar bottom &
-xcape -e 'Caps_Lock=Escape' &

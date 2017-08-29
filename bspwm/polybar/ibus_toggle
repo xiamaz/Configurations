@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+i=$(./ibus-switch)
+if [ "$i" == "xkb:de::ger" ]; then
+	echo "🄳"
+else
+	echo "🈭"
+fi

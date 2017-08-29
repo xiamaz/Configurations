@@ -1,5 +1,7 @@
 # setup wacom tablet
 $HOME/SystemSettings/wacom-custom.sh
+# disable touchpad
+xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad'
 
 # load custom keyboard layout
 $HOME/.local/bin/xkbload
