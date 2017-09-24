@@ -1,6 +1,6 @@
 #! /bin/sh
 sxhkd -c $HOME/.config/sxhkd/sxhkdrc.bspwm &
-feh --bg-fill "$HOME/Pictures/Wallpapers/Unsplash/sam-ferrara-136526.jpg"
+nitrogen --restore &
 
 bspc monitor -d term web mail code music chat other keepass
 
@@ -26,9 +26,14 @@ bspc rule -a Telegram desktop='^6' focus=on follow=on
 # remove the large x
 xsetroot -cursor_name left_ptr
 
+# load gnome keyring
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
+
 # start xfce4-notifyd as notification handler simply by installing it
 redshift &
 compton &
+xcape -e 'Caps_Lock=Escape' &
+nextcloud &
 $HOME/SystemSettings/KeepassAutostart/keepass.sh &
-polybar top &
-polybar bottom &
+$HOME/.config/polybar/launch.sh &
