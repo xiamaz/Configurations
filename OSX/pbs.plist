@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSServicesStatus</key>
+	<dict>
+		<key>(null) - Activate Terminal - runWorkflowAsService</key>
+		<dict>
+			<key>enabled_context_menu</key>
+			<false/>
+			<key>enabled_services_menu</key>
+			<false/>
+		</dict>
+		<key>(null) - Open Terminal - runWorkflowAsService</key>
+		<dict>
+			<key>key_equivalent</key>
+			<string>@↩</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
