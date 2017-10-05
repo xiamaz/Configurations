@@ -65,6 +65,13 @@ alt + {_,shift + }{h,j,k,l}
 alt + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
+alt + {_,shift + }Tab
+	$HOME/Utilities/rofi_{_,shift_}tab_windows
+alt + dead_circumflex
+	bspc desktop -f last
+alt + numbersign
+	bspc desktop -f 'keepass'
+
 ## # focus the next/previous node in the current desktop
 ## super + {_,shift + }c
 ## 	bspc node -f {next,prev}.local

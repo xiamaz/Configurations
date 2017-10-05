@@ -2,9 +2,9 @@
 sxhkd -c $HOME/.config/sxhkd/sxhkdrc.bspwm &
 nitrogen --restore &
 
-bspc monitor -d term web mail code music chat other keepass
+bspc monitor -d term web mail office code medicine media games keepass x
 
-bspc config border_width         2
+bspc config border_width         0
 bspc config window_gap          12
 
 bspc config split_ratio          0.52
@@ -14,19 +14,27 @@ bspc config gapless_monocle      true
 bspc config click_to_focus true
 bspc config pointer_modifier mod1
 
-bspc rule -a Gimp state=floating focus=on
-bspc rule -a Screenkey manage=off
-bspc rule -a Firefox desktop='^2' focus=on follow=on
-bspc rule -a st-256color desktop='^1' -o focus=on follow=on
-bspc rule -a Thunderbird desktop='^3' focus=on follow=on
-bspc rule -a keepassxc desktop='^8'
-bspc rule -a Spotify desktop='^5' focus=on follow=on
-bspc rule -a Telegram desktop='^6' focus=on follow=on
+# use '^NUMBER' to select via desktop number
+# WM_CLASS:WM_INSTANCE, this is reverse to wmctrl -lx
+# bspc rule -a Gimp state=floating focus=on
+# bspc rule -a Screenkey manage=off
+# bspc rule -a Firefox-esr desktop='^2' focus=on follow=on
+bspc rule -a Firefox-esr:Navigator desktop='web' focus=on follow=on
+bspc rule -a st-256color desktop='term' -o focus=on follow=on
+bspc rule -a Thunderbird desktop='mail' focus=on follow=on
+bspc rule -a keepassxc desktop='keepass' -o
+bspc rule -a Zim desktop='medicine' focus=on follow=on
+# bspc rule -a Spotify desktop='^5' focus=on follow=on
+bspc rule -a Telegram desktop='mail' focus=on follow=on
+bspc rule -a libreoffice desktop='office' focus=on follow=on
+bspc rule -a Steam desktop='games' focus=on follow=on
+
+bspc rule -a Chromium:chromium desktop='web' focus=on follow=on
+bspc rule -a Chromium:crx_nckgahadagoaajjgafhacjanaoiihapd desktop='mail' focus=on follow=on # Hangouts extension
 
 # remove the large x
 xsetroot -cursor_name left_ptr
 
-# load gnome keyring
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 
@@ -35,5 +43,5 @@ redshift &
 compton &
 xcape -e 'Caps_Lock=Escape' &
 nextcloud &
-$HOME/SystemSettings/KeepassAutostart/keepass.sh &
 $HOME/.config/polybar/launch.sh &
+$HOME/Utilities/KeepassAuto/keepass.sh &
