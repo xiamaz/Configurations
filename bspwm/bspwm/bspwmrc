@@ -1,8 +1,10 @@
 #! /bin/sh
+autorandr -c
 sxhkd -c $HOME/.config/sxhkd/sxhkdrc.bspwm &
 nitrogen --restore &
 
-bspc monitor -d term web mail office code medicine media games keepass x
+bspc monitor DVI-I-1 -d term web mail office code medicine media games keepass x
+bspc monitor DP-3 -d i ii iii iv
 
 bspc config border_width         0
 bspc config window_gap          12

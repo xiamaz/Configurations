@@ -91,9 +91,12 @@ alt + numbersign
 ## 	bspc wm -h on
 
 # focus or send to the given desktop
+# alt + {_,shift + }{1-9,0}
+# 	bspc {desktop -f,node -d} '^{1-9,10}'
 alt + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
+    bspc {desktop -f, node -d} $(bspc query -M -m):^{1-9,10}
+alt + {_,shift + }w
+    bspc {monitor -f, node -m} next
 #
 # preselect
 #
