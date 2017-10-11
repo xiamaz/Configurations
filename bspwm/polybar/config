@@ -1,39 +1,35 @@
-[bar/top]
-;monitor = eDP1
-width = 100%
-height = 24
-monitor = ${env:MONITOR}
-
+[color]
 background = #000000
 foreground = #ffffffff
 
-line-color = ${bar/bottom.background}
-line-size = 0
-
-padding-right = 5
-module-margin = 3
-
-font-0 = NotoSans-Regular:size=8;0
-font-1 = MaterialIcons:size=10;2
-font-2 = Misc Termsynu:size=8:antialias=false;0
-font-3 = FontAwesome:size=10;1
-font-4 = Symbola:weight=bold:size=11;1
-
-modules-left = powermenu
-modules-right = volume backlight ibus wireless-network custom_battery date
-wm-restack = bspwm
-
-[bar/bottom]
-;monitor = eDP1
-bottom = true
+[bar/common]
 width = 100%
 height = 24
 monitor = ${env:MONITOR}
 
-background = ${bar/top.background}
-foreground = ${bar/top.foreground}
+line-color = ${color.background}
+background = ${color.background}
+foreground = ${color.foreground}
 
-line-color = ${bar/top.background}
+font-0 = NotoSans-Regular:size=8;0
+font-1 = unifont:size=6;0
+font-2 = Material Icons:size=10;2
+font-3 = Termsyn:size=8:antialias=false;0
+font-4 = FontAwesome:size=10;2
+font-5 = Material Icons:size=10;1
+font-6 = Symbola:size=10;0
+
+wm-restack = bspwm
+
+[bar/main]
+inherit = bar/common
+
+modules-left = powermenu bspwm
+modules-center = date
+modules-right = volume ibus
+
+tray-position = right
+
 line-size = 2
 
 spacing = 3
@@ -41,17 +37,47 @@ padding-right = 4
 module-margin-left = 0
 module-margin-right = 6
 
-font-0 = NotoSans-Regular:size=8;0
-font-1 = unifont:size=6;0
-font-2 = Termsynu:size=8:antialias=false;0
-font-3 = FontAwesome:size=10;2
-font-4 = MaterialIcons:size=10;1
+[bar/side]
+inherit = bar/common
+
+modules-left = bspwm
+modules-right = temp cpu memory
+
+line-size = 2
+
+spacing = 3
+padding-right = 4
+module-margin-left = 0
+module-margin-right = 6
+
+
+[bar/top]
+inherit = bar/common
+
+line-color = ${bar/bottom.background}
+line-size = 0
+
+padding-right = 5
+module-margin = 3
+
+modules-left = powermenu
+modules-right = volume backlight ibus wireless-network custom_battery date
+
+[bar/bottom]
+inherit = bar/common
+bottom = true
+
+line-size = 2
+
+spacing = 3
+padding-right = 4
+module-margin-left = 0
+module-margin-right = 6
 
 modules-left = bspwm
 modules-right = temp cpu memory
 
 tray-position = right
-wm-restack = bspwm
 
 [module/backlight]
 type = internal/xbacklight
