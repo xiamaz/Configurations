@@ -1,0 +1,17 @@
+## General hotkeys
+alt + Return
+	$HOME/Git/Configurations/Utils/st-open.sh
+alt + shift + Return
+	st
+alt + d
+	rofi -combi-modi window,drun -show combi -modi combi
+Print
+	xfce4-screenshooter
+shift + Print
+	xfce4-screenshooter -r
+ctrl + alt + Delete
+	st -e htop
+
+# reload sxhkd
+alt + Escape
+	pkill -USR1 -x sxhkd

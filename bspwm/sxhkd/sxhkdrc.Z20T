@@ -1,0 +1,23 @@
+XF86Launch2
+	$HOME/Git/Configurations/hardware/Keyboard/touchtoggle
+
+
+XF86Display
+	arandr
+
+XF86ScreenSaver
+	i3lock-fancy; xset dpms force off
+
+# Audio settings
+XF86Audio{Raise,Lower}Volume
+	pamixer -{i,d} 5
+	# $HOME/SystemSettings/audio.fish {i,d} 5
+	# pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
+XF86AudioMute
+	pamixer -t 0
+	# pactl set-sink-mute @DEFAULT_SINK@ toggle
+	# $HOME/SystemSettings/audio.fish t 0
+
+XF86MonBrightness{Up,Down}
+	xbacklight -{inc,dec} 10
+	$HOME/SystemSettings/brightness.fish {inc,dec} 10
