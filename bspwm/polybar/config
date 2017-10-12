@@ -1,6 +1,10 @@
 [color]
 background = #000000
-foreground = #ffffffff
+foreground = #fcfcfc
+light = #fc
+darker = #ca
+
+warn = #c9665e
 
 [bar/common]
 width = 100%
@@ -17,9 +21,17 @@ font-2 = Material Icons:size=10;2
 font-3 = Termsyn:size=8:antialias=false;0
 font-4 = FontAwesome:size=10;2
 font-5 = Material Icons:size=10;1
-font-6 = Symbola:size=10;0
+font-6 = Symbola:size=11;0
+
+interval = 10
 
 wm-restack = bspwm
+;dpi = 120
+
+overline-size = 2
+
+padding-right = 5
+module-margin = 3
 
 [bar/main]
 inherit = bar/common
@@ -29,47 +41,15 @@ modules-center = date
 modules-right = volume ibus
 
 tray-position = right
-
-line-size = 2
-
-spacing = 3
-padding-right = 4
-module-margin-left = 0
-module-margin-right = 6
+tray-transparent = false
 
 [bar/side]
 inherit = bar/common
 
-modules-left = bspwm
-modules-right = temp cpu memory
-
-line-size = 2
-
-spacing = 3
-padding-right = 4
-module-margin-left = 0
-module-margin-right = 6
-
-
-[bar/top]
-inherit = bar/common
-
-line-color = ${bar/bottom.background}
-line-size = 0
-
-padding-right = 5
-module-margin = 3
-
-modules-left = powermenu
-modules-right = volume backlight ibus wireless-network custom_battery date
-
-[bar/bottom]
-inherit = bar/common
 bottom = true
 
 line-size = 2
 
-spacing = 3
 padding-right = 4
 module-margin-left = 0
 module-margin-right = 6
@@ -77,11 +57,11 @@ module-margin-right = 6
 modules-left = bspwm
 modules-right = temp cpu memory
 
-tray-position = right
-
 [module/backlight]
 type = internal/xbacklight
 format = <ramp> <bar>
+
+ramp-foreground = #ca
 
 ramp-0 = 
 ramp-1 = 
@@ -92,8 +72,8 @@ bar-indicator = |
 bar-indicator-font = 3
 bar-indicator-foreground = #ff
 bar-fill = ─
-bar-fill-font = 3
-bar-fill-foreground = #c9665e
+bar-fill-font = 4
+bar-fill-foreground = #ca
 bar-empty = ─
 bar-empty-font = 3
 bar-empty-foreground = #44
@@ -102,6 +82,7 @@ bar-empty-foreground = #44
 type = custom/script
 exec = /home/max/.config/polybar/dbus_upower.py
 click-left = /home/max/.config/polybar/dbus_upower.py dpms
+interval = ${bar/common.interval}
 
 [module/bspwm]
 type = internal/bspwm
@@ -121,53 +102,56 @@ ws-icon-default = 
 
 format = <label-state> <label-mode>
 
-label-dimmed-underline = ${root.background}
+label-dimmed-focused-overline = ${root.background}
+label-dimmed-occupied-foreground = #55
+label-dimmed-focused-foreground = #55ffffff
+label-dimmed-focused-background = #553f3f3f
 
 label-focused = %icon%
 label-focused-foreground = #fff
 label-focused-background = #773f3f3f
-;label-focused-underline = #c9665e
-label-focused-underline = #fff
-label-focused-font = 4
+label-focused-overline = #fff
+label-focused-font = 5
 label-focused-padding = 4
 
 label-occupied = %icon%
 label-occupied-foreground = #dd
-label-occupied-underline = #666
-label-occupied-font = 4
+label-occupied-overline = #666
+label-occupied-font = 5
 label-occupied-padding = 4
 
 label-urgent = %icon%
 label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
-label-urgent-underline = #9b0a20
-label-urgent-font = 4
+label-urgent-overline = #9b0a20
+label-urgent-font = 5
 label-urgent-padding = 4
 
 label-empty = %icon%
 label-empty-foreground = #55
-label-empty-font = 4
+label-empty-font = 5
 label-empty-padding = 4
 
 label-monocle = 
-label-monocle-underline = ${module/bspwm.label-focused-underline}
+label-monocle-overline = ${module/bspwm.label-focused-overline}
 label-monocle-background = #33ffffff
 label-monocle-padding = 3
-label-monocle-font = 4
+label-monocle-font = 5
 
 label-locked = 
 label-locked-foreground = #bd2c40
-label-locked-underline = ${module/bspwm.label-monocle-underline}
+label-locked-overline = ${module/bspwm.label-monocle-overline}
 label-locked-padding = ${module/bspwm.label-monocle-padding}
 
 label-sticky = 
 label-sticky-foreground = #fba922
-label-sticky-underline = ${module/bspwm.label-monocle-underline}
+;label-sticky-underline = ${module/bspwm.label-monocle-underline}
+label-sticky-overline = ${module/bspwm.label-monocle-overline}
 label-sticky-padding = ${module/bspwm.label-monocle-padding}
 
 label-private = 
 label-private-foreground = #bd2c40
-label-private-underline = ${module/bspwm.label-monocle-underline}
+label-private-overline = ${module/bspwm.label-monocle-overline}
 label-private-padding = ${module/bspwm.label-monocle-padding}
 
 [module/cpu]
@@ -203,53 +187,14 @@ ramp-coreload-7-foreground = #ff5555
 
 [module/date]
 type = internal/date
-date =  %{F#ca}%Y-%m-%d%{F-}   %{F#fff}%H:%M%{F-}
+date = %{F#ca} %Y-%m-%d%{F-}   %{F#fff}%H:%M%{F-}
 
 [module/memory]
 type = internal/memory
-format = <label> <bar-used>
-label = 
-
-bar-used-width = 30
-bar-used-foreground-0 = #aaff77
-bar-used-foreground-1 = #aaff77
-bar-used-foreground-2 = #fba922
-bar-used-foreground-3 = #ff5555
-bar-used-indicator = |
-bar-used-indicator-font = 3
-bar-used-indicator-foreground = #ff
-bar-used-fill = ─
-bar-used-fill-font = 3
-bar-used-empty = ─
-bar-used-empty-font = 3
-bar-used-empty-foreground = #444444
-
-[module/mpd]
-type = internal/mpd
-format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
-
-icon-play = 
-icon-pause = 
-icon-stop = 
-icon-prev = 
-icon-next = 
-icon-random = 
-icon-repeat = 
-
-toggle-on-foreground =
-toggle-off-foreground = #55
-
-bar-progress-width = 45
-bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
-bar-progress-indicator = |
-bar-progress-indicator-foreground = #ff
-bar-progress-indicator-font = 3
-bar-progress-fill = ─
-bar-progress-fill-foreground = #bb
-bar-progress-fill-font = 3
-bar-progress-empty = ─
-bar-progress-empty-font = 3
-bar-progress-empty-foreground = #44
+label-foreground = ${color.darker}
+format = <label>
+label =  %gb_used%
+interval = ${bar/common.interval}
 
 [module/wireless-network]
 type = internal/network
@@ -308,27 +253,27 @@ label-close = 
 label-separator = "  "
 
 menu-0-0 = Logout
-menu-0-0-foreground = #fba922
+menu-0-0-foreground = ${color.light}
 menu-0-0-exec = bspc quit -1
 menu-0-1 = Reboot
-menu-0-1-foreground = #fba922
+menu-0-1-foreground = ${color.light}
 menu-0-1-exec = menu-open-1
 menu-0-2 = Power off
-menu-0-2-foreground = #fba922
+menu-0-2-foreground = ${color.light}
 menu-0-2-exec = menu-open-2
 
 menu-1-0 = Cancel
-menu-1-0-foreground = #fba922
+menu-1-0-foreground = ${color.light}
 menu-1-0-exec = menu-open-0
 menu-1-1 = Reboot
-menu-1-1-foreground = #fba922
+menu-1-1-foreground = ${color.light}
 menu-1-1-exec = reboot
 
 menu-2-0 = Power off
-menu-2-0-foreground = #fba922
+menu-2-0-foreground = ${color.light}
 menu-2-0-exec = poweroff
 menu-2-1 = Cancel
-menu-2-1-foreground = #fba922
+menu-2-1-foreground = ${color.light}
 menu-2-1-exec = menu-open-0
 
 [module/ibus]
@@ -337,15 +282,23 @@ exec = /home/max/.config/polybar/ibus_status.sh
 click-left = /home/max/.config/polybar/ibus_toggle
 click-right = ibus-setup
 interval = 1
-;format-foreground = #ccffffff
+format-foreground = ${color.darker}
 
 [module/temp]
 type = internal/temperature
 thermal-zone = 2
+
+interval = ${bar/common.interval}
+
 format = <ramp> <label>
 format-warn = <ramp> <label-warn>
-label = %{F#aaff77}%temperature%%{F-}
-label-warn = %{F#c9665e}%temperature%%{F}
+
+ramp-foreground = ${color.darker}
+label-foreground = ${color.darker}
+label-warn-foreground = ${color.warn}
+
+;warn-temperature = 50
+
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 

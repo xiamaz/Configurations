@@ -1,3 +1,6 @@
+alt + {_,shift + }Tab
+	rofi -show window -kb-cancel "Alt+Escape,Escape" -kb-accept-entry "!Alt-Tab,!Alt+ISO_Left_Tab,Return" -kb-row-down "Alt+Tab,Alt+Down" -kb-row-up "Alt+ISO_Left_Tab,Alt+Up"&
+	# $HOME/SystemSettings/rofi_{_,shift_}tab_windows
 #
 # bspwm hotkeys
 #
@@ -46,8 +49,6 @@ alt + {_,shift + }{h,j,k,l}
 alt + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
-alt + {_,shift + }Tab
-	$HOME/Utilities/rofi_{_,shift_}tab_windows
 alt + dead_circumflex
 	bspc desktop -f last
 alt + numbersign
@@ -72,8 +73,6 @@ alt + {i,u}
 ## 	bspc wm -h on
 
 # focus or send to the given desktop
-# alt + {_,shift + }{1-9,0}
-# 	bspc {desktop -f,node -d} '^{1-9,10}'
 alt + {_,shift + }{1-9,0}
     bspc {desktop -f, node -d} $(bspc query -M -m):^{1-9,10}
 alt + {_,shift + }w

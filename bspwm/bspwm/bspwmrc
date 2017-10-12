@@ -1,12 +1,19 @@
 #! /bin/sh
+MAIN_MONITOR='eDP1'
+
+sxhkd -c $HOME/.config/sxhkd/sxhkdrc $HOME/.config/sxhkd/sxhkdrc.bspwm $HOME/.config/sxhkd/sxhkdrc."$(hostname)" &
 autorandr -c
-sxhkd -c $HOME/.config/sxhkd/sxhkdrc.bspwm &
 nitrogen --restore &
 
-bspc monitor DVI-I-1 -d term web mail office code medicine media games keepass x
-bspc monitor DP-3 -d i ii iii iv
+for monitor in $(bspc query -M --names); do
+	if [ $monitor == $MAIN_MONITOR ]; then
+		bspc monitor $monitor -d term web mail office code medicine media keepass x
+	else
+		bspc monitor $monitor -d i ii iii iv v
+	fi
+done
 
-bspc config border_width         0
+bspc config border_width         3
 bspc config window_gap          12
 
 bspc config split_ratio          0.52
@@ -15,6 +22,7 @@ bspc config gapless_monocle      true
 
 bspc config click_to_focus true
 bspc config pointer_modifier mod1
+bspc config pointer_follows_monitor true
 
 # use '^NUMBER' to select via desktop number
 # WM_CLASS:WM_INSTANCE, this is reverse to wmctrl -lx
@@ -28,11 +36,14 @@ bspc rule -a keepassxc desktop='keepass' -o
 bspc rule -a Zim desktop='medicine' focus=on follow=on
 # bspc rule -a Spotify desktop='^5' focus=on follow=on
 bspc rule -a Telegram desktop='mail' focus=on follow=on
-bspc rule -a libreoffice desktop='office' focus=on follow=on
+bspc rule -a \*:libreoffice desktop='office' focus=on follow=on state=tiled
 bspc rule -a Steam desktop='games' focus=on follow=on
 
 bspc rule -a Chromium:chromium desktop='web' focus=on follow=on
 bspc rule -a Chromium:crx_nckgahadagoaajjgafhacjanaoiihapd desktop='mail' focus=on follow=on # Hangouts extension
+
+bspc rule -a Xfce4-appfinder state=floating
+
 
 # remove the large x
 xsetroot -cursor_name left_ptr
