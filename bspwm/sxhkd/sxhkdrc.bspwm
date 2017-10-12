@@ -38,8 +38,8 @@ alt + y
 	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
 
 
-super + g
-	bspc node -s biggest
+alt + g
+	bspc node -s biggest.local
 
 #
 # state/flags
@@ -72,10 +72,10 @@ alt + dead_circumflex
 alt + numbersign
 	bspc desktop -f 'keepass'
 
-## # focus the next/previous node in the current desktop
-## super + {_,shift + }c
-## 	bspc node -f {next,prev}.local
-##
+# focus the next/previous node in the current desktop
+alt + {i,u}
+	bspc node -f {next,prev}.local
+
 ## # focus the next/previous desktop in the current monitor
 ## super + bracket{left,right}
 ## 	bspc desktop -f {prev,next}.local
@@ -97,6 +97,11 @@ alt + {_,shift + }{1-9,0}
     bspc {desktop -f, node -d} $(bspc query -M -m):^{1-9,10}
 alt + {_,shift + }w
     bspc {monitor -f, node -m} next
+
+# rotate the tree by 90 degrees
+alt + {_, shift + }r
+	bspc node @/ -R {90,-90}
+
 #
 # preselect
 #
@@ -135,14 +140,17 @@ alt + {Left,Down,Up,Right}
 
 # system settings
 XF86Audio{Raise,Lower}Volume
-	$HOME/SystemSettings/audio.fish {i,d} 5
-#pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
+	pamixer -{i,d} 5
+	# $HOME/SystemSettings/audio.fish {i,d} 5
+	# pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
 
 XF86AudioMute
-	$HOME/SystemSettings/audio.fish t 0
-#pactl set-sink-mute @DEFAULT_SINK@ toggle
+	pamixer -t 0
+	# pactl set-sink-mute @DEFAULT_SINK@ toggle
+	# $HOME/SystemSettings/audio.fish t 0
 
 XF86MonBrightness{Up,Down}
+	xbacklight -{inc,dec} 10
 	$HOME/SystemSettings/brightness.fish {inc,dec} 10
 #xbacklight -{inc,dec} 10
 
