@@ -15,7 +15,9 @@ Plug 'w0rp/ale'
 "" Javascript plugins
 Plug 'elmcast/elm-vim', {'for' : 'elm'}
 "" Fish script highlighting plugin
-Plug 'kballard/vim-fish'
+Plug 'kballard/vim-fish', {'for' : 'fish'}
+"" Vim easy align
+Plug 'junegunn/vim-easy-align'
 "" Neovim Plugins
 if has('nvim')
 	function! DoRemote(arg)
