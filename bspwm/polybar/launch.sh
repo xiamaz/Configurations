@@ -10,7 +10,7 @@ while pgrep -x polybar >/dev/null; do sleep 1; done
 # Launch internal laptop bar and external monitor bars with less information
 for monitor in "$( bspc query -M --names )"; do
 	echo $monitor
-	if [ "$monitor" == $MAIN_MONITOR ]; then
+	if [ $monitor = "$MAIN_MONITOR" ]; then
 	 	MONITOR=$monitor polybar main &
 	else
 	 	MONITOR=$monitor polybar side &
