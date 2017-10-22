@@ -6,7 +6,7 @@ autorandr -c
 nitrogen --restore &
 
 for monitor in $(bspc query -M --names); do
-	if [ $monitor == $MAIN_MONITOR ]; then
+	if [ $monitor = "$MAIN_MONITOR" ]; then
 		bspc monitor $monitor -d term web mail office code medicine media keepass x
 	else
 		bspc monitor $monitor -d i ii iii iv v
