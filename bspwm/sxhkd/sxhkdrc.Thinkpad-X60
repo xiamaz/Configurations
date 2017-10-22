@@ -1,0 +1,6 @@
+XF86Audio{Lower,Raise}Volume
+	pamixer -{d,i} 5
+XF86AudioMute
+	pamixer -t
+XF86MonBrightness{Down,Up}
+	xbacklight {-,+}10
