@@ -38,15 +38,13 @@ inherit = bar/common
 
 modules-left = powermenu bspwm
 modules-center = date
-modules-right = volume ibus
+modules-right = temp memory ibus light volume wireless-network
 
 tray-position = right
 tray-transparent = false
 
 [bar/side]
 inherit = bar/common
-
-bottom = true
 
 line-size = 2
 
@@ -55,7 +53,7 @@ module-margin-left = 0
 module-margin-right = 6
 
 modules-left = bspwm
-modules-right = temp cpu memory
+modules-right = cpu
 
 [module/backlight]
 type = internal/xbacklight
