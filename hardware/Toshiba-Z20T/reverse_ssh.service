@@ -1,0 +1,16 @@
+[Unit]
+Description=Phone Home Reverse SSH Service
+ConditionPathExists=|/usr/bin
+ConditionACPower=true
+After=network.target
+
+[Service]
+User=max
+ExecStart=/usr/bin/ssh -NTC -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=no -i %h/.ssh/servername-home-key -R 19999:localhost:22 max@home.arsbrevis.de
+
+# Restart every >2 seconds to avoid StartLimitInterval failure
+RestartSec=3
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
