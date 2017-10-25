@@ -4,7 +4,7 @@ function merge -a lpath rpath prog
 	if test -e "$lpath/$prog"; and test -e "$rpath/$prog"
 		if not diff "$lpath/$prog" "$rpath/$prog"
 			echo "Merging local and remote $prog"
-			vimdiff $lpath $rpath
+			vimdiff "$lpath/$prog" "$rpath/$prog"
 		else
 			echo "Local and remote $prog are identical."
 		end
@@ -53,4 +53,4 @@ merge $lpath $rpath $prog
 
 # compton configuration
 set prog "compton.conf"
-merge "$conf_path" "$git_path/$submod"
+merge "$conf_path" "$git_path/$submod" $prog
