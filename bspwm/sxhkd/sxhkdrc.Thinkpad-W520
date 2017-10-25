@@ -1,0 +1,12 @@
+XF86TouchpadToggle
+	$HOME/Code/Scripts/touchpad
+XF86AudioMicMute
+	$HOME/Code/Scripts/micmute
+XF86Audio{Lower,Raise}Volume
+	pamixer -{d,i} 5
+XF86AudioMute
+	pamixer -t
+XF86Launch1
+	gnome-system-monitor
+XF86MonBrightness{Down,Up}
+	light -{U,A} 5
