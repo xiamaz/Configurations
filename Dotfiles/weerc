@@ -1,0 +1,76 @@
+#
+# WeeChat 1.9.1 (compiled on Sep 23 2017)
+#
+# Use /autoconf load or cat this file to the FIFO pipe.
+#
+# For more info, see https://weechat.org/scripts/source/autoconf.py.html
+#
+
+*/set weechat.bar.buffers.items "buffers"
+*/set weechat.bar.buflist.items "buflist"
+*/set Option changed: weechat.bar.buflist.filling_left_right vertical
+*/set Option changed: weechat.bar.buflist.filling_left_right vertical
+*/set Option changed: weechat.bar.buflist.filling_top_bottom horizontal
+*/set Option changed: weechat.bar.buflist.color_bg gray
+*/set Option changed: weechat.bar.buflist.color_bg black
+*/set Option changed: buflist.format.buffer_current "${color:,grey}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,gray}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,darkgray}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,color1}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,color7}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,1}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,7}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,8}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:250,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:250,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:81,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:1,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:1,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,1}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:1}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,238}${format_buffer}"
+*/set buflist.format.buffer_current "${color:,238}${format_buffer}"
+*/set buflist.format.buffer_current "${color:,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:12,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:white,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,238}${color:blue}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,230}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,238}${format_buffer}${color:blue}"
+*/set Option changed: buflist.format.buffer_current "${color:,238}${format_buffer}"
+*/set Option changed: buflist.format.name "${color blue}${name}"
+*/set Option changed: buflist.format.name "${color: blue}${name}"
+*/set Option changed: buflist.format.name "${color:blue}${name}"
+*/set Option changed: buflist.format.buffer_current "${color:white,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,233}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,238}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,2441}${format_buffer}"
+*/set Option changed: buflist.format.buffer_current "${color:,241}${format_buffer}"
+*/set buflist.format.buffer_current "${color:,241}${format_buffer}"
+*/set Option changed: buflist.format.hotlist_none "${color:white}"
+*/set Option changed: buflist.format.buffer_current "${color:,241} ${format_buffer} "
+*/set Option changed: buflist.format.buffer_current "${color:,241}  ${format_buffer}  "
+*/set weechat.look.buffer_notify_default message
+*/set weechat.look.save_layout_on_exit all
+*/set weechat.color.chat_nick_colors "1,2,3,4,5,6"
+*/set weechat.bar.buddylist.items "buddylist"
+*/set weechat.bar.buffers.items "buffers"
+*/set weechat.bar.buflist.filling_left_right vertical
+*/set weechat.bar.buflist.filling_top_bottom horizontal
+*/set weechat.bar.buflist.items "buflist"
+*/set weechat.bar.isetbar.items "isetbar_help"
+*/set weechat.bar.status.items "[time],[buffer_plugin],buffer_number+:+buffer_name+{buffer_nicklist_count}+buffer_zoom+buffer_filter,scroll,[lag]"
+*/set buflist.format.buffer_current "${color:,241}  ${format_buffer}  "
+*/set irc.color.nick_prefixes "q:lightred;a:lightcyan;o:lightgreen;h:lightmagenta;v:yellow;*:lightblue"
+*/set irc.network.lag_reconnect 0
+*/set irc.server.freenode.addresses "chat.freenode.net"
+*/set irc.server.freenode.command "/msg nickserv identify asmondian"
+*/set irc.server.fu-berlin.addresses "irc.fu-berlin.de"
+*/set irc.server.snoonet.addresses "irc.snoonet.org"
+*/set script.scripts.url "http://weechat.org/files/plugins.xml.gz"
