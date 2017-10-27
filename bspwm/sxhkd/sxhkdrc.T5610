@@ -1,0 +1,12 @@
+alt + Pause
+	$HOME/Utilities/i3lock.sh; xset dpms force off
+
+# system settings
+XF86Audio{Raise,Lower}Volume
+	pactl set-sink-volume 0 {+,-}5%
+
+XF86AudioMute
+	pactl set-sink-mute 0 toggle
+
+XF86MonBrightness{Up,Down}
+	xbacklight -{inc,dec} 20
