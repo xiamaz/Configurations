@@ -20,6 +20,8 @@ Plug 'kballard/vim-fish', {'for' : 'fish'}
 Plug 'peterhoeg/vim-qml', {'for' : 'qml'}
 "" Vim easy align
 Plug 'junegunn/vim-easy-align'
+"" R plugins
+Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
 "" Neovim Plugins
 if has('nvim')
 	function! DoRemote(arg)
