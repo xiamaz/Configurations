@@ -75,6 +75,8 @@ let g:calendar_monday = 1
 let g:indentLine_char = '┆'
 set list lcs=tab:\│\ 
 hi Whitespace ctermfg=19
+" Nvim-R disable assign operator keybinding
+let R_assign=0
 
 "" Neovim Settings
 if has('nvim')
