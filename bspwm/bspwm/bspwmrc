@@ -3,9 +3,11 @@
 # set an external monitor which takes precedence if detected
 internal='LVDS-1'
 external_main='DVI-I-1-1'
-if [ "$(xrandr | grep "$external_main connected")" ]; then
-	xrandr --output $external_main --left-of $internal --auto
-	MAIN_MONITOR="$external_main"
+if [ $external_main ]; then
+	if [ "$(xrandr | grep "$external_main connected")" ]; then
+		xrandr --output $external_main --left-of $internal --auto
+		MAIN_MONITOR="$external_main"
+	fi
 else
 	MAIN_MONITOR=$internal
 fi
@@ -64,6 +66,7 @@ export SSH_AUTH_SOCK
 redshift &
 compton &
 xcape -e 'Caps_Lock=Escape' &
+ibus-daemon -drx &
 nextcloud &
 $HOME/.config/polybar/launch.sh $MAIN_MONITOR &
 $HOME/SystemSettings/KeepassAuto/keepass.sh &
