@@ -1,0 +1,4 @@
+# ignore plugin folders
+vim/plugged
+vim/autoload/plug.vim.old
+vim/.netrwhist

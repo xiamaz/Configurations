@@ -2,6 +2,8 @@ call plug#begin()
 "" VimWiki - Personal Wiki
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
+"" Vim Surround
+Plug 'tpope/vim-surround'
 "" Vim Airline
 Plug 'vim-airline/vim-airline'
 "" Whitespace Plugins
