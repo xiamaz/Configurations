@@ -55,6 +55,8 @@ bspc rule -a Chromium:crx_nckgahadagoaajjgafhacjanaoiihapd desktop='mail' focus=
 
 bspc rule -a Xfce4-appfinder state=floating
 
+bspc rule -a Emacs state=tiled focus=on follow=on
+
 
 # remove the large x
 xsetroot -cursor_name left_ptr
