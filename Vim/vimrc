@@ -40,6 +40,7 @@ call plug#end()
 "" Basic Settings
 syntax on
 let mapleader=","
+let maplocalleader = ";"
 " backup files
 " set backup
 " undo history persistent after closed file
@@ -78,7 +79,7 @@ let g:indentLine_char = '┆'
 set list lcs=tab:\│\ 
 hi Whitespace ctermfg=19
 " Nvim-R disable assign operator keybinding
-let R_assign=0
+let R_assign = 0
 
 "" Neovim Settings
 if has('nvim')
