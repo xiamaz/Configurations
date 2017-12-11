@@ -22,6 +22,7 @@ font-3 = Termsyn:size=8:antialias=false;0
 font-4 = FontAwesome:size=10;2
 font-5 = Material Icons:size=10;1
 font-6 = Symbola:size=11;0
+font-7 = WenQuanYi WenQuanYi Bitmap Song:size=10;0
 
 interval = 10
 
