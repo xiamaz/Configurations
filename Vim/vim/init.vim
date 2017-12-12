@@ -39,9 +39,8 @@ Plug 'Shougo/neco-vim'
 " R source
 Plug 'gaalcaras/ncm-R'
 "" ---------------------
-
 " Interactive REPL
-" Plug 'hkupty/iron.nvim'
+Plug 'xiamaz/iron.nvim', {'for' : 'python', 'do':':UpdateRemotePlugins'}
 call plug#end()
 
 "" Basic Settings
@@ -62,6 +61,9 @@ set mouse=a
 set wrap linebreak formatoptions-=t breakindent
 " no beeping
 set vb t_vb=
+" split settings
+set splitbelow
+set splitright
 
 "" Theme Settings
 " set colorscheme for 256-color supported terminals
@@ -92,6 +94,17 @@ set shortmess+=c
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" iron repl settings
+let g:iron_repl_open_cmd = 'vsplit'
+let g:iron_map_defaults=0
+augroup ironmapping
+    autocmd!
+    autocmd Filetype python nmap <buffer> <localleader>rf :call IronStartCustomRepl('python', 'ipython3')<CR><Esc><c-w><c-p>
+    autocmd Filetype python nmap <buffer> <localleader>l V<Plug>(iron-send-motion)
+    autocmd Filetype python vmap <buffer> <localleader>l <Plug>(iron-send-motion)
+    autocmd Filetype python nmap <buffer> <localleader>p <Plug>(iron-repeat-cmd)
+    autocmd Filetype python nmap <buffer> <localleader>rq :call IronSend("exit\n")<CR>
+augroup END
 
 " keybindings for window switching
 tnoremap <Esc> <C-\><C-n>
