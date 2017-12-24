@@ -15,7 +15,7 @@ line-color = ${color.background}
 background = ${color.background}
 foreground = ${color.foreground}
 
-font-0 = NotoSans-Regular:size=8;0
+font-0 = NotoSans-Regular:size=10;1
 font-1 = unifont:size=6;0
 font-2 = Material Icons:size=10;2
 font-3 = Termsyn:size=8:antialias=false;0
@@ -106,30 +106,30 @@ label-dimmed-occupied-foreground = #55
 label-dimmed-focused-foreground = #55ffffff
 label-dimmed-focused-background = #553f3f3f
 
-label-focused = %icon%
+label-focused = %index%
 label-focused-foreground = #fff
 label-focused-background = #773f3f3f
 label-focused-overline = #fff
-label-focused-font = 5
-label-focused-padding = 4
+label-focused-font = 0
+label-focused-padding = 3
 
-label-occupied = %icon%
+label-occupied = %index%
 label-occupied-foreground = #dd
 label-occupied-overline = #666
-label-occupied-font = 5
-label-occupied-padding = 4
+label-occupied-font = 0
+label-occupied-padding = 3
 
-label-urgent = %icon%
+label-urgent = %index%
 label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
 label-urgent-overline = #9b0a20
-label-urgent-font = 5
-label-urgent-padding = 4
+label-urgent-font = 0
+label-urgent-padding = 3
 
-label-empty = %icon%
+label-empty = %index%
 label-empty-foreground = #55
-label-empty-font = 5
-label-empty-padding = 4
+label-empty-font = 0
+label-empty-padding = 3
 
 label-monocle = 
 label-monocle-overline = ${module/bspwm.label-focused-overline}

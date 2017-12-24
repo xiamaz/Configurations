@@ -18,7 +18,7 @@ nitrogen --restore &
 
 for monitor in $(bspc query -M --names); do
 	if [ $monitor = "$MAIN_MONITOR" ]; then
-		bspc monitor $monitor -d term web mail office code medicine media keepass x
+		bspc monitor $monitor -d i ii iii iv keepass
 	else
 		bspc monitor $monitor -d i ii iii iv v
 	fi
@@ -35,23 +35,17 @@ bspc config click_to_focus true
 bspc config pointer_modifier mod1
 bspc config pointer_follows_monitor true
 
-# use '^NUMBER' to select via desktop number
-# WM_CLASS:WM_INSTANCE, this is reverse to wmctrl -lx
-# bspc rule -a Gimp state=floating focus=on
-# bspc rule -a Screenkey manage=off
-# bspc rule -a Firefox-esr desktop='^2' focus=on follow=on
-bspc rule -a Firefox-esr:Navigator desktop='web' focus=on follow=on
-bspc rule -a st-256color desktop='term' -o focus=on follow=on
-bspc rule -a Thunderbird desktop='mail' focus=on follow=on
+bspc rule -a Firefox-esr:Navigator focus=on follow=on
+bspc rule -a st-256color -o focus=on follow=on
+bspc rule -a Thunderbird focus=on follow=on
 bspc rule -a keepassxc desktop='keepass' -o
-bspc rule -a Zim desktop='medicine' focus=on follow=on
-# bspc rule -a Spotify desktop='^5' focus=on follow=on
-bspc rule -a Telegram desktop='mail' focus=on follow=on
-bspc rule -a \*:libreoffice desktop='office' focus=on follow=on state=tiled
-bspc rule -a Steam desktop='games' focus=on follow=on
+bspc rule -a Zim focus=on follow=on
+bspc rule -a Telegram focus=on follow=on
+bspc rule -a \*:libreoffice focus=on follow=on state=tiled
+bspc rule -a Steam focus=on follow=on
 
-bspc rule -a Chromium:chromium desktop='web' focus=on follow=on
-bspc rule -a Chromium:crx_nckgahadagoaajjgafhacjanaoiihapd desktop='mail' focus=on follow=on # Hangouts extension
+bspc rule -a Chromium:chromium focus=on follow=on
+bspc rule -a Chromium:crx_nckgahadagoaajjgafhacjanaoiihapd focus=on follow=on # Hangouts extension
 
 bspc rule -a Xfce4-appfinder state=floating
 
