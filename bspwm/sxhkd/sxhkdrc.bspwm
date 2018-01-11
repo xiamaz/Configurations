@@ -76,7 +76,9 @@ alt + {i,u}
 alt + {_,shift + }{1-9,0}
     bspc {desktop -f, node -d} $(bspc query -M -m):^{1-9,10}
 alt + {_,shift + }w
-    bspc {monitor -f next, node -m next -f}
+    bspc monitor -f {next, prev}
+alt + {_,shift +}ctrl + w
+	bspc node -m {next, prev} -f
 
 # rotate the tree by 90 degrees
 alt + {_, shift + }r
