@@ -79,9 +79,9 @@ alt + {_,shift + }w
     bspc monitor -f {next, prev}
 alt + {_,shift +}ctrl + w
 	bspc node -m {next, prev} -f
-mode_switch + {1-9,0}
+alt + ctrl + {1-9,0}
 	bspc monitor -f ^{1-9,10}
-mode_switch + shift + {1-9,0}
+alt + ctrl + shift + {1-9,0}
 	bspc node -m ^{1-9,0} -f
 
 # rotate the tree by 90 degrees
