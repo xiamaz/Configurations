@@ -1,0 +1,17 @@
+# general
+neovim
+python-neovim
+git
+openssh
+fish
+tmux
+zsh
+grml-zsh-config
+python-jedi
+# graphical
+rofi
+sxhkd
+firefox
+chromium
+thunderbird
+syncthing-gtk
