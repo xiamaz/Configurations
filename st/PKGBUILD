@@ -16,7 +16,7 @@ source=(http://dl.suckless.org/st/$pkgname-$pkgver.tar.gz
         # color256.patch
         21color.patch)
 md5sums=('29b2a599cf1511c8062ed8f025c84c63'
-         '43fe16f07f93fa3db9a01c3f8ce7bad4'
+         '0bfe8f82e066b4da3eca92480caac044'
          '56792e515f1c5532ea5f2bad6f821ee4'
          '70d1c05af574b0cd4d551387ed748d40')
 
