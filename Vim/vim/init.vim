@@ -106,6 +106,8 @@ augroup ironmapping
     autocmd Filetype python nmap <buffer> <localleader>rq :call IronSend("exit\n")<CR>
 augroup END
 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 " keybindings for window switching
 tnoremap <Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-n><C-w>h
