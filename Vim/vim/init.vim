@@ -41,6 +41,7 @@ Plug 'gaalcaras/ncm-R'
 "" ---------------------
 " Interactive REPL
 Plug 'xiamaz/iron.nvim', {'for' : 'python', 'do':':UpdateRemotePlugins'}
+Plug 'Vimjas/vim-python-pep8-indent', {'for' : 'python'}
 call plug#end()
 
 "" Basic Settings
