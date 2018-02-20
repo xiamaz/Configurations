@@ -72,12 +72,10 @@ let &colorcolumn="80,".join(range(120,999),",")
 
 "" Theme Settings
 " set colorscheme for 256-color supported terminals
-if $TERM =~ '256color'
-	let base16colorspace=256
-	colorscheme base16-tomorrow-night
-	set background=dark
-	let g:airline_theme='base16'
-endif
+set termguicolors
+colorscheme base16-tomorrow-night
+set background=dark
+let g:airline_theme='base16'
 
 "" Plugin Configuration
 " Airline
