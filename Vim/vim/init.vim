@@ -102,17 +102,11 @@ let g:iron_repl_open_cmd = 'vsplit'
 let g:iron_map_defaults=0
 augroup ironmapping
     autocmd!
-    autocmd Filetype python nmap <buffer> <localleader>rf
-    			\ :call IronStartCustomRepl('python','ipython','ipython3')
-    			\ <CR><Esc><c-w><c-p>
-    autocmd Filetype python nmap <buffer> <localleader>l V<Plug>
-    			\ (iron-send-motion)
-    autocmd Filetype python vmap <buffer> <localleader>l <Plug>
-    			\ (iron-send-motion)
-    autocmd Filetype python nmap <buffer> <localleader>p <Plug>
-    			\ (iron-repeat-cmd)
-    autocmd Filetype python nmap <buffer> <localleader>rq
-    			\ :call IronSend("exit\n")<CR>
+    autocmd Filetype python nmap <buffer> <localleader>rf :call IronStartCustomRepl('python','ipython','ipython3') <CR><Esc><c-w><c-p>
+    autocmd Filetype python nmap <buffer> <localleader>l V<Plug>(iron-send-motion)
+    autocmd Filetype python vmap <buffer> <localleader>l <Plug>(iron-send-motion)
+    autocmd Filetype python nmap <buffer> <localleader>p <Plug>(iron-repeat-cmd)
+    autocmd Filetype python nmap <buffer> <localleader>rq :call IronSend("exit\n")<CR>
 augroup END
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
