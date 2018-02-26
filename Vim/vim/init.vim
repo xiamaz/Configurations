@@ -111,8 +111,9 @@ augroup ironmapping
     autocmd Filetype python nmap <buffer> <localleader>rq :call IronSend("exit\n")<CR>
 augroup END
 " Ale linting settings
-let g:ale_r_lintr_options = 'with_defaults(snake_case_linter = NULL,
-			\ camel_case_linter = NULL, object_usage_linter = NULL)'
+" let g:ale_r_lintr_options = 'with_defaults(object_name_linter = object_name_linter(c("lowerCamelCase", "UpperCamelCase", "dotted.case")))'
+let g:ale_r_lintr_options = 'with_defaults(object_name_linter = NULL, line_length_linter(120), closed_curly_linter = NULL, open_curly_linter = NULL)'
+" let g:ale_r_lintr_options = 'with_defaults(object_name_linter = object_name_linter(c("lowerCamelCase", "UpperCamelCase", "dotted.case")), object_usage_linter = NULL)'
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
