@@ -33,11 +33,11 @@ Plug 'roxma/nvim-completion-manager'
 " C/C++ Completion source
 Plug 'roxma/ncm-clang'
 " Elm source
-Plug 'roxma/ncm-elm-oracle'
+Plug 'roxma/ncm-elm-oracle', {'for' : 'elm'}
 " vimscript source
 Plug 'Shougo/neco-vim'
 " R source
-Plug 'gaalcaras/ncm-R'
+Plug 'gaalcaras/ncm-R', {'for' : 'r'}
 "" ---------------------
 " Interactive REPL
 Plug 'xiamaz/iron.nvim', {'for' : 'python', 'do':':UpdateRemotePlugins'}
@@ -69,6 +69,8 @@ set splitright
 set textwidth=80
 " color background past 80 chars
 let &colorcolumn="80,".join(range(120,999),",")
+" disable linenumbers in terminal
+au TermOpen * setlocal nonu
 
 "" Theme Settings
 " set colorscheme for 256-color supported terminals
@@ -108,6 +110,9 @@ augroup ironmapping
     autocmd Filetype python nmap <buffer> <localleader>p <Plug>(iron-repeat-cmd)
     autocmd Filetype python nmap <buffer> <localleader>rq :call IronSend("exit\n")<CR>
 augroup END
+" Ale linting settings
+let g:ale_r_lintr_options = 'with_defaults(snake_case_linter = NULL,
+			\ camel_case_linter = NULL, object_usage_linter = NULL)'
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
