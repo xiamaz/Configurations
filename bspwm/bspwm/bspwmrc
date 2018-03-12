@@ -35,7 +35,9 @@ bspc config click_to_focus true
 bspc config pointer_modifier mod1
 bspc config pointer_follows_monitor true
 
-bspc rule -a Firefox-esr:Navigator focus=on follow=on
+# use '^NUMBER' to select via desktop number
+# WM_CLASS:WM_INSTANCE, this is reverse to wmctrl -lx
+bspc rule -a Firefox:Navigator focus=on follow=on
 bspc rule -a st-256color -o focus=on follow=on
 bspc rule -a Thunderbird focus=on follow=on
 bspc rule -a keepassxc desktop='keepass' -o
@@ -50,6 +52,7 @@ bspc rule -a Chromium:crx_nckgahadagoaajjgafhacjanaoiihapd focus=on follow=on # 
 bspc rule -a Xfce4-appfinder state=floating
 
 bspc rule -a Emacs state=tiled focus=on follow=on
+bspc rule -a \*:qmlscene state=floating
 
 
 # remove the large x
@@ -60,9 +63,9 @@ export SSH_AUTH_SOCK
 
 # start xfce4-notifyd as notification handler simply by installing it
 redshift &
-compton &
 xcape -e 'Caps_Lock=Escape' &
 ibus-daemon -drx &
 nextcloud &
 $HOME/.config/polybar/launch.sh $MAIN_MONITOR &
-$HOME/SystemSettings/KeepassAuto/keepass.sh &
+keepassxc &
+nm-applet &
