@@ -34,7 +34,6 @@ bspc config gapless_monocle      true
 bspc config click_to_focus true
 bspc config pointer_modifier mod1
 bspc config pointer_follows_monitor true
-bspc config pointer_follows_focus true
 bspc config focus_follows_pointer true
 
 # use '^NUMBER' to select via desktop number
