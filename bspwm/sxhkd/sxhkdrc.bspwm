@@ -43,46 +43,34 @@ alt + ctrl + {x,y,z}
 
 # focus / swap the node in the given direction
 alt + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+	bspc config pointer_follows_focus true; \
+	bspc node -{f,s} {west,south,north,east}; \
+	bspc config pointer_follows_focus false
 
 # focus the node for the given path jump
 alt + {p,b,comma,period}
+	bspc config pointer_follows_focus true; \
 	bspc node -f @{parent,brother,first,second}
+	bspc config pointer_follows_focus false
+
+# focus the next/previous node in the current desktop
+alt + {i,u}
+	bspc config pointer_follows_focus true; \
+	bspc node -f {next,prev}.local
+	bspc config pointer_follows_focus false
 
 alt + dead_circumflex
 	bspc desktop -f last
 alt + numbersign
 	bspc desktop -f 'keepass'
 
-# focus the next/previous node in the current desktop
-alt + {i,u}
-	bspc node -f {next,prev}.local
-
-## # focus the next/previous desktop in the current monitor
-## super + bracket{left,right}
-## 	bspc desktop -f {prev,next}.local
-##
-## # focus the last node/desktop
-## super + {grave,Tab}
-## 	bspc {node,desktop} -f last
-##
-## # focus the older or newer node in the focus history
-## super + {o,i}
-## 	bspc wm -h off; \
-## 	bspc node {older,newer} -f; \
-## 	bspc wm -h on
-
 # focus or send to the given desktop
 alt + {_,shift + }{1-9,0}
     bspc {desktop -f, node -d} $(bspc query -M -m):^{1-9,10}
 alt + {_,shift + }w
     bspc monitor -f {next, prev}
-alt + {_,shift +}ctrl + w
-	bspc node -m {next, prev} -f
 alt + ctrl + {1-9,0}
 	bspc monitor -f ^{1-9,10}
-alt + ctrl + shift + {1-9,0}
-	bspc node -m ^{1-9,0} -f
 
 # rotate the tree by 90 degrees
 alt + {_, shift + }r

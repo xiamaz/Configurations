@@ -33,11 +33,11 @@ Plug 'roxma/nvim-completion-manager'
 " C/C++ Completion source
 Plug 'roxma/ncm-clang'
 " Elm source
-Plug 'roxma/ncm-elm-oracle'
+Plug 'roxma/ncm-elm-oracle', {'for' : 'elm'}
 " vimscript source
 Plug 'Shougo/neco-vim'
 " R source
-Plug 'gaalcaras/ncm-R'
+Plug 'gaalcaras/ncm-R', {'for' : 'r'}
 "" ---------------------
 " Interactive REPL
 Plug 'xiamaz/iron.nvim', {'for' : 'python', 'do':':UpdateRemotePlugins'}
@@ -69,6 +69,8 @@ set splitright
 set textwidth=80
 " color background past 80 chars
 let &colorcolumn="80,".join(range(120,999),",")
+" disable linenumbers in terminal
+au TermOpen * setlocal nonu
 
 "" Theme Settings
 " set colorscheme for 256-color supported terminals
@@ -108,6 +110,10 @@ augroup ironmapping
     autocmd Filetype python nmap <buffer> <localleader>p <Plug>(iron-repeat-cmd)
     autocmd Filetype python nmap <buffer> <localleader>rq :call IronSend("exit\n")<CR>
 augroup END
+" Ale linting settings
+" let g:ale_r_lintr_options = 'with_defaults(object_name_linter = object_name_linter(c("lowerCamelCase", "UpperCamelCase", "dotted.case")))'
+let g:ale_r_lintr_options = 'with_defaults(object_name_linter = NULL, line_length_linter(120), closed_curly_linter = NULL, open_curly_linter = NULL)'
+" let g:ale_r_lintr_options = 'with_defaults(object_name_linter = object_name_linter(c("lowerCamelCase", "UpperCamelCase", "dotted.case")), object_usage_linter = NULL)'
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
