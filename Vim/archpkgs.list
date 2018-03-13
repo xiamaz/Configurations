@@ -1,2 +1,5 @@
 autopep8
 python-jedi
+flake8
+python-pyflakes
+python-pylint
