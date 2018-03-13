@@ -41,7 +41,11 @@ Plug 'gaalcaras/ncm-R', {'for' : 'r'}
 "" ---------------------
 " Interactive REPL
 Plug 'xiamaz/iron.nvim', {'for' : 'python', 'do':':UpdateRemotePlugins'}
+" Python plugins
 Plug 'Vimjas/vim-python-pep8-indent', {'for' : 'python'}
+Plug 'tell-k/vim-autopep8', {'for' : 'python'}
+" Webdev plugins
+Plug 'Valloric/MatchTagAlways', {'for' : 'html'}
 call plug#end()
 
 "" Basic Settings
@@ -111,9 +115,10 @@ augroup ironmapping
     autocmd Filetype python nmap <buffer> <localleader>rq :call IronSend("exit\n")<CR>
 augroup END
 " Ale linting settings
-" let g:ale_r_lintr_options = 'with_defaults(object_name_linter = object_name_linter(c("lowerCamelCase", "UpperCamelCase", "dotted.case")))'
 let g:ale_r_lintr_options = 'with_defaults(object_name_linter = NULL, line_length_linter(120), closed_curly_linter = NULL, open_curly_linter = NULL)'
-" let g:ale_r_lintr_options = 'with_defaults(object_name_linter = object_name_linter(c("lowerCamelCase", "UpperCamelCase", "dotted.case")), object_usage_linter = NULL)'
+
+" other python keybinds
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
