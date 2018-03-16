@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 "" Javascript plugins
 Plug 'elmcast/elm-vim', {'for' : 'elm'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 "" Fish script highlighting plugin
 Plug 'kballard/vim-fish', {'for' : 'fish'}
 "" QML Syntax file
