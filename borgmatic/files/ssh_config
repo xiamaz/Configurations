@@ -1,0 +1,3 @@
+Host thinkstation-d20
+    User borgbackup
+    IdentityFile ~/.ssh/id
