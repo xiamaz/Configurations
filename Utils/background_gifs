@@ -1,0 +1,6 @@
+#!/bin/sh
+
+killall -q xwinxwrap
+
+xwinwrap -fs -st -sp -ni -s -- mpv -wid WID --keepaspect=no --loop $HOME/Nextcloud/photos/Walls/yhGNI.gif &
+xwinwrap -fs -st -sp -ni -s -g 1920x1200+2560+0 -- mpv -wid WID --keepaspect=no --loop $HOME/Nextcloud/photos/Walls/9WgJg0G.gif &
