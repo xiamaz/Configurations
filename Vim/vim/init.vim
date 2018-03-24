@@ -39,6 +39,8 @@ Plug 'roxma/ncm-elm-oracle', {'for' : 'elm'}
 Plug 'Shougo/neco-vim'
 " R source
 Plug 'gaalcaras/ncm-R', {'for' : 'r'}
+" go source
+Plug 'fatih/vim-go', {'for': 'go'}
 "" ---------------------
 " Interactive REPL
 Plug 'xiamaz/iron.nvim', {'for' : 'python', 'do':':UpdateRemotePlugins'}
@@ -98,7 +100,7 @@ hi Whitespace ctermfg=19
 " Nvim-R disable assign operator keybinding
 let R_assign = 0
 " Tagbar settings
-nmap <F8> :TagbarToggle<CR>
+nmap <F7> :TagbarToggle<CR>
 " nvim completion manager settings
 set shortmess+=c
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
