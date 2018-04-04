@@ -50,13 +50,13 @@ alt + {_,shift + }{h,j,k,l}
 # focus the node for the given path jump
 alt + {p,b,comma,period}
 	bspc config pointer_follows_focus true; \
-	bspc node -f @{parent,brother,first,second}
+	bspc node -f @{parent,brother,first,second}; \
 	bspc config pointer_follows_focus false
 
 # focus the next/previous node in the current desktop
 alt + {i,u}
 	bspc config pointer_follows_focus true; \
-	bspc node -f {next,prev}.local
+	bspc node -f {next,prev}.local; \
 	bspc config pointer_follows_focus false
 
 alt + dead_circumflex
