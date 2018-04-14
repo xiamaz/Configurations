@@ -1,8 +1,6 @@
-diff --git a/st.c b/st.c
-index 2594c65..574f807 100644
---- a/st.c
-+++ b/st.c
-@@ -3154,7 +3154,7 @@ xloadcolor(int i, const char *name, Color *ncolor)
+--- a/x.c	2018-04-14 11:04:44.580238044 +0200
++++ b/x.c	2018-04-14 11:08:44.980706030 +0200
+@@ -706,7 +706,7 @@
  	XRenderColor color = { .alpha = 0xffff };
  
  	if (!name) {
