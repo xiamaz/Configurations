@@ -1,3 +1,7 @@
+function su
+    /bin/su --shell=/usr/bin/fish $argv
+end
+
 bass source $HOME/.zprofile
 # aliases for python virtualenvs
 alias pmk 'python3 -m venv env'
