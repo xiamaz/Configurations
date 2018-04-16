@@ -1,4 +1,0 @@
-# change prompt for ssh
-if [ -n "$SSH_TTY" ]; then
->   zstyle ':prompt:grml:left:items:user' pre '%B%F{magenta}'
-fi
