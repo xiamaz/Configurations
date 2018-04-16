@@ -15,7 +15,7 @@ apps: newsbeuter
 .PHONY: tmux
 tmux:
 	$(STOW) tmux
-	echo "Issue C-a I to install packages defined in .tmux.conf."
+	@echo "Issue C-a I to install packages defined in .tmux.conf."
 
 .PHONY: neovim
 neovim:
