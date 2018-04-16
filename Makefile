@@ -15,7 +15,7 @@ apps: newsbeuter
 .PHONY: tmux
 tmux:
 	$(STOW) tmux
-	./Install/pluginstall.sh
+	echo "Issue C-a I to install packages defined in .tmux.conf."
 
 .PHONY: neovim
 neovim:
