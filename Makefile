@@ -1,6 +1,5 @@
-STOW = stow -t $HOME
-
 DOTS = Dotfiles
+STOW = stow -t $(HOME) -d $(DOTS)
 
 .PHONY: tiling
 tiling: bspwm base apps
@@ -15,16 +14,16 @@ apps: newsbeuter
 
 .PHONY: tmux
 tmux:
-	$(STOW) $(DOTS)/tmux
+	$(STOW) tmux
 	./Install/pluginstall.sh
 
 .PHONY: neovim
 neovim:
-	$(STOW) $(DOTS)/neovim
+	$(STOW) neovim
 
 .PHONY: fish
 fish:
-	$(STOW) $(DOTS)/fish
+	$(STOW) fish
 	curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
 	fish --command fisher edc/bass
 
@@ -32,10 +31,10 @@ fish:
 
 .PHONY: bspwm
 bspwm:
-	$(STOW) $(DOTS)/bspwm
+	$(STOW) bspwm
 
 # APPS
 
 .PHONY: newsbeuter
 newsbeuter:
-	$(STOW) $(DOTS)/newsbeuter
+	$(STOW) newsbeuter
