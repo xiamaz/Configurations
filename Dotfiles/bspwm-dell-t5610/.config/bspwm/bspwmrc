@@ -12,7 +12,7 @@ else
 	MAIN_MONITOR=$internal
 fi
 
-sxhkd -c $HOME/.config/sxhkd/sxhkdrc $HOME/.config/sxhkd/sxhkdrc.bspwm $HOME/.config/sxhkd/sxhkdrc."$(hostname)" &
+sxhkd -c $HOME/.config/sxhkd/sxhkdrc $HOME/.config/sxhkd/sxhkdrc.bspwm $HOME/.config/sxhkd/sxhkdrc.host &
 autorandr -c
 nitrogen --restore &
 
