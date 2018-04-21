@@ -24,7 +24,7 @@ neovim: neovim.stow neovim.pkg
 .PHONY: fish
 fish: fish.stow fish.pkg
 	@curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
-	@fish --command fisher edc/bass
+	@fish -c "fisher edc/bass"
 
 # DESKTOPS
 
@@ -69,7 +69,7 @@ ncurses:
 
 .PHONY: fonts
 fonts: otf-font-awesome.pkg wqy-microhei.pkg wqy-zenhei.pkg otf-overpass.pkg \
-	noto-fonts.pkg ttf-material-icons.aur termsyn-font.aur bdf-unifont.pkg \
+	noto-fonts.pkg ttf-material-design-icons.aur termsyn-font.aur bdf-unifont.pkg \
 	terminess-powerline-font-git.aur
 
 # stow utilities
