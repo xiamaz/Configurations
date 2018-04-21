@@ -1,0 +1,71 @@
+#! /bin/sh
+
+# set an external monitor which takes precedence if detected
+internal='DVI-I-1'
+# external_main='DVI-I-1-1'
+if [ $external_main ]; then
+	if [ "$(xrandr | grep "$external_main connected")" ]; then
+		xrandr --output $external_main --left-of $internal --auto
+		MAIN_MONITOR="$external_main"
+	fi
+else
+	MAIN_MONITOR=$internal
+fi
+
+sxhkd -c $HOME/.config/sxhkd/sxhkdrc $HOME/.config/sxhkd/sxhkdrc.bspwm $HOME/.config/sxhkd/sxhkdrc."$(hostname)" &
+autorandr -c
+nitrogen --restore &
+
+for monitor in $(bspc query -M --names); do
+	if [ $monitor = "$MAIN_MONITOR" ]; then
+		bspc monitor $monitor -d i ii iii iv keepass
+	else
+		bspc monitor $monitor -d i ii iii iv v
+	fi
+done
+
+bspc config border_width         2
+bspc config window_gap           0
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config click_to_focus true
+bspc config pointer_modifier mod1
+bspc config pointer_follows_monitor true
+bspc config focus_follows_pointer true
+
+# use '^NUMBER' to select via desktop number
+# WM_CLASS:WM_INSTANCE, this is reverse to wmctrl -lx
+bspc rule -a Firefox:Navigator focus=on follow=on
+bspc rule -a st-256color -o focus=on follow=on
+bspc rule -a Thunderbird focus=on follow=on
+bspc rule -a keepassxc -o desktop='keepass'
+bspc rule -a Zim focus=on follow=on
+bspc rule -a Telegram focus=on follow=on
+bspc rule -a \*:libreoffice focus=on follow=on state=tiled
+bspc rule -a Steam focus=on follow=on
+
+bspc rule -a Chromium:chromium focus=on follow=on
+bspc rule -a Chromium:crx_nckgahadagoaajjgafhacjanaoiihapd focus=on follow=on # Hangouts extension
+
+bspc rule -a Xfce4-appfinder state=floating
+
+bspc rule -a Emacs state=tiled focus=on follow=on
+bspc rule -a \*:qmlscene state=floating
+
+
+# remove the large x
+xsetroot -cursor_name left_ptr
+
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
+
+# start xfce4-notifyd as notification handler simply by installing it
+redshift &
+xcape -e 'Caps_Lock=Escape' &
+ibus-daemon -drx &
+nextcloud &
+$HOME/.config/polybar/launch.sh $MAIN_MONITOR &
+keepassxc &
