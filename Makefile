@@ -29,12 +29,15 @@ fish: fish.stow fish.pkg
 # DESKTOPS
 
 .PHONY: bspwm
-bspwm: bspwm.stow bspwm.hoststow bspwm.pkg sxhkd.pkg polybar.pkg nitrogen.pkg autorandr.aur
+bspwm: bspwm.stow bspwm.hoststow bspwm.pkg sxhkd.pkg polybar nitrogen.pkg autorandr.aur
 
 # APPS
 
 .PHONY: newsboat
 newsboat: newsboat.stow newsboat.pkg
+
+.PHONY: polybar
+polybar: polybar.pkg fonts
 
 .PHONY: st
 st: ncurses
@@ -47,6 +50,12 @@ ncurses:
 	@[ "`pacman -Qs | grep "/$@ 6.1-3"`" ] \
 		&& (cd packages/$@; makepkg -s; sudo pacman -U --noconfirm $@*.pkg.tar*) \
 		|| echo "$@ already current."
+
+
+.PHONY: fonts
+fonts: otf-font-awesome.pkg wqy-microhei.pkg wqy-zenhei.pkg otf-overpass.pkg \
+	noto-fonts.pkg ttf-material-icons.aur termsyn-font.aur bdf-unifont.pkg \
+	terminess-powerline-font-git.aur
 
 # stow utilities
 .PHONY: %.stow

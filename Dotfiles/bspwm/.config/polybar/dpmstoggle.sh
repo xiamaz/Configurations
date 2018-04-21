@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 if [ "$(xset dpms q | grep 'DPMS is Enabled')" ]; then
 	if [ "$1" ]; then
 		xset -dpms
