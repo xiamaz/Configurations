@@ -40,16 +40,31 @@ newsboat: newsboat.stow newsboat.pkg
 polybar: polybar.pkg fonts
 
 .PHONY: st
+.ONESHELL:
 st: ncurses
-	@[ -z "`pacman -Qs | grep "/$@ 0.8.1"`" ] \
-		&& (cd packages/$@; makepkg -s; sudo pacman -U --noconfirm $@*.pkg.tar*) \
-		|| echo "$@ already installed."
+	@if [ hostname = "Z20T" ]; then
+		FONTSIZE=12
+	else
+		FONTSIZE=11
+	fi
+	if [ -z "`pacman -Qs | grep "/$@ 0.8.1"`" ]; then
+		cd packages/$@
+		FONTSIZE=$$FONTSIZE makepkg -sf
+		sudo pacman -U --noconfirm $@*.pkg.tar*
+	else
+		echo "$@ already installed."
+	fi
 
 .PHONY: ncurses
+.ONESHELL:
 ncurses:
-	@[ "`pacman -Qs | grep "/$@ 6.1-3"`" ] \
-		&& (cd packages/$@; makepkg -s; sudo pacman -U --noconfirm $@*.pkg.tar*) \
-		|| echo "$@ already current."
+	@if [ "`pacman -Qs | grep "/$@ 6.1-3"`" ]; then
+		cd packages/$@
+		makepkg -s
+		sudo pacman -U --noconfirm $@*.pkg.tar*
+	else
+		echo "$@ already current."
+	fi
 
 
 .PHONY: fonts
@@ -63,35 +78,43 @@ fonts: otf-font-awesome.pkg wqy-microhei.pkg wqy-zenhei.pkg otf-overpass.pkg \
 	$(STOW) $(basename $@ .stow)
 
 .PHONY: %.hoststow
+.ONESHELL:
 %.hoststow: stow.pkg
-	@if [ -d "$(DOTS)/$$(basename $@ .hoststow)-$(HOST)" ]; then \
-		$(STOW) $$(basename $@ .hoststow)-$(HOST); \
-	else \
-		$(STOW) $$(basename $@ .hoststow)-default; \
-		echo "Using default config. Consider creating host-specific config."; \
+	@if [ -d "$(DOTS)/$$(basename $@ .hoststow)-$(HOST)" ]; then
+		$(STOW) $$(basename $@ .hoststow)-$(HOST)
+	else
+		$(STOW) $$(basename $@ .hoststow)-default
+		echo "Using default config. Consider creating host-specific config."
 	fi
 
 # package management
 .PHONY: %.pkg
+.ONESHELL:
 %.pkg:
-	@[ -z "`pacman -Qs | grep $(basename $@ .pkg)`" ] \
-		&& sudo pacman -S --noconfirm $(basename $@ .pkg) \
-		|| echo "$(basename $@ .pkg)already installed."
+	@if [ -z "`pacman -Qs | grep $(basename $@ .pkg)`" ]; then
+		sudo pacman -S --noconfirm $(basename $@ .pkg)
+	else
+		echo "$(basename $@ .pkg)already installed."
+	fi
 
 .PHONY: %.aur
+.ONESHELL:
 %.aur: yay
-	@[ -z "`pacman -Qs | grep $(basename $@ .pkg)`" ] \
-		&& yay -S --noconfirm $(basename $@ .pkg) \
-		|| echo "$(basename $@ .pkg)already installed."
+	@if [ -z "`pacman -Qs | grep $(basename $@ .pkg)`" ]; then
+		yay -S --noconfirm $(basename $@ .pkg)
+	else
+		echo "$(basename $@ .pkg)already installed."
+	fi
 
 .PHONY: yay
 yay: /usr/bin/yay
 
+.ONESHELL:
 /usr/bin/yay:
-	$(eval NAME = yay)
-	@cd /tmp; \
- 		wget https://aur.archlinux.org/cgit/aur.git/snapshot/$(NAME).tar.gz; \
- 		tar -xf /tmp/$(NAME).tar.gz; \
- 		cd /tmp/$(NAME); \
- 		makepkg -s; \
- 		sudo pacman -U --noconfirm $(NAME)*.pkg.*
+	@$(eval NAME = yay)
+	cd /tmp
+	wget https://aur.archlinux.org/cgit/aur.git/snapshot/$(NAME).tar.gz
+	tar -xf /tmp/$(NAME).tar.gz
+	cd /tmp/$(NAME)
+	makepkg -s
+	sudo pacman -U --noconfirm $(NAME)*.pkg.*

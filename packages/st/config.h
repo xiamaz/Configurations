@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "xos4 Terminess Powerline,Unifont:size=12";
+static char font[] = "xos4 Terminess Powerline,Unifont:size=FONTSIZE";
 static int borderpx = 2;
 
 /*

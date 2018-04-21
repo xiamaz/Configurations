@@ -15,7 +15,7 @@ source=(http://dl.suckless.org/st/$pkgname-$pkgver.tar.gz
         st-vertcenter.diff
         21color.patch)
 sha256sums=('c4fb0fe2b8d2d3bd5e72763e80a8ae05b7d44dbac8f8e3bb18ef0161c7266926'
-            '3ff90c8e47cd0a4eebfc73298c5ce6a0e3c9be48b4e28205b5c739a8eb96a5ff'
+            'ca13a552c205945e239b56103e50688548da030ba09157c4ba5b79cb7c48fa00'
             '04e6a4696293f668260b2f54a7240e379dbfabbc209de07bd5d4d57e9f513360'
             'c9aaea05aaa9cd76d98cf9ba338e61698f317b397a8e2d90645864af737e6b33')
 
@@ -23,7 +23,12 @@ prepare() {
   cd $srcdir/$pkgname-$pkgver
   # skip terminfo which conflicts with nsurses
   sed -i '/tic /d' Makefile
-  cp $srcdir/config.h config.h
+  # modify config with env vars
+  if [ -z $FONTSIZE ]; then
+  	  FONTSIZE=11
+  fi
+  sed "s/FONTSIZE/$FONTSIZE/g" $srcdir/config.h > config.h
+
   patch -p1 -i $srcdir/st-vertcenter.diff
   ## patch to use custom colors up to 21
   patch -p1 -i $srcdir/21color.patch
