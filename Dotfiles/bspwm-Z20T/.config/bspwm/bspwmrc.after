@@ -1,0 +1,10 @@
+#! /bin/sh
+
+bspc config border_width         3
+onboard &
+nm-applet &
+blueman-applet &
+
+# disable mobile network and bluetooth on boot
+nmcli radio wwan off
+# rfkill block bluetooth

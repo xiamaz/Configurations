@@ -3,6 +3,9 @@ STOW = stow -t $(HOME) -d $(DOTS)
 
 HOST = $(shell hostname)
 
+.PHONY: all
+all: tiling
+
 .PHONY: tiling
 tiling: bspwm base apps
 
@@ -29,7 +32,11 @@ fish: fish.stow fish.pkg
 # DESKTOPS
 
 .PHONY: bspwm
-bspwm: bspwm.stow bspwm.hoststow bspwm.pkg sxhkd.pkg polybar nitrogen.pkg autorandr.aur
+bspwm: bspwm.stow bspwm.hoststow \
+	bspwm.pkg sxhkd.pkg polybar \
+	nitrogen.pkg autorandr.aur redshift.pkg xcape.pkg  lxqt-policykit.pkg \
+	ibus.pkg ibus-rime.pkg xfce4-clipman-plugin.pkg \
+	keepassxc.pkg nextcloud-client.aur
 
 # APPS
 
