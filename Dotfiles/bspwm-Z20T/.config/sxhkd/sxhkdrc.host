@@ -4,7 +4,6 @@ Super_L
 XF86Launch2
 	$HOME/Git/Configurations/hardware/Keyboard/touchtoggle
 
-
 XF86Display
 	arandr
 
