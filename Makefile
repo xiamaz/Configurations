@@ -46,6 +46,9 @@ newsboat: newsboat.stow newsboat.pkg
 .PHONY: polybar
 polybar: polybar.pkg fonts
 
+.PHONY: zimwiki
+zimwiki: zimwiki.stow zim.pkg
+
 .PHONY: st
 .ONESHELL:
 st: ncurses

@@ -23,7 +23,7 @@ else
 end
 
 if test $argv[2]
-	set monitor $argv[3]
+	set monitor $argv[2]
 else
 	echo $USAGE
 	exit
