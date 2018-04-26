@@ -1,0 +1,52 @@
+#!/bin/env fish
+
+set USAGE "Usage: $_ [add|rm|crt] <MONITOR>"
+
+function add_update_mode
+	set $monitor $argv[1]
+	set $modename $argv[2]
+	if xrandr | grep $modename
+		xrandr --delmode $monitor $modename
+		xrandr --rmmode $modename
+	end
+	# xrandr --newmode $MODENAME  204.75  1600 1720 1888 2176  1200 1203 1207 1255 -hsync +vsync
+	xrandr --newmode $modename  179.50  1400 1512 1656 1912  1050 1053 1057 1105 -hsync +vsync
+	xrandr --addmode $monitor $modename
+end
+
+if test $argv[1]
+	set action $argv[1]
+else
+	set action "none"
+end
+
+if test $argv[2]
+	set monitor $argv[3]
+else
+	echo $USAGE
+	exit
+end
+
+set primary "eDP1"
+
+switch $action
+case add
+	xrandr --output $monitor --auto --right-of $primary
+	nitrogen --restore
+	eval $HOME/.config/polybar/launch.sh $primary
+	bspc monitor $monitor -d i ii iii iv v
+case rm
+	xrandr --auto
+	nitrogen --restore &
+	eval $HOME/.config/polybar/launch.sh $primary
+	bspc monitor $monitor --remove
+case crt
+	set modename "crtcustom"
+	add_update_mode $monitor $modename
+	xrandr --output $monitor --mode $modename --auto --left-of $primary
+	nitrogen --restore
+	eval $HOME/.config/polybar/launch.sh $monitor
+	bspc monitor $monitor -d i ii iii iv v
+case "*"
+	echo "Usage: $_ [add|rm|crt]"
+end
