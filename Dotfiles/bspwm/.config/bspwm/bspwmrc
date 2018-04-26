@@ -65,7 +65,6 @@ export SSH_AUTH_SOCK
 
 # start xfce4-notifyd as notification handler simply by installing it
 redshift &
-xcape -e 'Caps_Lock=Escape' &
 ibus-daemon -drx &
 nextcloud &
 $HOME/.config/polybar/launch.sh $MAIN_MONITOR &

@@ -82,6 +82,11 @@ fonts: otf-font-awesome.pkg wqy-microhei.pkg wqy-zenhei.pkg otf-overpass.pkg \
 	noto-fonts.pkg ttf-material-design-icons.aur termsyn-font.aur bdf-unifont.pkg \
 	terminess-powerline-font-git.aur
 
+.PHONY: keyboard
+keyboard: keyboard.stow xcape.pkg
+	@systemctl --user enable --now xcape.service
+	@systemctl --user enable --now xkbload.service
+
 # stow utilities
 .PHONY: %.stow
 %.stow: stow.pkg
