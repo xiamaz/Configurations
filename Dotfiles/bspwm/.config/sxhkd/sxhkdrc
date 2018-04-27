@@ -11,6 +11,9 @@ shift + Print
 	xfce4-screenshooter -r
 ctrl + alt + Delete
 	st -e htop
+alt + Pause
+	$HOME/.local/bin/lockscript; xset dpms force off
+
 
 # reload sxhkd
 alt + Escape

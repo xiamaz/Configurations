@@ -1,5 +1,4 @@
-#! /bin/sh
-
+#!/bin/sh
 # set an external monitor which takes precedence if detected
 internal='eDP1'
 external_main='DP1'

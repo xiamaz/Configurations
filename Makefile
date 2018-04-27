@@ -1,5 +1,7 @@
 DOTS = Dotfiles
+HOSTSDIR = Hosts
 STOW = stow -t $(HOME) -d $(DOTS)
+HOSTSTOW = stow -t $(HOME) -d $(HOSTSDIR)
 
 HOST = $(shell hostname)
 
@@ -36,7 +38,7 @@ bspwm: bspwm.stow bspwm.hoststow \
 	bspwm.pkg sxhkd.pkg polybar \
 	nitrogen.pkg autorandr.aur redshift.pkg xcape.pkg  lxqt-policykit.pkg \
 	ibus.pkg ibus-rime.pkg xfce4-clipman-plugin.pkg \
-	keepassxc.pkg nextcloud-client.aur
+	keepassxc.pkg nextcloud-client.aur i3lock-color-git.aur
 
 # APPS
 
@@ -95,10 +97,10 @@ keyboard: keyboard.stow xcape.pkg
 .PHONY: %.hoststow
 .ONESHELL:
 %.hoststow: stow.pkg
-	@if [ -d "$(DOTS)/$$(basename $@ .hoststow)-$(HOST)" ]; then
-		$(STOW) $$(basename $@ .hoststow)-$(HOST)
+	@if [ -d "$(HOSTSDIR)/$$(basename $@ .hoststow)-$(HOST)" ]; then
+		$(HOSTSTOW) $$(basename $@ .hoststow)-$(HOST)
 	else
-		$(STOW) $$(basename $@ .hoststow)-default
+		$(HOSTSTOW) $$(basename $@ .hoststow)-default
 		echo "Using default config. Consider creating host-specific config."
 	fi
 

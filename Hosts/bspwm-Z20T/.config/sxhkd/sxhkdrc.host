@@ -8,7 +8,7 @@ XF86Display
 	arandr
 
 XF86ScreenSaver
-	$HOME/SystemSettings/i3lock.sh; xset dpms force off
+	$HOME/.local/bin/lockscript; xset dpms force off
 
 # Audio settings
 XF86Audio{Raise,Lower}Volume

@@ -1,7 +1,12 @@
-#! /bin/sh
+#!/bin/bash
 
 # source before config
-. $HOME/.config/bspwmrc/bspwmrc.before
+source "$HOME/.config/bspwmrc/bspwmrc.before"
+# internal="eDP1"
+# external_main="DP1"
+
+echo $internal
+echo $external_main
 
 # set an external monitor which takes precedence if detected
 if [ $external_main ]; then
@@ -14,7 +19,7 @@ else
 fi
 
 sxhkd -c $HOME/.config/sxhkd/sxhkdrc $HOME/.config/sxhkd/sxhkdrc.bspwm $HOME/.config/sxhkd/sxhkdrc.host &
-autorandr -c
+autorandr -c &
 nitrogen --restore &
 
 for monitor in $(bspc query -M --names); do
@@ -73,4 +78,4 @@ lxqt-policykit-agent &
 xfce4-clipman &
 
 # after file for starting specific applications, overriding config etc
-. $HOME/.config/bspwm/bspwmrc.after
+source "$HOME/.config/bspwm/bspwmrc.after"

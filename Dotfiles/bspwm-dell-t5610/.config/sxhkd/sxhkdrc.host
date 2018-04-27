@@ -1,2 +1,0 @@
-alt + Pause
-	$HOME/Utilities/i3lock.sh; xset dpms force off
