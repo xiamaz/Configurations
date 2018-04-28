@@ -1,10 +1,11 @@
 BASEDIR := $(shell pwd)
+HOST = $(shell hostname)
 export BASEDIR
+export HOST
+
 
 DOTS = Dotfiles
 HOSTSDIR = Hosts
-
-HOST = $(shell hostname)
 
 include packaging.mk stow.mk
 
