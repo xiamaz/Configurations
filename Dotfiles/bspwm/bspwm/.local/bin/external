@@ -9,14 +9,19 @@ function add_update_mode
 		xrandr --delmode $monitor $modename
 		xrandr --rmmode $modename
 	end
-	# xrandr --newmode $MODENAME  204.75  1600 1720 1888 2176  1200 1203 1207 1255 -hsync +vsync
 	xrandr --newmode $modename  179.50  1400 1512 1656 1912  1050 1053 1057 1105 -hsync +vsync
 	xrandr --addmode $monitor $modename
 end
 
-set primary (xrandr | awk '/^[[:alnum:]-]+ connected/{print $1;exit}')
+function get_connected_monitors
+	set awk_cmd '/^[[:alnum:]-]+ connected/{print $1;}'
+	if test $argv[1]
+		set awk_cmd (echo $awk_cmd | sed 's/$1;/$1;exit;/g')
+	end
+	echo (xrandr | awk $awk_cmd)
+end
 
-echo $primary
+set primary (get_connected_monitors "primary")
 
 if test $argv[1]
 	set action $argv[1]
@@ -26,12 +31,14 @@ end
 
 if test $argv[2]
 	set monitor $argv[2]
-else
+else if [ $argv[1] != "ls" ]
 	echo $USAGE
 	exit
 end
 
 switch $action
+case ls
+	get_connected_monitors
 case add
 	xrandr --output $monitor --auto --right-of $primary
 	nitrogen --restore

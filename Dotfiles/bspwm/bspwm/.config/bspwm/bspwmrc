@@ -1,12 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 # source before config
-source "$HOME/.config/bspwmrc/bspwmrc.before"
+source "$HOME/.config/bspwm/bspwmrc.before"
 # internal="eDP1"
 # external_main="DP1"
-
-echo $internal
-echo $external_main
 
 # set an external monitor which takes precedence if detected
 if [ $external_main ]; then
