@@ -8,3 +8,9 @@ blueman-applet &
 # disable mobile network and bluetooth on boot
 nmcli radio wwan off
 # rfkill block bluetooth
+
+# disable touchpad
+xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad'
+
+# setup wacom tablet
+$HOME/SystemSettings/wacom-custom.sh
