@@ -2,7 +2,15 @@ function su
     /bin/su --shell=/usr/bin/fish $argv
 end
 
+function lessjson
+    python -m json.tool $argv[1] | less
+end
+
+complete -c lessjson -a '(__fish_complete_suffix json)'
+
 set fish_greeting
+fish_vi_key_bindings
+
 # aliases for python virtualenvs
 alias pmk 'python3 -m venv env'
 alias pa '. env/bin/activate.fish'
