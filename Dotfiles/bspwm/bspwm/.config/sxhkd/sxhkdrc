@@ -2,9 +2,9 @@
 alt + Return
 	$HOME/.local/bin/term-open.fish main
 alt + shift + Return
-	$HOME/.local/bin/term-open.fish single
-alt + ctrl + shift + Return
 	$HOME/.local/bin/term-open.fish home
+alt + ctrl + shift + Return
+	$HOME/.local/bin/term-open.fish single
 alt + d
 	rofi -combi-modi window,drun -show combi -modi combi
 Print
