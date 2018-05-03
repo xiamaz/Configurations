@@ -16,6 +16,7 @@ alias pmk 'python3 -m venv env'
 alias pa '. env/bin/activate.fish'
 alias pdep 'pip install -r requirements.txt'
 alias pd 'deactivate'
+alias home 'mosh home -- tmux -q has-session && tmux attach || tmux new-session'
 
 # completion for fish
 complete -c pacman -n "__fish_contains_opt -s U upgrade" -xa '(__fish_complete_suffix pkg.tar)' -d 'Package file'

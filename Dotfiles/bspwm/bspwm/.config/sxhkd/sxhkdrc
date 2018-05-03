@@ -1,8 +1,10 @@
 ## General hotkeys
 alt + Return
-	$HOME/Git/Configurations/Utils/st-open.sh
+	$HOME/.local/bin/term-open.fish main
 alt + shift + Return
-	st
+	$HOME/.local/bin/term-open.fish single
+alt + ctrl + shift + Return
+	$HOME/.local/bin/term-open.fish home
 alt + d
 	rofi -combi-modi window,drun -show combi -modi combi
 Print
