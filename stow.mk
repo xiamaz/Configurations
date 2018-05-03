@@ -1,7 +1,7 @@
 TARGET ?= $(HOME)
 SOURCE ?= $(DOTS)
 
-STOW = stow -t $(TARGET) -d $(SOURCE)
+STOW = stow --no-folding -t $(TARGET) -d $(SOURCE)
 
 # stow utilities
 .PHONY: %.stow
