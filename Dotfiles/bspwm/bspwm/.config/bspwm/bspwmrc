@@ -2,15 +2,12 @@
 
 # source before config
 source "$HOME/.config/bspwm/bspwmrc.before"
-# internal="eDP1"
-# external_main="DP1"
 
 # set an external monitor which takes precedence if detected
-if [ $external_main ]; then
-	if [ "$(xrandr | grep "^$external_main connected")" ]; then
-		xrandr --output $external_main --left-of $internal --auto
-		MAIN_MONITOR="$external_main"
-	fi
+if [ $external_main ] && [ "$(xrandr | grep "^$external_main connected")" ];
+then
+	xrandr --output $external_main --left-of $internal --auto
+	MAIN_MONITOR="$external_main"
 else
 	MAIN_MONITOR=$internal
 fi
