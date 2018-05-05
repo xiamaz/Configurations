@@ -15,6 +15,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
 "" Linting engine
 Plug 'w0rp/ale'
+"" Git tools
+Plug 'airblade/vim-gitgutter'
 "" Javascript plugins
 Plug 'elmcast/elm-vim', {'for' : 'elm'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
