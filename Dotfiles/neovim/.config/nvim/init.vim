@@ -44,8 +44,8 @@ Plug 'gaalcaras/ncm-R', {'for' : 'r'}
 " go source
 Plug 'fatih/vim-go', {'for': 'go'}
 "" ---------------------
-" Interactive REPL
-Plug 'xiamaz/iron.nvim', {'for' : 'python', 'do':':UpdateRemotePlugins'}
+" python repl
+Plug 'jalvesaq/vimcmdline', {'for': 'python'}
 " Python plugins
 Plug 'Vimjas/vim-python-pep8-indent', {'for' : 'python'}
 Plug 'tell-k/vim-autopep8', {'for' : 'python'}
@@ -108,17 +108,15 @@ set shortmess+=c
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" iron repl settings
-let g:iron_repl_open_cmd = 'vsplit'
-let g:iron_map_defaults=0
-augroup ironmapping
-    autocmd!
-    autocmd Filetype python nmap <buffer> <localleader>rf :call IronStartCustomRepl('python','ipython','ipython3') <CR><Esc><c-w><c-p>
-    autocmd Filetype python nmap <buffer> <localleader>l V<Plug>(iron-send-motion)
-    autocmd Filetype python vmap <buffer> <localleader>l <Plug>(iron-send-motion)
-    autocmd Filetype python nmap <buffer> <localleader>p <Plug>(iron-repeat-cmd)
-    autocmd Filetype python nmap <buffer> <localleader>rq :call IronSend("exit\n")<CR>
-augroup END
+" vimcmdline settings
+let cmdline_map_start          = '<LocalLeader>rf'
+let cmdline_map_send           = '<LocalLeader>l'
+let cmdline_map_send_and_stay  = '<LocalLeader><Space>'
+let cmdline_map_source_fun     = '<LocalLeader>f'
+let cmdline_map_send_paragraph = '<LocalLeader>p'
+let cmdline_map_send_block     = '<LocalLeader>b'
+let cmdline_map_quit           = '<LocalLeader>rq'
+
 " Ale linting settings
 let g:ale_r_lintr_options = 'with_defaults(object_name_linter = NULL, line_length_linter(120), closed_curly_linter = NULL, open_curly_linter = NULL, snake_case_linter = NULL, camel_case_linter = NULL, multiple_dots_linter = NULL)'
 let g:ale_lint_on_text_changed = 'never'
