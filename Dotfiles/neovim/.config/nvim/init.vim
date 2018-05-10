@@ -49,6 +49,8 @@ Plug 'jalvesaq/vimcmdline', {'for': 'python'}
 " Python plugins
 Plug 'Vimjas/vim-python-pep8-indent', {'for' : 'python'}
 Plug 'tell-k/vim-autopep8', {'for' : 'python'}
+" rst plugin
+Plug 'Rykka/riv.vim', {'for': 'rst'}
 " Webdev plugins
 Plug 'Valloric/MatchTagAlways', {'for' : 'html'}
 call plug#end()
