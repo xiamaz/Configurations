@@ -1,0 +1,31 @@
+#!/usr/bin/fish
+
+set status_icon '/usr/share/icons/Arc/devices/symbolic/input-touchpad-symbolic.svg'
+set touchpad_name "SynPS/2 Synaptics TouchPad"
+
+function set_touchpad
+	xinput $argv[1] $touchpad_name
+	notify-send.sh -R /tmp/notifyid-touchpad "TouchPad "$argv[1]"d" -t 2000 -i "$status_icon"
+end
+
+function enable_touchpad
+	set_touchpad "enable"
+end
+
+function disable_touchpad
+	set_touchpad "disable"
+end
+
+switch $argv[1]
+case "on"
+	enable_touchpad
+case "off"
+	disable_touchpad
+case "toggle"
+	set touchpad_state (xinput list-props "$touchpad_name" | grep 'Device Enabled' | awk '{print $4}')
+	if [ $touchpad_state = 1 ]
+		disable_touchpad
+	else
+		enable_touchpad
+	end
+end

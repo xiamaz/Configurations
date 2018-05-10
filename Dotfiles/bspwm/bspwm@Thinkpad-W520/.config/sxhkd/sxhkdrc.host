@@ -1,7 +1,7 @@
 XF86TouchpadToggle
-	$HOME/Code/Scripts/touchpad
+	$HOME/.local/bin/touchpad toggle
 XF86AudioMicMute
-	$HOME/Code/Scripts/micmute
+	$HOME/.local/bin/micmute
 XF86Audio{Lower,Raise}Volume
 	pamixer -{d,i} 5
 XF86AudioMute

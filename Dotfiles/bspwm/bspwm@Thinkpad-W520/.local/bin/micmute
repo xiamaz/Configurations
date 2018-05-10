@@ -1,0 +1,7 @@
+#!/bin/bash
+STATUS=$( amixer set Capture toggle | grep -o -m 1 off )
+#if [ $STATUS ]; then
+#	notify-send -t 1 "OFF" -i audio-input-microphone
+#else
+#	notify-send -t 1 "ON" -i audio-input-microphone
+#fi
