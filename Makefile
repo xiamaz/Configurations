@@ -10,7 +10,7 @@ HOSTSDIR = Hosts
 include packaging.mk stow.mk
 
 .PHONY: all
-all: bspwm apps
+all: bspwm apps base
 
 # DESKTOPS
 .PHONY: bspwm
