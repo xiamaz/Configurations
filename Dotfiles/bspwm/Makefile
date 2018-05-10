@@ -7,6 +7,7 @@ bspwm: bspwm.stow bspwm.hoststow dependencies
 .PHONY: dependencies
 dependencies: bspwm.pkg sxhkd.pkg nitrogen.pkg autorandr.aur \
 	lxqt-policykit.pkg xfce4-clipman-plugin.pkg i3lock-color-git.aur \
+	wmctrl.pkg
 
 .PHONY: polybar
 polybar: polybar.pkg fonts
