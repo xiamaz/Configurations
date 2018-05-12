@@ -40,7 +40,7 @@ inherit = bar/common
 
 modules-left = powermenu date temp memory
 modules-center = bspwm
-modules-right = dpmstoggle light volume battery
+modules-right = dpmstoggle volume battery
 
 tray-position = right
 tray-transparent = false
@@ -77,12 +77,6 @@ bar-fill-foreground = #ca
 bar-empty = ─
 bar-empty-font = 3
 bar-empty-foreground = #44
-
-[module/custom_battery]
-type = custom/script
-exec = /home/max/.config/polybar/dbus_upower.py
-click-left = /home/max/.config/polybar/dbus_upower.py dpms
-interval = ${bar/common.interval}
 
 [module/bspwm]
 type = internal/bspwm
@@ -196,37 +190,6 @@ format = <label>
 label =  %gb_used%
 interval = ${bar/common.interval}
 
-[module/wireless-network]
-type = internal/network
-interface = wlp2s0
-interval = 3.0
-ping-interval = 10
-
-format-connected = %{A1:st -e nmtui:}<ramp-signal> <label-connected>%{A}
-label-connected = %essid%
-label-disconnected =    not connected
-label-disconnected-foreground = #66
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-
-animation-packetloss-0 = 
-animation-packetloss-0-foreground = #ffa64c
-animation-packetloss-1 = 
-animation-packetloss-1-foreground = ${bar/top.foreground}
-animation-packetloss-framerate = 500
-
-[module/wired-network]
-type = internal/network
-interface = enp0s25
-interval = 3.0
-
-label-connected =    %{T3}%local_ip%%{T-}
-label-disconnected-foreground = #66
-
 [module/volume]
 type = internal/volume
 master-soundcard = default
@@ -276,17 +239,9 @@ menu-2-1 = Cancel
 menu-2-1-foreground = ${color.light}
 menu-2-1-exec = menu-open-0
 
-[module/ibus]
-type = custom/script
-exec = /home/max/.config/polybar/ibus_status.sh
-click-left = /home/max/.config/polybar/ibus_toggle
-click-right = ibus-setup
-interval = 1
-format-foreground = ${color.darker}
-
 [module/temp]
 type = internal/temperature
-thermal-zone = 2
+thermal-zone = 1
 
 interval = ${bar/common.interval}
 
@@ -304,3 +259,39 @@ ramp-1 = 
 ramp-2 = 
 ramp-3 = 
 ramp-4 = 
+
+[module/battery]
+type = internal/battery
+
+; full-at = 99
+
+battery = BAT0
+adapter = AC
+
+poll-interval = 20
+
+time-format = %H:%M
+
+format-charging = <label-charging>
+
+format-discharging = <ramp-capacity> <label-discharging>
+
+;format-full = <label-full>
+
+label-charging =  %percentage%%
+
+label-discharging = %percentage%% %time%
+
+label-full = 
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+[module/dpmstoggle]
+type = custom/script
+exec = $HOME/.config/polybar/dpmstoggle.sh
+click-left = $HOME/.config/polybar/dpmstoggle.sh toggle
