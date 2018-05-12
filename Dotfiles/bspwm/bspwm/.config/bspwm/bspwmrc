@@ -46,6 +46,7 @@ bspc rule -a Zim focus=on follow=on
 bspc rule -a Telegram focus=on follow=on
 bspc rule -a \*:libreoffice focus=on follow=on state=tiled
 bspc rule -a Steam focus=on follow=on
+bspc rule -a Soffice state=tiled
 
 bspc rule -a Chromium:chromium focus=on follow=on
 bspc rule -a Chromium:crx_nckgahadagoaajjgafhacjanaoiihapd focus=on follow=on # Hangouts extension
