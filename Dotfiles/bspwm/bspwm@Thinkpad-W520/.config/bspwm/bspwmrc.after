@@ -1,3 +1,4 @@
 #! /bin/sh
 nm-applet &
 blueman-applet &
+$HOME/.local/bin/touchpad off
