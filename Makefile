@@ -12,6 +12,13 @@ include packaging.mk stow.mk
 .PHONY: all
 all: bspwm apps base
 
+# host specific installs
+
+.PHONY: Thinkpad-W520
+Thinkpad-W520:
+	$(MAKE) -C Utils/nvidia_toggle
+	sudo $(MAKE) -C Utils/nvidia_toggle install
+
 # DESKTOPS
 .PHONY: bspwm
 bspwm:

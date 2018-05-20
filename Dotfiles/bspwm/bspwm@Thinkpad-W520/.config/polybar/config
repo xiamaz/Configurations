@@ -38,7 +38,7 @@ module-margin = 3
 [bar/main]
 inherit = bar/common
 
-modules-left = powermenu date temp memory
+modules-left = powermenu date temp memory nvidia
 modules-center = bspwm
 modules-right = dpmstoggle volume battery
 
@@ -295,3 +295,12 @@ ramp-capacity-4 = 
 type = custom/script
 exec = $HOME/.config/polybar/dpmstoggle.sh
 click-left = $HOME/.config/polybar/dpmstoggle.sh toggle
+
+[module/nvidia]
+type = custom/script
+label =   %output%
+label-foreground = ${color.darker}
+interval = 5
+exec = bbswitch-control g
+click-left = bbswitch-control s 1
+click-right = bbswitch-control s 0
