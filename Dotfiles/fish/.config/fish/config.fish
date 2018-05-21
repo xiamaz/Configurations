@@ -17,6 +17,10 @@ function pushbranch
 	git push --set-upstream origin (git rev-parse --abbrev-ref HEAD)
 end
 
+function mkaur
+	git clone https://aur.archlinux.org/$argv[1].git
+end
+
 complete -c lessjson -a '(__fish_complete_suffix json)'
 
 set fish_greeting

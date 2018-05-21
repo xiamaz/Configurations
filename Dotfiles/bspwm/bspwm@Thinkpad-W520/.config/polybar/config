@@ -15,15 +15,12 @@ line-color = ${color.background}
 background = ${color.background}
 foreground = ${color.foreground}
 
-font-0 = NotoSans-Regular:size=10;1
+font-0 = NotoSans-Regular:size=10;0
 font-1 = unifont:size=6;0
 font-2 = Material Icons:size=10;2
 font-3 = Termsyn:size=8:antialias=false;0
-font-4 = Font Awesome 5 Free:style=solid:size=10;2
-font-5 = Font Awesome 5 Brands:size=10;2
-font-6 = Material Icons:size=10;1
-font-7 = Symbola:size=11;0
-font-8 = WenQuanYi WenQuanYi Bitmap Song:size=10;0
+font-4 = Font Awesome 5 Free:style=solid:size=10;1
+font-5 = Font Awesome 5 Brands:size=10;1
 
 interval = 10
 
@@ -38,9 +35,9 @@ module-margin = 3
 [bar/main]
 inherit = bar/common
 
-modules-left = powermenu date temp memory nvidia
+modules-left = powermenu date temp memory
 modules-center = bspwm
-modules-right = dpmstoggle volume battery
+modules-right = nvidia dpmstoggle backlight volume battery
 
 tray-position = right
 tray-transparent = false
@@ -58,8 +55,9 @@ modules-left = bspwm
 modules-right = cpu
 
 [module/backlight]
-type = internal/xbacklight
-format = <ramp> <bar>
+type = internal/backlight
+card = intel_backlight
+format = <ramp> <label>
 
 ramp-foreground = #ca
 
@@ -181,7 +179,7 @@ ramp-coreload-7-foreground = #ff5555
 
 [module/date]
 type = internal/date
-date =  %{F#fff}%H:%M%{F-} %{F#ca} %Y-%m-%d%{F-}
+date =  %{F#fff}%H:%M%{F-}   %{F#ca} %Y-%m-%d%{F-}
 
 [module/memory]
 type = internal/memory
@@ -209,7 +207,7 @@ ramp-volume-3 = 
 [module/powermenu]
 type = custom/menu
 
-format-padding = 5
+format-padding = 3
 
 label-open = 
 label-close = 
@@ -299,7 +297,7 @@ click-left = $HOME/.config/polybar/dpmstoggle.sh toggle
 [module/nvidia]
 type = custom/script
 label =   %output%
-label-foreground = ${color.darker}
+label-foreground = ${color.light}
 interval = 5
 exec = bbswitch-control g
 click-left = bbswitch-control s 1
