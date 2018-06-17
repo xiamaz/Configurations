@@ -37,3 +37,5 @@ complete -c pacman -n "__fish_contains_opt -s U upgrade" -xa '(__fish_complete_s
 
 set -x -U GOPATH $HOME/go
 set -x PATH $GOPATH/bin $PATH
+
+set -x FZF_LEGACY_KEYBINDINGS 0

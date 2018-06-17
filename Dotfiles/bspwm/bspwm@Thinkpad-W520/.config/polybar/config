@@ -59,7 +59,7 @@ type = internal/backlight
 card = intel_backlight
 format = <ramp> <label>
 
-ramp-foreground = #ca
+ramp-foreground = ${color.light}
 
 ramp-0 = 
 ramp-1 = 

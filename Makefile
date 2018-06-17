@@ -57,7 +57,7 @@ neovim: neovim.stow neovim.pkg
 .PHONY: fish
 fish: fish.stow fish.pkg
 	@curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
-	@fish -c "fisher edc/bass"
+	@fish -c "fisher"
 
 .PHONY: st
 .ONESHELL:
