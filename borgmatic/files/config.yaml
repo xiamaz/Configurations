@@ -5,6 +5,7 @@ location:
     # List of source directories to backup (required). Globs and tildes are expanded.
     source_directories:
         - /home
+        - /etc
 
     # Paths to local or remote repositories (required). Tildes are expanded. Multiple
     # repositories are backed up to in sequence.
@@ -17,6 +18,9 @@ location:
         - '*.pyc'
         - /home/*/.cache
         - /etc/ssl
+        - '*.vdi'
+        - '*.vbox*'
+        - /home/*/.ccache
 
 # Repository storage options. See
 # https://borgbackup.readthedocs.io/en/stable/usage.html#borg-create and

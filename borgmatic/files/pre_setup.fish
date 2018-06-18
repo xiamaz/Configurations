@@ -4,16 +4,16 @@ set borg_user "root"
 
 set borg_dir "/etc/borgmatic"
 
-if not test -f "/usr/bin/borgmatic"
+if not [ -f "/usr/bin/borgmatic" ]
 	echo "Borgmatic not found. Installing it first."
 	yay -S --noconfirm borgmatic
 end
 
 sudo mkdir -p $borg_dir
 
-if not sudo test -e "/root/.ssh/id.pub"
+if not sudo test -f "/root/.ssh/id.pub"
 	sudo mkdir -p "/root/.ssh"
-	ssh-keygen -q -b 4096 -t rsa -C "Borgbackup autogen" -f "/root/.ssh/id" -p ""
+	sudo ssh-keygen -q -b 4096 -t rsa -C "Borgbackup autogen" -f "/root/.ssh/id" -N ""
 end
 
 if not test -f /root.ssh/config; or not sudo grep "thinkstation-d20" /root/.ssh/config
