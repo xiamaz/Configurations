@@ -6,7 +6,7 @@ set borg_dir "/etc/borgmatic"
 
 if not test -f "/usr/bin/borgmatic"
 	echo "Borgmatic not found. Installing it first."
-	pacaur -yq --noconfirm borgmatic
+	yay -S --noconfirm borgmatic
 end
 
 sudo mkdir -p $borg_dir
