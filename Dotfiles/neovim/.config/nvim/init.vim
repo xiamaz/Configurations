@@ -53,6 +53,7 @@ Plug 'Vimjas/vim-python-pep8-indent', {'for' : 'python'}
 Plug 'tell-k/vim-autopep8', {'for' : 'python'}
 " rst plugin
 Plug 'Rykka/riv.vim', {'for': 'rst'}
+Plug 'Rykka/InstantRst', {'for': 'rst'}
 " dockerfile plugin
 Plug 'ekalinin/Dockerfile.vim'
 " Webdev plugins
