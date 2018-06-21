@@ -6,6 +6,7 @@ endfunction
 "" Vim Utils
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 "" Vim Airline
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
@@ -16,7 +17,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
 "" Linting engine
-Plug 'w0rp/ale'
+Plug 'w0rp/ale' " deps: pylint, flake8
 "" Git tools
 "" Javascript plugins
 Plug 'elmcast/elm-vim', {'for' : 'elm'}
@@ -28,7 +29,7 @@ Plug 'peterhoeg/vim-qml', {'for' : 'qml'}
 "" Vim easy align
 Plug 'junegunn/vim-easy-align'
 "" Tags
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'   " deps: universal-ctags
 "" R plugins
 Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
 " Autocompletion
@@ -56,6 +57,7 @@ Plug 'Rykka/riv.vim', {'for': 'rst'}
 Plug 'ekalinin/Dockerfile.vim'
 " Webdev plugins
 Plug 'Valloric/MatchTagAlways', {'for' : 'html'}
+Plug 'mattn/emmet-vim', {'for': 'html'}
 call plug#end()
 
 "" Basic Settings
