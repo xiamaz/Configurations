@@ -3,10 +3,12 @@ call plug#begin()
 function! DoRemote(arg)
 	UpdateRemotePlugins
 endfunction
-"" Vim Surround
+"" Vim Utils
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 "" Vim Airline
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 "" Whitespace Plugins
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Yggdroot/indentLine'
@@ -16,7 +18,6 @@ Plug 'vim-airline/vim-airline-themes'
 "" Linting engine
 Plug 'w0rp/ale'
 "" Git tools
-Plug 'airblade/vim-gitgutter'
 "" Javascript plugins
 Plug 'elmcast/elm-vim', {'for' : 'elm'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
@@ -90,11 +91,35 @@ au TermOpen * setlocal nonu
 set termguicolors
 colorscheme base16-tomorrow-night
 set background=dark
-let g:airline_theme='base16'
 
 "" Plugin Configuration
-" Airline
-let g:airline#extensions#tabline#enabled = 1
+" Lightline
+let g:lightline = {
+      \  'colorscheme': 'Tomorrow_Night',
+      \  'component': {
+      \    'charvaluehex': '0x%B',
+      \  },
+      \  'component_expand': {
+      \    'linter_checking': 'lightline#ale#checking',
+      \    'linter_warnings': 'lightline#ale#warnings',
+      \    'linter_errors': 'lightline#ale#errors',
+      \    'linter_ok': 'lightline#ale#ok',
+      \  },
+      \  'component_type': {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \  },
+      \  'active': {
+      \     'right': [
+      \        [ 'lineinfo' ],
+      \        [ 'percent' ],
+      \        [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ],
+      \        ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'],
+      \     ]
+      \  },
+      \}
 " do not show the insert status, since we already have airline
 set noshowmode
 " VimWiki and calendar
@@ -113,6 +138,7 @@ inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " vimcmdline settings
+let cmdline_app = {'python': 'ipython3'}
 let cmdline_map_start          = '<LocalLeader>rf'
 let cmdline_map_send           = '<LocalLeader>l'
 let cmdline_map_send_and_stay  = '<LocalLeader><Space>'
@@ -126,7 +152,8 @@ let g:riv_disable_folding = 1
 " Ale linting settings
 let g:ale_r_lintr_options = 'with_defaults(object_name_linter = NULL, line_length_linter(120), closed_curly_linter = NULL, open_curly_linter = NULL, snake_case_linter = NULL, camel_case_linter = NULL, multiple_dots_linter = NULL)'
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%linter%] %code%:%s [%severity%]'
+let g:ale_linters = {'python': ['flake8', 'pylint']}
 
 " other python keybinds
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
