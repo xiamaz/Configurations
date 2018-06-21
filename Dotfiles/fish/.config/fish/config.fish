@@ -27,8 +27,9 @@ set fish_greeting
 fish_vi_key_bindings
 
 # aliases for python virtualenvs
-alias pmk 'python3 -m venv env'
 alias pa '. env/bin/activate.fish'
+alias pmk 'python3 -m venv env; and pa'
+alias pmks 'pmk --system-site-packages; and pa'
 alias pdep 'pip install -r requirements.txt'
 alias pd 'deactivate'
 
