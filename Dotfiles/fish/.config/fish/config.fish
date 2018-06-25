@@ -34,7 +34,7 @@ alias pdep 'pip install -r requirements.txt'
 alias pd 'deactivate'
 
 # completion for fish
-complete -c pacman -n "__fish_contains_opt -s U upgrade" -xa '(__fish_complete_suffix pkg.tar)' -d 'Package file'
+complete -c yay -n "__fish_contains_opt -s U upgrade" -xa '(__fish_complete_suffix pkg.tar)' -d 'Package file'
 
 set -x -U GOPATH $HOME/go
 set -x PATH $GOPATH/bin $PATH
