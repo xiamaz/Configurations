@@ -61,6 +61,8 @@ Plug 'ekalinin/Dockerfile.vim'
 " Webdev plugins
 Plug 'Valloric/MatchTagAlways', {'for' : 'html'}
 Plug 'mattn/emmet-vim', {'for': 'html'}
+" tag file management
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 "" Basic Settings
@@ -164,6 +166,7 @@ let g:ale_echo_msg_format = '[%linter%] %code%:%s [%severity%]'
 let g:ale_linters = {'python': ['flake8', 'pylint']}
 
 " latex settings
+let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = "latex"
 
 " other python keybinds

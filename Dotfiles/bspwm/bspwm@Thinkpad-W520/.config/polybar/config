@@ -37,7 +37,7 @@ inherit = bar/common
 
 modules-left = powermenu date temp memory
 modules-center = bspwm
-modules-right = nvidia dpmstoggle backlight volume battery
+modules-right = dpmstoggle backlight volume battery
 
 tray-position = right
 tray-transparent = false

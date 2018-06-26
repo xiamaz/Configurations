@@ -91,6 +91,10 @@ keyboard: keyboard.stow xcape.pkg
 	@systemctl --user enable --now xcape.service
 	@systemctl --user enable --now xkbload.service
 
+.PHONY: ctags
+ctags: universal-ctags-git.aur ctags.stow
+
+
 .PHONY: chinese
 chinese: ibus.pkg ibus-rime.pkg wqy-microhei.pkg wqy-zenhei.pkg
 
