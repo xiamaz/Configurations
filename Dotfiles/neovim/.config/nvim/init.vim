@@ -54,6 +54,8 @@ Plug 'tell-k/vim-autopep8', {'for' : 'python'}
 " rst plugin
 Plug 'Rykka/riv.vim', {'for': 'rst'}
 Plug 'Rykka/InstantRst', {'for': 'rst'}
+" latex plugin
+Plug 'lervag/vimtex', {'for': 'tex'}
 " dockerfile plugin
 Plug 'ekalinin/Dockerfile.vim'
 " Webdev plugins
@@ -135,6 +137,8 @@ hi Whitespace ctermfg=19
 let R_assign = 0
 " Tagbar settings
 nmap <F7> :TagbarToggle<CR>
+let g:tagbar_left = 1
+
 " nvim completion manager settings
 set shortmess+=c
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
@@ -149,6 +153,7 @@ let cmdline_map_source_fun     = '<LocalLeader>f'
 let cmdline_map_send_paragraph = '<LocalLeader>p'
 let cmdline_map_send_block     = '<LocalLeader>b'
 let cmdline_map_quit           = '<LocalLeader>rq'
+let cmdline_vsplit = 1
 "vim riv rst editor
 let g:riv_disable_folding = 1
 
@@ -158,6 +163,9 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_echo_msg_format = '[%linter%] %code%:%s [%severity%]'
 let g:ale_linters = {'python': ['flake8', 'pylint']}
 
+" latex settings
+let g:tex_flavor = "latex"
+
 " other python keybinds
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 
@@ -165,14 +173,6 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " keybindings for window switching
 tnoremap <Esc> <C-\><C-n>
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
 
 "" Custom keybindings
 " setup arrowkeys for visual scroll
@@ -187,21 +187,3 @@ inoremap <buffer> <silent> <End>  <C-o>g<End>
 " remove highlight with escape in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
-" german remaps for easier movements
-nnoremap ö (
-vnoremap ö (
-xnoremap ö (
-snoremap ö (
-nnoremap ä )
-vnoremap ä )
-xnoremap ä )
-snoremap ä )
-nnoremap Ö {
-vnoremap Ö {
-xnoremap Ö {
-snoremap Ö {
-nnoremap Ä }
-vnoremap Ä }
-xnoremap Ä }
-snoremap Ä }
-nnoremap ü <C-]>
