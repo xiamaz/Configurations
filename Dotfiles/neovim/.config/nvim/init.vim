@@ -156,6 +156,7 @@ let cmdline_map_send_paragraph = '<LocalLeader>p'
 let cmdline_map_send_block     = '<LocalLeader>b'
 let cmdline_map_quit           = '<LocalLeader>rq'
 let cmdline_vsplit = 1
+let cmdline_term_width = 80
 "vim riv rst editor
 let g:riv_disable_folding = 1
 
@@ -168,6 +169,7 @@ let g:ale_linters = {'python': ['flake8', 'pylint']}
 " latex settings
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = "latex"
+let g:tex_conceal = "admgs"
 
 " other python keybinds
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>

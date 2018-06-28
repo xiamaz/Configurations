@@ -1,4 +1,1 @@
-" general latex settings
-setlocal tabstop=6 shiftwidth=3 softtabstop=3
-setlocal showmatch " show matching bracket pairs
-setlocal textwidth=80
+setlocal expandtab shiftwidth=3 softtabstop=3
