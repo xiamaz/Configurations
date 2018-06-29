@@ -7,6 +7,9 @@ endfunction
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+"" make marks usabe
+Plug 'kshenoy/vim-signature'
+
 "" Vim Airline
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
