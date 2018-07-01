@@ -143,7 +143,6 @@ let R_assign = 0
 " Tagbar settings
 nmap <F7> :TagbarToggle<CR>
 let g:tagbar_left = 1
-
 " nvim completion manager settings
 set shortmess+=c
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
@@ -162,6 +161,8 @@ let cmdline_vsplit = 1
 let cmdline_term_width = 80
 "vim riv rst editor
 let g:riv_disable_folding = 1
+" instantRst
+let g:instant_rst_browser = 'firefox'
 
 " Ale linting settings
 let g:ale_r_lintr_options = 'with_defaults(object_name_linter = NULL, line_length_linter(120), closed_curly_linter = NULL, open_curly_linter = NULL, snake_case_linter = NULL, camel_case_linter = NULL, multiple_dots_linter = NULL)'
