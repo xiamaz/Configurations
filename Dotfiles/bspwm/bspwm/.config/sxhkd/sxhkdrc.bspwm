@@ -1,6 +1,6 @@
 super + {_,shift + }Tab
 	rofi -show window -kb-cancel "Super+Escape,Escape" -kb-accept-entry "!Super-Tab,!Super+ISO_Left_Tab,Return" -kb-row-down "Super+Tab,Super+Down" -kb-row-up "Super+ISO_Left_Tab,Super+Up"&
-	# $HOME/SystemSettings/rofi_{_,shift_}tab_windows
+
 #
 # bspwm hotkeys
 #
@@ -10,7 +10,7 @@ super + shift + e
 	bspc quit
 
 # close and kill
-super + shift + {_,ctrl + }q
+super + shift + {_,alt + }q
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
@@ -34,7 +34,7 @@ super + {a,shift + a,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
-super + ctrl + {x,y,z}
+super + alt + {x,y,z}
 	bspc node -g {locked,sticky,private}
 
 #
@@ -67,9 +67,9 @@ super + {_,shift + }{1-9,0}
     bspc {desktop -f, node -d} $(bspc query -M -m):^{1-9,10}
 super + {_,shift + }w
     bspc monitor -f {next, prev}
-super + ctrl + {_,shift + }w
+super + alt + {_,shift + }w
     bspc node -m {next, prev} --follow
-super + ctrl + {1-9,0}
+super + alt + {1-9,0}
 	bspc monitor -f ^{1-9,10}
 
 # rotate the tree by 90 degrees
@@ -81,19 +81,19 @@ super + {_, shift + }r
 #
 
 # preselect the direction
-mode_switch + ctrl + {h,j,k,l}
+mode_switch + super + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio
-mode_switch + ctrl + {1-9}
+mode_switch + super + {1-9}
 	bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
-mode_switch + ctrl + space
+mode_switch + super + space
 	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-mode_switch + ctrl + shift + space
+mode_switch + super + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #

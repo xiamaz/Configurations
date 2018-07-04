@@ -1,0 +1,10 @@
+// map super to alt, alt to ctl and ctl to super
+partial modifier_keys
+xkb_symbols "alt_ctl" {
+    key <LCTL> { symbols[Group1]= [ Alt_L ] };
+    key <LALT> { type[Group1] = "ONE_LEVEL",
+                 symbols[Group1] = [ Super_L ] };
+    key <LWIN> { [ Control_L ] };
+    modifier_map Mod1{ <LCTL> };
+    modifier_map Control { <LWIN> };
+};

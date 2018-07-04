@@ -1,24 +1,24 @@
 ## General hotkeys
-alt + Return
+super + Return
 	$HOME/.local/bin/term-open.fish main
-alt + shift + Return
+super + shift + Return
 	$HOME/.local/bin/term-open.fish home
-alt + ctrl + shift + Return
+super + alt + shift + Return
 	$HOME/.local/bin/term-open.fish single
-alt + t
+super + t
 	st
-alt + d
+super + d
 	rofi -combi-modi window,drun -show combi -modi combi
 Print
 	xfce4-screenshooter
 shift + Print
 	xfce4-screenshooter -r
-ctrl + alt + Delete
+super + alt + Delete
 	st -e htop
-alt + Pause
+super + Pause
 	$HOME/.local/bin/lockscript; xset dpms force off
 
 
 # reload sxhkd
-alt + Escape
+super + Escape
 	pkill -USR1 -x sxhkd
