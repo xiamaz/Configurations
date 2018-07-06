@@ -43,6 +43,9 @@ keepassxc: keepassxc.pkg
 .PHONY: redshift
 redshift: redshift.pkg
 
+.PHONY: latex
+latex: LaTeX.stow
+
 # BASE PROGRAMS
 .PHONY: base
 base: tmux neovim fish st basefonts keyboard chinese
