@@ -26,7 +26,7 @@ bspwm:
 
 # APPS
 .PHONY: apps
-apps: newsboat zimwiki nextcloud keepassxc redshift
+apps: newsboat zimwiki nextcloud keepassxc redshift latex python
 
 .PHONY: newsboat
 newsboat: newsboat.stow newsboat.pkg
@@ -44,7 +44,10 @@ keepassxc: keepassxc.pkg
 redshift: redshift.pkg
 
 .PHONY: latex
-latex: LaTeX.stow
+latex: LaTeX.stow texlive-core.pkg texlive-science.pkg
+
+.PHONY: python
+python: python.stow python-pyflakes.pkg python-pylint.pkg
 
 # BASE PROGRAMS
 .PHONY: base
