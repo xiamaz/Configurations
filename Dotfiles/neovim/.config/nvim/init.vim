@@ -169,6 +169,7 @@ let g:ale_r_lintr_options = 'with_defaults(object_name_linter = NULL, line_lengt
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_echo_msg_format = '[%linter%] %code%:%s [%severity%]'
 let g:ale_linters = {'python': ['flake8', 'pylint']}
+let g:ale_python_flake8_options = '--ignore=F821'
 
 " latex settings
 let g:vimtex_compiler_progname = 'nvr'
