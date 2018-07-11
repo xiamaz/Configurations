@@ -60,6 +60,9 @@ tmux: tmux.stow tmux.pkg
 .PHONY: neovim
 neovim: neovim.stow neovim.pkg
 
+.PHONY: git
+git: git.stow
+
 .PHONY: fish
 fish: fish.stow fish.pkg
 	@curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
