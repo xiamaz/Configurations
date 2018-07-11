@@ -1,6 +1,3 @@
-Super_L
-	bash -c '[[ $(pgrep xfce4-appfinder) ]] && pkill xfce4-appfinder || xfce4-appfinder'
-
 XF86Launch2
 	$HOME/Git/Configurations/hardware/Keyboard/touchtoggle
 
