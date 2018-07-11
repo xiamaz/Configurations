@@ -173,7 +173,7 @@ let g:ale_linters = {'python': ['flake8', 'pylint']}
 " latex settings
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = "latex"
-let g:tex_conceal = "admgs"
+let g:tex_conceal = ""
 
 " other python keybinds
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
