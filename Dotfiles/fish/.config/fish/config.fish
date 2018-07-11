@@ -35,6 +35,8 @@ alias pd 'deactivate'
 
 # completion for fish
 complete -c yay -n "__fish_contains_opt -s U upgrade" -xa '(__fish_complete_suffix pkg.tar)' -d 'Package file'
+# also accept non compressed packages for local installation
+complete --exclusive --command pacman --description 'Package file' --arguments '(__fish_complete_suffix pkg.tar)' --condition '__fish_contains_opt -s U upgrade'
 
 set -x -U GOPATH $HOME/go
 set -x PATH $GOPATH/bin $PATH
