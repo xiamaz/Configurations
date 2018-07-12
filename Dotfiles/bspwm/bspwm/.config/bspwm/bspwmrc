@@ -41,7 +41,7 @@ bspc config focus_follows_pointer true
 bspc rule -a Firefox:Navigator focus=on follow=on
 bspc rule -a st-256color -o focus=on follow=on
 bspc rule -a Thunderbird focus=on follow=on
-bspc rule -a keepassxc desktop='keepass' -o
+bspc rule -a keepassxc desktop='Keepass' -o
 bspc rule -a Zim focus=on follow=on
 bspc rule -a Telegram focus=on follow=on
 bspc rule -a \*:libreoffice focus=on follow=on state=tiled
