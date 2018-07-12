@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cur_name=$(bspc query -D -d --names)
+bspc desktop -n $(rofi -dmenu -lines 0 -input /dev/null -p "Rename $cur_name")

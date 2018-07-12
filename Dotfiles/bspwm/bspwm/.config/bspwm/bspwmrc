@@ -18,9 +18,9 @@ nitrogen --restore &
 
 for monitor in $(bspc query -M --names); do
 	if [ $monitor = "$MAIN_MONITOR" ]; then
-		bspc monitor $monitor -d i ii iii iv keepass
+		bspc monitor $monitor -d 1 2 3 4 Keepass
 	else
-		bspc monitor $monitor -d i ii iii iv v
+		bspc monitor $monitor -d 1 2 3 4 5
 	fi
 done
 
