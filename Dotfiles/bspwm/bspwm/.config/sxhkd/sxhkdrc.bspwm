@@ -62,6 +62,7 @@ super + {i,u}
 super + grave
 	bspc desktop -f last
 
+# Monitor options
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
     bspc {desktop -f, node -d} $(bspc query -M -m):^{1-9,10}
@@ -71,6 +72,8 @@ super + alt + {_,shift + }w
     bspc node -m {next, prev} --follow
 super + alt + {1-9,0}
 	bspc monitor -f ^{1-9,10}
+super + mode_switch + {_,shift + }w
+	bspc desktop -s {next,prev}:focused --follow
 
 # rotate the tree by 90 degrees
 super + {_, shift + }r
