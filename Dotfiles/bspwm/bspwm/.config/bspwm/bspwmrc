@@ -36,6 +36,9 @@ bspc config pointer_modifier mod4
 bspc config pointer_follows_monitor true
 bspc config focus_follows_pointer true
 
+# external rule command
+bspc config external_rules_command ~/.local/bin/autonamer.sh
+
 # use '^NUMBER' to select via desktop number
 # WM_CLASS:WM_INSTANCE, this is reverse to wmctrl -lx
 bspc rule -a Firefox:Navigator focus=on follow=on
