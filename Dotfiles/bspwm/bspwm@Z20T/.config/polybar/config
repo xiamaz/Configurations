@@ -22,7 +22,7 @@ warn = #c9665e
 
 [bar/common]
 width = 100%
-height = 30
+height = 24
 monitor = ${env:MONITOR}
 
 line-color = ${color.background}
@@ -43,7 +43,8 @@ interval = 10
 wm-restack = bspwm
 dpi = 120
 
-line-size = 5
+line-size = 0
+border-size = 5
 
 padding-right = 5
 module-margin = 3
