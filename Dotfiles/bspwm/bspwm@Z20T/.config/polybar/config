@@ -1,8 +1,22 @@
 [color]
 background = #000000
 foreground = #fcfcfc
-light = #fc
-darker = #ca
+light = #fcfcfc
+dark = #dadada
+darker = #cacaca
+
+dimmed = #999999
+dimmed-focus-fg = #bbbbbb
+dimmed-focus = #444444
+
+active = #fcfcfc
+active-fg = #000000
+
+occupied = #222222
+occupied-fg = #dddddd
+
+empty = #111111
+empty-fg = #555555
 
 warn = #c9665e
 
@@ -15,21 +29,21 @@ line-color = ${color.background}
 background = ${color.background}
 foreground = ${color.foreground}
 
-font-0 = NotoSans-Regular:size=10;1
+font-0 = NotoSans-Regular:size=9;1
 font-1 = unifont:size=6;0
-font-2 = Material Icons:size=10;2
+font-2 = Material Icons:size=9;2
 font-3 = Misc Termsynu:size=10:antialias=false;0
-font-4 = Font Awesome 5 Free:style=solid:size=10;1
-font-5 = Font Awesome 5 Brands:size=10;1
-font-6 = Symbola:size=11;0
-font-7 = WenQuanYi WenQuanYi Bitmap Song:size=10;0
+font-4 = Font Awesome 5 Free:style=solid:size=9;1
+font-5 = Font Awesome 5 Brands:size=9;1
+font-6 = Symbola:size=9;0
+font-7 = WenQuanYi WenQuanYi Bitmap Song:size=9;0
 
 interval = 10
 
 wm-restack = bspwm
 dpi = 120
 
-overline-size = 2
+line-size = 5
 
 padding-right = 5
 module-margin = 3
@@ -104,57 +118,67 @@ ws-icon-default = 
 
 format = <label-state> <label-mode>
 
-label-dimmed-focused-overline = ${root.background}
-label-dimmed-occupied-foreground = #55
-label-dimmed-focused-foreground = #55ffffff
-label-dimmed-focused-background = #553f3f3f
+label-dimmed-focused-foreground = ${color.dimmed-focus-fg}
+label-dimmed-focused-background = ${color.dimmed-focus}
+label-dimmed-focused-overline = ${color.background}
+label-dimmed-focused-underline = ${color.background}
+label-dimmed-occupied-foreground = ${color.dimmed}
 
-label-focused = %index%
-label-focused-foreground = #fff
-label-focused-background = #773f3f3f
-label-focused-overline = #fff
+label-focused = %name%
+label-focused-foreground = ${color.active-fg}
+label-focused-background = ${color.active}
 label-focused-font = 0
 label-focused-padding = 3
+label-focused-overline = ${color.background}
+label-focused-underline = ${color.background}
 
-label-occupied = %index%
-label-occupied-foreground = #dd
-label-occupied-overline = #666
+label-occupied = %name%
+label-occupied-foreground = ${color.occupied-fg}
+label-occupied-background = ${color.occupied}
 label-occupied-font = 0
 label-occupied-padding = 3
+label-occupied-overline = ${color.background}
+label-occupied-underline = ${color.background}
 
-label-urgent = %index%
+label-urgent = %name%
 label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
-label-urgent-overline = #9b0a20
 label-urgent-font = 0
 label-urgent-padding = 3
+label-urgent-overline = ${color.background}
+label-urgent-underline = ${color.background}
 
-label-empty = %index%
-label-empty-foreground = #55
+label-empty = %name%
+label-empty-foreground = ${color.empty-fg}
+label-empty-background = ${color.empty}
 label-empty-font = 0
 label-empty-padding = 3
 
 label-monocle = 
-label-monocle-overline = ${module/bspwm.label-focused-overline}
-label-monocle-background = #33ffffff
+label-monocle-background = #333333
+label-monocle-foreground = #cccccc
 label-monocle-padding = 3
 label-monocle-font = 5
+label-monocle-overline = ${color.background}
+label-monocle-underline = ${color.background}
 
 label-locked = 
 label-locked-foreground = #bd2c40
-label-locked-overline = ${module/bspwm.label-monocle-overline}
 label-locked-padding = ${module/bspwm.label-monocle-padding}
+label-locked-overline = ${color.background}
+label-locked-underline = ${color.background}
 
 label-sticky = 
 label-sticky-foreground = #fba922
-;label-sticky-underline = ${module/bspwm.label-monocle-underline}
-label-sticky-overline = ${module/bspwm.label-monocle-overline}
 label-sticky-padding = ${module/bspwm.label-monocle-padding}
+label-sticky-overline = ${color.background}
+label-sticky-underline = ${color.background}
 
 label-private = 
 label-private-foreground = #bd2c40
-label-private-overline = ${module/bspwm.label-monocle-overline}
 label-private-padding = ${module/bspwm.label-monocle-padding}
+label-private-overline = ${color.background}
+label-private-underline = ${color.background}
 
 [module/cpu]
 type = internal/cpu

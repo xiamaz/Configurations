@@ -1,6 +1,9 @@
 super + {_,shift + }Tab
 	rofi -show window -kb-cancel "Super+Escape,Escape" -kb-accept-entry "!Super-Tab,!Super+ISO_Left_Tab,Return" -kb-row-down "Super+Tab,Super+Down" -kb-row-up "Super+ISO_Left_Tab,Super+Up"&
 
+super + F2
+	$HOME/.local/bin/change_bspwm_desktop_name
+
 #
 # bspwm hotkeys
 #

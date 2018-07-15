@@ -17,8 +17,6 @@ super + alt + Delete
 	st -e htop
 super + Pause
 	$HOME/.local/bin/lockscript; xset dpms force off
-super + F2
-	$HOME/.local/bin/change_bspwm_desktop_name
 
 
 # reload sxhkd
