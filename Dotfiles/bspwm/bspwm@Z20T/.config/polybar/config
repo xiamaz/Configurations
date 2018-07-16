@@ -43,7 +43,6 @@ interval = 10
 wm-restack = bspwm
 dpi = 120
 
-line-size = 0
 border-size = 5
 
 padding-right = 5
@@ -103,19 +102,6 @@ interval = ${bar/common.interval}
 
 [module/bspwm]
 type = internal/bspwm
-
-ws-icon-0 = term;
-ws-icon-1 = web;
-ws-icon-2 = code;
-ws-icon-3 = media;
-ws-icon-4 = chat;
-ws-icon-5 = keepass;
-ws-icon-6 = mail;
-ws-icon-7 = office;
-ws-icon-8 = medicine;
-ws-icon-9 = games;
-;ws-icon-default = 
-ws-icon-default = 
 
 format = <label-state> <label-mode>
 
