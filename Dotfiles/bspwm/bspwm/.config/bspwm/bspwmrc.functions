@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# general bspwm functions, usable also in other scripts
+
+# reset monitor names, specifying a primary monitor
+reset_desktops() {
+	main_monitor=$1
+	for monitor in $(bspc query -M --names); do
+		if [ $monitor = "$main_monitor" ]; then
+			bspc monitor $monitor -d 1 2 3 4 Keepass
+		else
+			bspc monitor $monitor -d 1 2 3 4 5
+		fi
+	done
+}

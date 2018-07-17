@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# source library functions
+source "$HOME/.config/bspwm/bspwmrc.functions"
+
 # source before config
 source "$HOME/.config/bspwm/bspwmrc.before"
 
@@ -16,13 +19,8 @@ sxhkd -c $HOME/.config/sxhkd/sxhkdrc $HOME/.config/sxhkd/sxhkdrc.bspwm $HOME/.co
 autorandr -c &
 nitrogen --restore &
 
-for monitor in $(bspc query -M --names); do
-	if [ $monitor = "$MAIN_MONITOR" ]; then
-		bspc monitor $monitor -d 1 2 3 4 Keepass
-	else
-		bspc monitor $monitor -d 1 2 3 4 5
-	fi
-done
+reset_desktops "$MAIN_MONITOR"
+
 
 bspc config border_width         2
 bspc config window_gap           0
