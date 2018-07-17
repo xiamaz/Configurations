@@ -43,7 +43,7 @@ case add
 	xrandr --output $monitor --auto --right-of $primary
 	nitrogen --restore
 	eval $HOME/.config/polybar/launch.sh $primary
-	bspc monitor $monitor -d i ii iii iv v
+	bspc monitor $monitor -d 1 2 3 4 5
 case rm
 	xrandr --auto
 	nitrogen --restore &
