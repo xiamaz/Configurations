@@ -21,10 +21,22 @@ function mkaur
 	git clone https://aur.archlinux.org/$argv[1].git
 end
 
+# connect to vpn using ovpn
+function vpn
+	switch (string lower $argv[1])
+	case ls
+		/bin/ls -1 ~/Nextcloud/VPN
+	case mll
+		sudo openvpn ~/Nextcloud/VPN/MLL/mll_mzhao.ovpn
+	case '*'
+		echo "Unknown option. Usage: ls|<vpn names>"
+	end
+end
+
+
 complete -c lessjson -a '(__fish_complete_suffix json)'
 
 set fish_greeting
-fish_vi_key_bindings
 
 # aliases for python virtualenvs
 alias pa '. env/bin/activate.fish'
