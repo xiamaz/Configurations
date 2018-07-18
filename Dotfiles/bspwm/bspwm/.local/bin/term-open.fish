@@ -14,12 +14,21 @@ function raise_or_create
 	end
 end
 
+# port 60000 has priority for vpn connected usage
+function has_vpn
+	if [ -n (ip tuntap show) ]
+		echo "60001"
+	else
+		echo "60002:61000"
+	end
+end
+
 switch $argv[1]
 case "main"
 	raise_or_create "st-main-local-tmux" "tmux a"
 case "single"
 	create_st "st" "tmux new-session"
 case "home"
-	raise_or_create "st-main-home-tmux" "mosh home -- tmux a"
+	raise_or_create "st-main-home-tmux" "mosh home --port="(has_vpn)" -- tmux a"
 end
 
