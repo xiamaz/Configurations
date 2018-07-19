@@ -27,7 +27,7 @@ function vpn
 	case ls
 		/bin/ls -1 ~/Nextcloud/VPN
 	case mll
-		sudo openvpn ~/Nextcloud/VPN/MLL/mll_mzhao.ovpn
+		sh -c 'cd ~/Nextcloud/VPN/MLL; sudo openvpn mll_mzhao.ovpn'
 	case '*'
 		echo "Unknown option. Usage: ls|<vpn names>"
 	end
