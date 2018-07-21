@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # source library functions
-source "$HOME/.config/bspwm/bspwmrc.functions"
+. "$HOME/.config/bspwm/bspwmrc.functions"
 
 # source before config
-source "$HOME/.config/bspwm/bspwmrc.before"
+. "$HOME/.config/bspwm/bspwmrc.before"
 
 # set an external monitor which takes precedence if detected
 if [ $external_main ] && [ "$(xrandr | grep "^$external_main connected")" ];
@@ -74,4 +74,4 @@ lxqt-policykit-agent &
 xfce4-clipman &
 
 # after file for starting specific applications, overriding config etc
-source "$HOME/.config/bspwm/bspwmrc.after"
+. "$HOME/.config/bspwm/bspwmrc.after"
