@@ -3,7 +3,7 @@
 set TEMPLATE_DIR ~/Templates
 
 function _show_usage
-	echo "Usage: <template name> <destination>"
+	echo "Usage: new <template name> <destination>"
 end
 
 
