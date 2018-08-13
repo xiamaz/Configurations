@@ -7,9 +7,10 @@ endfunction
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-"" make marks usabe
-Plug 'kshenoy/vim-signature'
-
+Plug 'junegunn/fzf'
+Plug 'junegunn/vim-easy-align'
+Plug 'majutsushi/tagbar'   " deps: universal-ctags
+Plug 'kshenoy/vim-signature'  " show marks in gutter
 "" Vim Airline
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
@@ -23,31 +24,30 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale' " deps: pylint, flake8
 "" Git tools
 "" Javascript plugins
-Plug 'elmcast/elm-vim', {'for' : 'elm'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 "" Fish script highlighting plugin
 Plug 'kballard/vim-fish', {'for' : 'fish'}
 "" QML Syntax file
 Plug 'peterhoeg/vim-qml', {'for' : 'qml'}
-"" Vim easy align
-Plug 'junegunn/vim-easy-align'
-"" Tags
-Plug 'majutsushi/tagbar'   " deps: universal-ctags
 "" R plugins
 Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
+"" Julia support
+Plug 'JuliaEditorSupport/julia-vim'
 " Autocompletion
-Plug 'roxma/nvim-completion-manager'
+Plug 'roxma/nvim-yarp'  " nvim framework
+Plug 'ncm2/ncm2'
 "" NCM Completion sources
-" C/C++ Completion source
-Plug 'roxma/ncm-clang'
-" Elm source
-Plug 'roxma/ncm-elm-oracle', {'for' : 'elm'}
-" vimscript source
-Plug 'Shougo/neco-vim'
-" R source
-Plug 'gaalcaras/ncm-R', {'for' : 'r'}
-" go source
-Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-tern', {'for': 'javascript'}
+Plug 'ncm2/ncm2-jedi', {'for': 'python'}
+Plug 'ncm2/ncm2-pyclang', {'for': 'c'}
+Plug 'ncm2/ncm2-racer', {'for': 'rust'}
+Plug 'ncm2/ncm2-vim', {'for': 'vim'}
+Plug 'ncm2/ncm2-go', {'for': 'go'}
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }  " currently used for julia and R
 "" ---------------------
 " python repl
 Plug 'jalvesaq/vimcmdline', {'for': 'python'}
@@ -143,11 +143,84 @@ let R_assign = 0
 " Tagbar settings
 nmap <F7> :TagbarToggle<CR>
 let g:tagbar_left = 1
-" nvim completion manager settings
-set shortmess+=c
+" ncm2 completion manager settings
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+" IMPORTANTE: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c  " hide some messages
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" latex completion using vimtex
+ au InsertEnter * call ncm2#enable_for_buffer()
+    au Filetype tex call ncm2#register_source({
+        \ 'name' : 'vimtex-cmds',
+        \ 'priority': 8, 
+        \ 'complete_length': -1,
+        \ 'scope': ['tex'],
+        \ 'matcher': {'name': 'prefix', 'key': 'word'},
+        \ 'word_pattern': '\w+',
+        \ 'complete_pattern': g:vimtex#re#ncm2#cmds,
+        \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+        \ })
+    au Filetype tex call ncm2#register_source({
+        \ 'name' : 'vimtex-labels',
+        \ 'priority': 8, 
+        \ 'complete_length': -1,
+        \ 'scope': ['tex'],
+        \ 'matcher': {'name': 'combine',
+        \             'matchers': [
+        \               {'name': 'substr', 'key': 'word'},
+        \               {'name': 'substr', 'key': 'menu'},
+        \             ]},
+        \ 'word_pattern': '\w+',
+        \ 'complete_pattern': g:vimtex#re#ncm2#labels,
+        \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+        \ })
+    au Filetype tex call ncm2#register_source({
+        \ 'name' : 'vimtex-files',
+        \ 'priority': 8, 
+        \ 'complete_length': -1,
+        \ 'scope': ['tex'],
+        \ 'matcher': {'name': 'combine',
+        \             'matchers': [
+        \               {'name': 'abbrfuzzy', 'key': 'word'},
+        \               {'name': 'abbrfuzzy', 'key': 'abbr'},
+        \             ]},
+        \ 'word_pattern': '\w+',
+        \ 'complete_pattern': g:vimtex#re#ncm2#files,
+        \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+        \ })
+    au Filetype tex call ncm2#register_source({
+        \ 'name' : 'bibtex',
+        \ 'priority': 8, 
+        \ 'complete_length': -1,
+        \ 'scope': ['tex'],
+        \ 'matcher': {'name': 'combine',
+        \             'matchers': [
+        \               {'name': 'prefix', 'key': 'word'},
+        \               {'name': 'abbrfuzzy', 'key': 'abbr'},
+        \               {'name': 'abbrfuzzy', 'key': 'menu'},
+        \             ]},
+        \ 'word_pattern': '\w+',
+        \ 'complete_pattern': g:vimtex#re#ncm2#bibtex,
+        \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+        \ })
+
+" language server settings
+set hidden
+let g:LanguageClient_serverCommands = {
+    \ 'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
+    \     using LanguageServer;
+    \     server = LanguageServer.LanguageServerInstance(STDIN, STDOUT, false);
+    \     server.runlinter = true;
+    \     run(server);
+    \ '],
+    \ }
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+
 " vimcmdline settings
 let cmdline_app = {'python': 'ipython3'}
 let cmdline_map_start          = '<LocalLeader>rf'
