@@ -98,7 +98,6 @@ ncurses:
 .PHONY: keyboard
 keyboard: keyboard.stow xcape.pkg
 	@systemctl --user enable --now xcape.service
-	@systemctl --user enable --now xkbload.service
 
 .PHONY: ctags
 ctags: universal-ctags-git.aur ctags.stow
