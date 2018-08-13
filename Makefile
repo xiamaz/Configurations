@@ -21,7 +21,7 @@ Thinkpad-W520:
 
 # DESKTOPS
 .PHONY: bspwm
-bspwm:
+bspwm: bspwm-autonamer
 	$(MAKE) -C Dotfiles/bspwm
 
 # APPS
@@ -48,6 +48,19 @@ latex: LaTeX.stow texlive-core.pkg texlive-science.pkg
 
 .PHONY: python
 python: python.stow python-pyflakes.pkg python-pylint.pkg
+
+.PHONY: bspwm-autonamer
+.ONESHELL:
+bspwm-autonamer:
+	@if [ ! -d $$HOME/Git/bspwm-autonamer ]; then
+		git clone https://github.com/xiamaz/$@.git $$HOME/Git/$@
+	else
+		echo "Already cloned, just pulling."
+	fi
+	cd $$HOME/Git/$@
+	git pull
+	make install
+	systemctl --user enable --now bspwm-autoremover
 
 # BASE PROGRAMS
 .PHONY: base
