@@ -97,10 +97,14 @@ let &colorcolumn="80,".join(range(120,999),",")
 au TermOpen * setlocal nonu
 
 "" Theme Settings
-" set colorscheme for 256-color supported terminals
-set termguicolors
-colorscheme base16-tomorrow-night
-set background=dark
+if $TERM=~'linux'
+	set guicursor=
+else
+    " set colorscheme for 256-color supported terminals
+    set termguicolors
+    colorscheme base16-tomorrow-night
+    set background=dark
+end
 
 "" Plugin Configuration
 " Lightline
