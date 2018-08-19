@@ -1,9 +1,8 @@
 #!/bin/sh
-internal="eDP1"
 if [ $1 ]; then
 	MAIN_MONITOR="$1"
 else
-	MAIN_MONITOR="$internal"
+	MAIN_MONITOR="$(xrandr | grep -Po -m 1 '[\w-]+(?= connected)')"
 fi
 
 # Terminate already running bar instances
