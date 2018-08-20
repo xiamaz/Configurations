@@ -16,7 +16,7 @@ end
 
 # port 60000 has priority for vpn connected usage
 function has_vpn
-	if [ -n (ip tuntap show) ]
+	if [ -n (ip tuntap show | grep tun0) ]
 		echo "60001"
 	else
 		echo "60002:61000"
