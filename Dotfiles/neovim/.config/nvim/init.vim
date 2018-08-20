@@ -11,6 +11,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/vim-easy-align'
 Plug 'majutsushi/tagbar'   " deps: universal-ctags
 Plug 'kshenoy/vim-signature'  " show marks in gutter
+Plug 'krisajenkins/vim-projectlocal' " put a local vimrc in projects
 "" Vim Airline
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'

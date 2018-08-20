@@ -1,3 +1,13 @@
+.PHONY: all
+all: keyboard neovim
+
+.PHONY: neovim
+.ONESHELL:
+neovim:
+	@echo "Copying neovim config into root user."
+	sudo sh -c 'install -m644 $@/.config/nvim/init.vim $$HOME/.config/nvim/'
+
+
 .PHONY: keyboard
 .ONESHELL:
 keyboard: alt_ctl
