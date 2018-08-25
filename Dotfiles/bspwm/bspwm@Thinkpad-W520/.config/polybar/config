@@ -49,7 +49,7 @@ module-margin = 3
 [bar/main]
 inherit = bar/common
 
-modules-left = powermenu date temp memory
+modules-left = powermenu date temp memory cpu
 modules-center = bspwm
 modules-right = nvidia dpmstoggle backlight volume battery
 
@@ -65,8 +65,9 @@ padding-right = 4
 module-margin-left = 0
 module-margin-right = 6
 
-modules-left = bspwm
-modules-right = cpu
+modules-left =
+modules-center = bspwm
+modules-right =
 
 [module/backlight]
 type = internal/backlight
@@ -93,7 +94,7 @@ bar-empty-foreground = #44
 [module/bspwm]
 type = internal/bspwm
 
-format = <label-mode> <label-state>
+format = <label-state> <label-mode>
 
 label-dimmed-focused-foreground = ${color.dimmed-focus-fg}
 label-dimmed-focused-background = ${color.dimmed-focus}
@@ -161,32 +162,34 @@ label-private-underline = ${color.background}
 type = internal/cpu
 interval = 0.5
 format = <label> <ramp-coreload>
+format-foreground = #cacaca
+format-padding = 3
 label = 
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-font = 2
-ramp-coreload-0-foreground = #aaff77
+ramp-coreload-0-foreground = ${module/cpu.format-foreground}
 ramp-coreload-1 = ▂
 ramp-coreload-1-font = 2
-ramp-coreload-1-foreground = #aaff77
+ramp-coreload-1-foreground = ${module/cpu.format-foreground}
 ramp-coreload-2 = ▃
 ramp-coreload-2-font = 2
-ramp-coreload-2-foreground = #aaff77
+ramp-coreload-2-foreground = ${module/cpu.format-foreground}
 ramp-coreload-3 = ▄
 ramp-coreload-3-font = 2
-ramp-coreload-3-foreground = #aaff77
+ramp-coreload-3-foreground = ${module/cpu.format-foreground}
 ramp-coreload-4 = ▅
 ramp-coreload-4-font = 2
-ramp-coreload-4-foreground = #fba922
+ramp-coreload-4-foreground = #dadada
 ramp-coreload-5 = ▆
 ramp-coreload-5-font = 2
-ramp-coreload-5-foreground = #fba922
+ramp-coreload-5-foreground = #dadada
 ramp-coreload-6 = ▇
 ramp-coreload-6-font = 2
-ramp-coreload-6-foreground = #ff5555
+ramp-coreload-6-foreground = #eaeaea
 ramp-coreload-7 = █
 ramp-coreload-7-font = 2
-ramp-coreload-7-foreground = #ff5555
+ramp-coreload-7-foreground = #eaeaea
 
 [module/date]
 type = internal/date
@@ -200,11 +203,9 @@ label =  %gb_used%
 interval = ${bar/common.interval}
 
 [module/volume]
-type = internal/volume
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
-master-mixer = Master
+type = internal/pulseaudio
+
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
 
 format-volume = %{A3:pavucontrol:}<ramp-volume> <label-volume>%{A}
 label-muted =   muted

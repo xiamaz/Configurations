@@ -10,3 +10,5 @@ XF86Launch1
 	gnome-system-monitor
 XF86MonBrightness{Down,Up}
 	light -{U,A} 5
+XF86ScreenSaver
+	$HOME/.local/bin/lockscript

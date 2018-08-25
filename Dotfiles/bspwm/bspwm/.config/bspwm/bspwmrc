@@ -6,21 +6,11 @@
 # source before config
 . "$HOME/.config/bspwm/bspwmrc.before"
 
-# set an external monitor which takes precedence if detected
-if [ $external_main ] && [ "$(xrandr | grep "^$external_main connected")" ];
-then
-	xrandr --output $external_main --left-of $internal --auto
-	MAIN_MONITOR="$external_main"
-else
-	MAIN_MONITOR=$internal
-fi
-
 $HOME/.config/sxhkd/launch.sh
 autorandr -c &
 nitrogen --restore &
 
-reset_desktops "$MAIN_MONITOR"
-
+reset_desktops
 
 bspc config border_width         2
 bspc config window_gap           0
@@ -61,14 +51,11 @@ bspc rule -a \*:qmlscene state=floating
 # remove the large x
 xsetroot -cursor_name left_ptr
 
-eval $(gnome-keyring-daemon --start)
-export SSH_AUTH_SOCK
-
 # start xfce4-notifyd as notification handler simply by installing it
 redshift &
 ibus-daemon -drx &
 nextcloud &
-$HOME/.config/polybar/launch.sh $MAIN_MONITOR &
+$HOME/.config/polybar/launch.sh &
 keepassxc &
 lxqt-policykit-agent &
 xfce4-clipman &

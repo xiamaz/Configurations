@@ -42,4 +42,6 @@ i3lock              \
 --datesize=24 		\
 --datepos="tx:ty+48" \
 --radius=140 		\
---ring-width=5 		\
+--ring-width=5
+
+xset dpms force off

@@ -1,9 +1,6 @@
 #!/bin/sh
-if [ $1 ]; then
-	MAIN_MONITOR="$1"
-else
-	MAIN_MONITOR="$(xrandr | grep -Po -m 1 '[\w-]+(?= connected)')"
-fi
+
+MAIN_MONITOR="$(xrandr | grep -Po -m 1 '[\w-]+(?= connected)')"
 
 # Terminate already running bar instances
 killall -q polybar

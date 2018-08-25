@@ -16,7 +16,7 @@ shift + Print
 super + alt + Delete
 	st -e htop
 super + Pause
-	$HOME/.local/bin/lockscript; xset dpms force off
+	$HOME/.local/bin/lockscript
 
 
 # reload sxhkd
