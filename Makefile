@@ -26,7 +26,7 @@ bspwm: bspwm-autonamer
 
 # APPS
 .PHONY: apps
-apps: newsboat zimwiki nextcloud keepassxc redshift latex python
+apps: newsboat zimwiki nextcloud keepassxc redshift latex python R
 
 .PHONY: newsboat
 newsboat: newsboat.stow newsboat.pkg
@@ -48,6 +48,9 @@ latex: LaTeX.stow texlive-core.pkg texlive-science.pkg
 
 .PHONY: python
 python: python.stow python-pyflakes.pkg python-pylint.pkg
+
+.PHONY: R
+R: R.stow r.pkg gcc-fortran.pkg r-devtools.aur
 
 .PHONY: bspwm-autonamer
 .ONESHELL:
