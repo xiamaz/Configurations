@@ -50,7 +50,7 @@ latex: LaTeX.stow texlive-core.pkg texlive-science.pkg
 python: python.stow python-pyflakes.pkg python-pylint.pkg
 
 .PHONY: R
-R: R.stow r.pkg gcc-fortran.pkg r-devtools.aur
+R: R.stow r.pkg gcc-fortran.pkg r-devtools.aur r-roxygen2.aur
 
 .PHONY: bspwm-autonamer
 .ONESHELL:
