@@ -143,8 +143,14 @@ let g:calendar_monday = 1
 let g:indentLine_char = '┆'
 set list lcs=tab:\│\ 
 hi Whitespace ctermfg=19
+nnoremap <F6> :ToggleWhitespace<CR>
 " Nvim-R disable assign operator keybinding
 let R_assign = 0
+let R_app = "rtichoke"
+let R_cmd = "R"
+let R_hl_term = 0
+" let R_args = []  " if you had set any
+let R_bracketed_paste = 1
 " Tagbar settings
 nmap <F7> :TagbarToggle<CR>
 let g:tagbar_left = 1
@@ -223,6 +229,7 @@ let g:LanguageClient_serverCommands = {
     \     server.runlinter = true;
     \     run(server);
     \ '],
+    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
     \ }
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
