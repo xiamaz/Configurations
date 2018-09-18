@@ -34,6 +34,11 @@ function _get_template
 end
 
 function mktex
+	if [ (count $argv) -lt 1 ]
+		_show_usage
+		return
+	end
+
 	switch $argv[1]
 	case "ls"
 		_list_templates

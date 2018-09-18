@@ -55,7 +55,7 @@ case crt
 	xrandr --output $monitor --mode $modename --auto --left-of $primary
 	nitrogen --restore
 	eval $HOME/.config/polybar/launch.sh $monitor
-	bspc monitor $monitor -d i ii iii iv v
+	bspc monitor $monitor -d 1 2 3 4 5
 case "*"
 	echo "Usage: $_ [add|rm|crt]"
 end

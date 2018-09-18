@@ -7,8 +7,7 @@
 . "$HOME/.config/bspwm/bspwmrc.before"
 
 $HOME/.config/sxhkd/launch.sh
-autorandr -c &
-nitrogen --restore &
+autorandr -c
 
 reset_desktops
 
@@ -29,7 +28,7 @@ bspc config external_rules_command ~/.local/bin/autonamer.sh
 
 # use '^NUMBER' to select via desktop number
 # WM_CLASS:WM_INSTANCE, this is reverse to wmctrl -lx
-bspc rule -a keepassxc desktop=^5 -o
+bspc rule -a keepassxc desktop=^5
 bspc rule -a Firefox:Navigator focus=on follow=on
 bspc rule -a st-256color -o focus=on follow=on
 bspc rule -a Thunderbird focus=on follow=on
@@ -47,7 +46,6 @@ bspc rule -a Xfce4-appfinder state=floating
 bspc rule -a Emacs state=tiled focus=on follow=on
 bspc rule -a \*:qmlscene state=floating
 
-
 # remove the large x
 xsetroot -cursor_name left_ptr
 
@@ -59,6 +57,7 @@ $HOME/.config/polybar/launch.sh &
 keepassxc &
 lxqt-policykit-agent &
 xfce4-clipman &
+nitrogen --restore
 
 # after file for starting specific applications, overriding config etc
 . "$HOME/.config/bspwm/bspwmrc.after"

@@ -234,6 +234,9 @@ menu-0-1-exec = menu-open-1
 menu-0-2 = Power off
 menu-0-2-foreground = ${color.light}
 menu-0-2-exec = menu-open-2
+menu-0-3 = Restart sxhkd
+menu-0-3-foreground = ${color.light}
+menu-0-3-exec = $HOME/.config/sxhkd/launch.sh
 
 menu-1-0 = Cancel
 menu-1-0-foreground = ${color.light}
