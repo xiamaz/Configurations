@@ -21,7 +21,7 @@ Thinkpad-W520:
 
 # DESKTOPS
 .PHONY: bspwm
-bspwm: bspwm-autonamer
+bspwm: bspwm-autonamer rofi
 	$(MAKE) -C Dotfiles/bspwm
 
 # APPS
@@ -51,6 +51,9 @@ python: python.stow python-pyflakes.pkg python-pylint.pkg
 
 .PHONY: R
 R: R.stow r.pkg gcc-fortran.pkg r-devtools.aur r-roxygen2.aur
+
+.PHONY: rofi
+rofi: rofi.stow rofi.pkg
 
 .PHONY: bspwm-autonamer
 .ONESHELL:

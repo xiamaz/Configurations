@@ -8,7 +8,7 @@ super + alt + shift + Return
 super + t
 	st
 super + d
-	rofi -combi-modi window,drun -show combi -modi combi
+	rofi -show combi -modi combi
 Print
 	xfce4-screenshooter
 shift + Print
