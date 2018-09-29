@@ -20,3 +20,6 @@ XF86AudioMute
 XF86MonBrightness{Up,Down}
 	xbacklight -{inc,dec} 10
 	$HOME/SystemSettings/brightness.fish {inc,dec} 10
+
+XF86KbdLightOnOff
+	kbd_backlight
