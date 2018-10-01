@@ -1,4 +1,4 @@
 *~
 # ignore systemd config folders
 /**/systemd/user/default.target.wants/
-tags
+tags*
