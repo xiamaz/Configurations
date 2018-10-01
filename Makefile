@@ -47,7 +47,7 @@ redshift: redshift.pkg
 latex: LaTeX.stow texlive-core.pkg texlive-science.pkg
 
 .PHONY: python
-python: python.stow python-pyflakes.pkg python-pylint.pkg python-pip.pkg
+python: python.stow python-pyflakes.pkg python-pylint.pkg python-pip.pkg flake8.pkg
 
 .PHONY: R
 R: R.stow r.pkg gcc-fortran.pkg r-devtools.aur r-roxygen2.aur
