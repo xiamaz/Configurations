@@ -6,7 +6,7 @@ super + shift + Return
 super + alt + shift + Return
 	$HOME/.local/bin/term-open.fish single
 super + t
-	st
+	st -e fish
 super + d
 	rofi -show combi -modi combi
 Print
