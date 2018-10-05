@@ -76,7 +76,7 @@ base: tmux neovim fish st basefonts keyboard chinese ssh
 .ONESHELL:
 ssh: SSH.stow openssh.pkg mosh.pkg
 	@if ! [ -f ~/.ssh/id_rsa ]; then
-		ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+		ssh-keygen -b 4096 -t rsa -N "" -f ~/.ssh/id_rsa
 	fi
 
 
