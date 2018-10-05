@@ -70,7 +70,15 @@ bspwm-autonamer:
 
 # BASE PROGRAMS
 .PHONY: base
-base: tmux neovim fish st basefonts keyboard chinese
+base: tmux neovim fish st basefonts keyboard chinese ssh
+
+.PHONY: ssh
+.ONESHELL:
+ssh: SSH.stow openssh.pkg mosh.pkg
+	@if ! [ -f ~/.ssh/id_rsa ]; then
+		ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+	fi
+
 
 .PHONY: tmux
 tmux: tmux.stow tmux.pkg
