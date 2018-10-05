@@ -78,6 +78,7 @@ ssh: SSH.stow openssh.pkg mosh.pkg
 	@if ! [ -f ~/.ssh/id_rsa ]; then
 		ssh-keygen -b 4096 -t rsa -N "" -f ~/.ssh/id_rsa
 	fi
+	mkdir -p ~/.ssh/sockets  # for controlmaster sockets
 
 
 .PHONY: tmux
