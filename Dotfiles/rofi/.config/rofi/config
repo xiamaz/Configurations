@@ -3,4 +3,4 @@ rofi.theme:                          gruvbox-dark-hard
 rofi.ssh-client:                     ssh
 rofi.parse-known-hosts:              false
 rofi.terminal:                       st
-rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
+rofi.ssh-command:                    term-open.sh ssh {host}

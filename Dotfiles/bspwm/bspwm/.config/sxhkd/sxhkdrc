@@ -1,12 +1,12 @@
 ## General hotkeys
 super + Return
-	$HOME/.local/bin/term-open.fish main
+	$HOME/.local/bin/term-open.sh main
 super + shift + Return
-	$HOME/.local/bin/term-open.fish home
-super + alt + shift + Return
-	$HOME/.local/bin/term-open.fish single
+	$HOME/.local/bin/term-open.sh home
 super + t
 	st -e fish
+super + shift + t
+	rofi -show ssh
 super + d
 	rofi -show combi -modi combi
 Print
