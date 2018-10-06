@@ -266,6 +266,9 @@ autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
+" Clipboard settings
+set clipboard=unnamedplus
+
 " keybindings for window switching
 tnoremap <Esc> <C-\><C-n>
 
