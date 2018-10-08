@@ -246,6 +246,7 @@ let cmdline_vsplit = 1
 let cmdline_term_width = 80
 "vim riv rst editor
 let g:riv_disable_folding = 1
+let g:riv_section_levels = '*=-^"'
 " instantRst
 let g:instant_rst_browser = 'firefox'
 
