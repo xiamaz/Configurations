@@ -3,4 +3,4 @@ rofi.theme:                          gruvbox-dark-hard
 rofi.ssh-client:                     ssh
 rofi.parse-known-hosts:              false
 rofi.terminal:                       st
-rofi.ssh-command:                    term-open.sh ssh {host}
+rofi.ssh-command:                    sh -c '$HOME/.local/bin/term-open.sh ssh {host}'
