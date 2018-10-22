@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 bspc config border_width         3
 onboard &
@@ -14,3 +14,9 @@ xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad'
 
 # setup wacom tablet
 $HOME/SystemSettings/wacom-custom.sh
+
+# bind devices to internal screen
+screen="eDP1"
+xinput --map-to-output $(xinput list --id-only "Atmel") $screen
+xinput --map-to-output $(xinput list --id-only "Wacom ISDv4 12C Pen stylus") $screen
+xinput --map-to-output $(xinput list --id-only "Wacom ISDv4 12C Pen eraser") $screen

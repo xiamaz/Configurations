@@ -1,5 +1,5 @@
 XF86Launch2
-	$HOME/Git/Configurations/hardware/Keyboard/touchtoggle
+	$HOME/.local/bin/touchtoggle
 
 XF86Display
 	arandr
