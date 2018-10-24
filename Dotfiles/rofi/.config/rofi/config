@@ -4,3 +4,4 @@ rofi.ssh-client:                     ssh
 rofi.parse-known-hosts:              false
 rofi.terminal:                       st
 rofi.ssh-command:                    sh -c '$HOME/.local/bin/term-open.sh ssh {host}'
+rofi.window-match-fields:            class,role,name
