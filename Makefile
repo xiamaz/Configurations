@@ -21,7 +21,7 @@ Thinkpad-W520:
 
 # DESKTOPS
 .PHONY: bspwm
-bspwm: bspwm-autonamer rofi
+bspwm: # bspwm-autonamer rofi
 	$(MAKE) -C Dotfiles/bspwm
 
 # APPS

@@ -1,0 +1,14 @@
+#!/usr/bin/sh
+# check touchpad state and set it to enabled or disabled afterwards
+name=$(xinput list --name-only | grep -i -m 1 'touchpad')
+state=$(xinput list-props "$name" | grep 'Device Enabled' | awk '{print $4}')
+
+statusIcon="/usr/share/icons/Arc/devices/symbolic/input-touchpad-symbolic.svg"
+
+if [ "$state" -eq 1 ]; then
+	xinput disable "$name"
+	notify-send.sh -R /tmp/notifyid-touchpad "TouchPad disabled" -t 2000 -i "$statusIcon"
+else
+	xinput enable "$name"
+	notify-send.sh -R /tmp/notifyid-touchpad "TouchPad enabled" -t 2000 -i "$statusIcon"
+fi
