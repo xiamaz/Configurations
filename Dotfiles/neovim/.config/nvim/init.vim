@@ -49,6 +49,9 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }  " currently used for julia and R
+" Sniplet support
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'SirVer/ultisnips'
 "" ---------------------
 " python repl
 Plug 'jalvesaq/vimcmdline', {'for': 'python'}
@@ -249,6 +252,18 @@ let g:riv_disable_folding = 1
 let g:riv_section_levels = '*=-^"'
 " instantRst
 let g:instant_rst_browser = 'firefox'
+
+" sniplet settings
+" Press enter key to trigger snippet expansion
+" The parameters are the same as `:help feedkeys()`
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+
+" c-j c-k for moving in snippet
+" let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+let g:UltiSnipsEditSplit="vertical"
 
 " Ale linting settings
 let g:ale_r_lintr_options = 'with_defaults(object_name_linter = NULL, line_length_linter(120), closed_curly_linter = NULL, open_curly_linter = NULL, snake_case_linter = NULL, camel_case_linter = NULL, multiple_dots_linter = NULL)'
