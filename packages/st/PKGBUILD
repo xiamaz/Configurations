@@ -3,7 +3,7 @@
 
 pkgname=st
 pkgver=0.8.1
-pkgrel=1
+pkgrel=2
 pkgdesc='A simple virtual terminal emulator for X.'
 arch=('i686' 'x86_64')
 license=('MIT')
@@ -13,11 +13,13 @@ url="http://st.suckless.org"
 source=(http://dl.suckless.org/st/$pkgname-$pkgver.tar.gz
         config.h
         st-vertcenter.diff
-        21color.patch)
+        21color.patch
+        large-esc-buffer.patch)
 sha256sums=('c4fb0fe2b8d2d3bd5e72763e80a8ae05b7d44dbac8f8e3bb18ef0161c7266926'
             'ca13a552c205945e239b56103e50688548da030ba09157c4ba5b79cb7c48fa00'
             '04e6a4696293f668260b2f54a7240e379dbfabbc209de07bd5d4d57e9f513360'
-            'c9aaea05aaa9cd76d98cf9ba338e61698f317b397a8e2d90645864af737e6b33')
+            'c9aaea05aaa9cd76d98cf9ba338e61698f317b397a8e2d90645864af737e6b33'
+            'df12cc37af17edb731ad2310798b1f67b5540a43e006af7f393291994c58a2b5')
 
 prepare() {
   cd $srcdir/$pkgname-$pkgver
@@ -34,6 +36,8 @@ prepare() {
   patch -p1 -i $srcdir/21color.patch
   ## patch to always prefer colorname colors when available
   # patch -p1 -i $srcdir/color256.patch
+  ## patch for larger escape command buffer
+  patch -p1 -i $srcdir/large-esc-buffer.patch
 }
 
 build() {

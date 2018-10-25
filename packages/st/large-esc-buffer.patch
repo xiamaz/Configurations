@@ -1,0 +1,12 @@
+diff -ura a/st.c b/st.c
+--- a/st.c	2018-10-25 10:22:29.847474575 +0100
++++ b/st.c	2018-10-25 10:25:59.526161399 +0100
+@@ -31,7 +31,7 @@
+ /* Arbitrary sizes */
+ #define UTF_INVALID   0xFFFD
+ #define UTF_SIZ       4
+-#define ESC_BUF_SIZ   (128*UTF_SIZ)
++#define ESC_BUF_SIZ   (1024*UTF_SIZ)
+ #define ESC_ARG_SIZ   16
+ #define STR_BUF_SIZ   ESC_BUF_SIZ
+ #define STR_ARG_SIZ   ESC_ARG_SIZ
