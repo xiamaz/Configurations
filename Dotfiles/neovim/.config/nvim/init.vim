@@ -26,14 +26,12 @@ Plug 'w0rp/ale' " deps: pylint, flake8
 "" Git tools
 "" Javascript plugins
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-"" Fish script highlighting plugin
 Plug 'kballard/vim-fish', {'for' : 'fish'}
-"" QML Syntax file
 Plug 'peterhoeg/vim-qml', {'for' : 'qml'}
-"" R plugins
 Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
+Plug 'dmix/elvish.vim', { 'for': 'elvish'}
 "" Julia support
-Plug 'JuliaEditorSupport/julia-vim'
+" Plug 'JuliaEditorSupport/julia-vim'
 " Autocompletion
 Plug 'roxma/nvim-yarp'  " nvim framework
 Plug 'ncm2/ncm2'
@@ -42,13 +40,12 @@ Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-tern', {'for': 'javascript'}
 Plug 'ncm2/ncm2-jedi', {'for': 'python'}
 Plug 'ncm2/ncm2-pyclang', {'for': 'c'}
-Plug 'ncm2/ncm2-racer', {'for': 'rust'}
 Plug 'ncm2/ncm2-vim', {'for': 'vim'}
 Plug 'ncm2/ncm2-go', {'for': 'go'}
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }  " currently used for julia and R
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 " Sniplet support
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'SirVer/ultisnips'
@@ -57,7 +54,6 @@ Plug 'SirVer/ultisnips'
 Plug 'jalvesaq/vimcmdline', {'for': 'python'}
 " Python plugins
 Plug 'Vimjas/vim-python-pep8-indent', {'for' : 'python'}
-Plug 'tell-k/vim-autopep8', {'for' : 'python'}
 " rst plugin
 Plug 'Rykka/riv.vim', {'for': 'rst'}
 Plug 'Rykka/InstantRst', {'for': 'rst'}
@@ -99,6 +95,8 @@ set textwidth=80
 let &colorcolumn="80,".join(range(120,999),",")
 " disable linenumbers in terminal
 au TermOpen * setlocal nonu
+" Hide files instead of close
+set hidden
 
 "" Theme Settings
 if $TERM=~'linux'
@@ -171,7 +169,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
  au InsertEnter * call ncm2#enable_for_buffer()
     au Filetype tex call ncm2#register_source({
         \ 'name' : 'vimtex-cmds',
-        \ 'priority': 8, 
+        \ 'priority': 8,
         \ 'complete_length': -1,
         \ 'scope': ['tex'],
         \ 'matcher': {'name': 'prefix', 'key': 'word'},
@@ -181,7 +179,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
         \ })
     au Filetype tex call ncm2#register_source({
         \ 'name' : 'vimtex-labels',
-        \ 'priority': 8, 
+        \ 'priority': 8,
         \ 'complete_length': -1,
         \ 'scope': ['tex'],
         \ 'matcher': {'name': 'combine',
@@ -195,7 +193,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
         \ })
     au Filetype tex call ncm2#register_source({
         \ 'name' : 'vimtex-files',
-        \ 'priority': 8, 
+        \ 'priority': 8,
         \ 'complete_length': -1,
         \ 'scope': ['tex'],
         \ 'matcher': {'name': 'combine',
@@ -209,7 +207,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
         \ })
     au Filetype tex call ncm2#register_source({
         \ 'name' : 'bibtex',
-        \ 'priority': 8, 
+        \ 'priority': 8,
         \ 'complete_length': -1,
         \ 'scope': ['tex'],
         \ 'matcher': {'name': 'combine',
@@ -224,17 +222,16 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
         \ })
 
 " language server settings
-set hidden
-let g:LanguageClient_serverCommands = {
-    \ 'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
-    \     using LanguageServer;
-    \     server = LanguageServer.LanguageServerInstance(STDIN, STDOUT, false);
-    \     server.runlinter = true;
-    \     run(server);
-    \ '],
-    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
-    \ }
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" let g:LanguageClient_serverCommands = {
+"     \ 'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
+"     \     using LanguageServer;
+"     \     server = LanguageServer.LanguageServerInstance(STDIN, STDOUT, false);
+"     \     server.runlinter = true;
+"     \     run(server);
+"     \ '],
+"     \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
+"     \ }
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 " vimcmdline settings
 let cmdline_app = {'python': 'ipython3'}
@@ -276,11 +273,6 @@ let g:ale_python_flake8_options = '--ignore=F821'
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = "latex"
 let g:tex_conceal = ""
-
-" other python keybinds
-autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Clipboard settings
 set clipboard=unnamedplus
