@@ -3,6 +3,8 @@ super + {_,shift + }Tab
 
 super + F2
 	$HOME/.local/bin/change_bspwm_desktop_name
+super + shift + F2
+	$HOME/.local/bin/change_bspwm_desktop_name focused
 super + plus
 	bspc monitor -a $(( $(bspc query -D -m focused | wc -l) + 1 ))
 super + minus
