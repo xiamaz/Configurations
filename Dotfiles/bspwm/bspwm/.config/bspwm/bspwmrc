@@ -45,6 +45,7 @@ bspc rule -a Xfce4-appfinder state=floating
 
 bspc rule -a Emacs state=tiled focus=on follow=on
 bspc rule -a \*:qmlscene state=floating
+bspc rule -a xfreerdp state=tiled
 
 # remove the large x
 xsetroot -cursor_name left_ptr
