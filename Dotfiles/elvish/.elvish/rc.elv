@@ -38,6 +38,16 @@ fn pfreeze {
   rm frozenargs
 }
 
+# backupfunction
+fn backupdir [dir]{
+  if (not ?(test -d $dir)) {
+    echo "Directory "$dir" not found."
+    return
+  }
+  ssh home mkdir -p Data/Backups/$dir
+  rsync -a --info=progress2 $dir/ home:Data/Backups/$dir/(date -I)
+}
+
 # prompt theme
 use github.com/xiamaz/elvish-themes/chain
 # chain:glyph["chain"] = " "
@@ -66,7 +76,6 @@ chain:prompt-segments = [
   "\n"
   arrow
 ]
-
 
 # fix navigation mode crash
 edit:navigation:binding["Ctrl-N"] = $nop~
