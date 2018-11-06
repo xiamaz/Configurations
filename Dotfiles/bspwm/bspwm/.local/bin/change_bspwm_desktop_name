@@ -1,4 +1,10 @@
 #!/bin/sh
 
-cur_name=$(bspc query -D -d --names)
-bspc desktop -n $(rofi -dmenu -lines 0 -input /dev/null -p "Rename $cur_name")
+if [ -z "$1" ]; then
+	cur_name=$(bspc query -D -d --names)
+	bspc desktop -n $(rofi -dmenu -lines 0 -input /dev/null -p "Rename $cur_name")
+elif [ "$1" = "focused" ]; then
+	wid=$(bspc query -N -n)
+	progname=$($HOME/.local/bin/program_to_desktop_name.sh $wid)
+	bspc desktop -n "$progname"
+fi
