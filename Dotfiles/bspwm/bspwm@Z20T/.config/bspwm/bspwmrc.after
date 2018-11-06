@@ -14,6 +14,7 @@ xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad'
 
 # setup wacom tablet
 $HOME/SystemSettings/wacom-custom.sh
+$HOME/.local/bin/map_absolute_input.sh
 
 # bind devices to internal screen
 screen="eDP1"

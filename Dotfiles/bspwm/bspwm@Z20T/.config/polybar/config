@@ -88,6 +88,16 @@ bar-empty = ─
 bar-empty-font = 4
 bar-empty-foreground = #44
 
+[bar/vertical]
+inherit = bar/common
+
+modules-left = powermenu date
+modules-center = bspwm
+modules-right = backlight volume custom_battery
+
+tray-position = right
+tray-transparent = false
+
 [module/custom_battery]
 type = custom/script
 exec = /home/max/.config/polybar/dbus_upower.py
@@ -237,12 +247,9 @@ label-connected =    %{T3}%local_ip%%{T-}
 label-disconnected-foreground = #66
 
 [module/volume]
-type = internal/volume
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
-master-mixer = Master
-
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+use-ui-max = false
 format-volume = %{A3:pavucontrol:}<ramp-volume> <label-volume>%{A}
 label-muted =   muted
 label-muted-foreground = #66
@@ -261,29 +268,53 @@ label-open = 
 label-close = 
 label-separator = "  "
 
-menu-0-0 = Logout
+menu-0-0 = Apps
 menu-0-0-foreground = ${color.light}
-menu-0-0-exec = bspc quit -1
-menu-0-1 = Reboot
+menu-0-0-exec = $HOME/.local/bin/toggle_appfinder.sh
+menu-0-1 = Rotate
 menu-0-1-foreground = ${color.light}
-menu-0-1-exec = menu-open-1
-menu-0-2 = Power off
+menu-0-1-exec = $HOME/.local/bin/vertical.sh
+menu-0-2 = Utils
 menu-0-2-foreground = ${color.light}
-menu-0-2-exec = menu-open-2
+menu-0-2-exec = menu-open-1
+menu-0-3 = Power
+menu-0-3-foreground = ${color.light}
+menu-0-3-exec = menu-open-2
 
-menu-1-0 = Cancel
+menu-1-0 = Restart sxhkd
 menu-1-0-foreground = ${color.light}
-menu-1-0-exec = menu-open-0
-menu-1-1 = Reboot
+menu-1-0-exec = $HOME/.config/sxhkd/launch.sh
+menu-1-1 = Restart polybar
 menu-1-1-foreground = ${color.light}
-menu-1-1-exec = reboot
+menu-1-1-exec = $HOME/.config/polybar/launch.sh
+menu-1-2 = Toggle Capslock
+menu-1-2-foreground = ${color.light}
+menu-1-2-exec = xdotool key Caps_Lock
 
-menu-2-0 = Power off
+
+menu-2-0 = Logout
 menu-2-0-foreground = ${color.light}
-menu-2-0-exec = poweroff
-menu-2-1 = Cancel
+menu-2-0-exec = bspc quit -1
+menu-2-1 = Reboot
 menu-2-1-foreground = ${color.light}
-menu-2-1-exec = menu-open-0
+menu-2-1-exec = menu-open-3
+menu-2-2 = Power off
+menu-2-2-foreground = ${color.light}
+menu-2-2-exec = menu-open-4
+
+menu-3-0 = Cancel
+menu-3-0-foreground = ${color.light}
+menu-3-0-exec = menu-open-0
+menu-3-1 = Reboot
+menu-3-1-foreground = ${color.light}
+menu-3-1-exec = reboot
+
+menu-4-0 = Power off
+menu-4-0-foreground = ${color.light}
+menu-4-0-exec = poweroff
+menu-4-1 = Cancel
+menu-4-1-foreground = ${color.light}
+menu-4-1-exec = menu-open-0
 
 [module/ibus]
 type = custom/script
