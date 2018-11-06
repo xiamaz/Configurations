@@ -96,6 +96,9 @@ fish: fish.stow fish.pkg
 	@curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
 	@fish -c "fisher"
 
+.PHONY: elvish
+elvish: elvish.stow elvish.aur
+
 .PHONY: st
 .ONESHELL:
 st: ncurses terminess-powerline-font-git.aur
