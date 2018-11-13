@@ -88,6 +88,9 @@ tmux: tmux.stow tmux.pkg
 .PHONY: neovim
 neovim: neovim.stow neovim.pkg
 
+.PHONY: emacs
+emacs: emacs.stow emacs.pkg
+
 .PHONY: git
 git: git.stow
 
