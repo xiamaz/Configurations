@@ -33,8 +33,8 @@ fn pmks {
 }
 fn pdep { pip install -r requirements.txt }
 fn pfreeze {
-  awk -F "=" '{print $1 "="}' requirements.txt > frozenargs
-  pip freeze | grep -f frozenargs > requirements.frozen.txt
+  sed 's/[<> ]//g' requirements.txt | awk -F "=" '{print "^" $1 "="}' > frozenargs
+  pip freeze | grep -i -f frozenargs
   rm frozenargs
 }
 
