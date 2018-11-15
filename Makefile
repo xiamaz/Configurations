@@ -10,7 +10,7 @@ HOSTSDIR = Hosts
 include packaging.mk stow.mk
 
 .PHONY: all
-all: bspwm apps base
+all: bspwm apps base $(HOST)
 
 # host specific installs
 
@@ -21,27 +21,18 @@ Thinkpad-W520:
 
 # DESKTOPS
 .PHONY: bspwm
-bspwm: # bspwm-autonamer rofi
+bspwm: bspwm-autonamer rofi.stow rofi.pkg flameshot.pkg redshift.pkg
 	$(MAKE) -C Dotfiles/bspwm
 
 # APPS
 .PHONY: apps
-apps: newsboat zimwiki nextcloud keepassxc redshift latex python R
+apps: newsboat zimwiki nextcloud-client.aur keepassxc.pkg latex python R
 
 .PHONY: newsboat
 newsboat: newsboat.stow newsboat.pkg
 
 .PHONY: zimwiki
 zimwiki: zimwiki.stow zim.pkg
-
-.PHONY: nextcloud
-nextcloud: nextcloud-client.aur
-
-.PHONY: keepassxc
-keepassxc: keepassxc.pkg
-
-.PHONY: redshift
-redshift: redshift.pkg
 
 .PHONY: latex
 latex: LaTeX.stow texlive-core.pkg texlive-science.pkg
@@ -51,9 +42,6 @@ python: python.stow python-pyflakes.pkg python-pylint.pkg python-pip.pkg flake8.
 
 .PHONY: R
 R: R.stow r.pkg gcc-fortran.pkg r-devtools.aur r-roxygen2.aur
-
-.PHONY: rofi
-rofi: rofi.stow rofi.pkg
 
 .PHONY: bspwm-autonamer
 .ONESHELL:
@@ -127,6 +115,7 @@ ncurses:
 .PHONY: keyboard
 keyboard: keyboard.stow xcape.pkg
 	@systemctl --user enable --now xcape.service
+	$(MAKE) -C System keyboard
 
 .PHONY: ctags
 ctags: universal-ctags-git.aur ctags.stow
