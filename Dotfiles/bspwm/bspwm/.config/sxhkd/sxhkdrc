@@ -10,9 +10,7 @@ super + shift + t
 super + d
 	rofi -show combi -modi combi
 Print
-	xfce4-screenshooter
-shift + Print
-	xfce4-screenshooter -r
+	flameshot gui
 super + alt + Delete
 	st -e htop
 super + Pause
