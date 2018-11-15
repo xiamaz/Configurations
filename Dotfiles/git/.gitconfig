@@ -5,3 +5,5 @@
 	email = alcasa.mz@gmail.com
 [core]
 	excludesfile = /home/max/.config/gitignore_global
+[push]
+	followTags = true
