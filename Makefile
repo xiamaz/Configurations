@@ -70,7 +70,7 @@ bspwm-autonamer:
 
 # BASE PROGRAMS
 .PHONY: base
-base: tmux neovim fish st basefonts keyboard chinese ssh
+base: tmux neovim fish st basefonts keyboard chinese ssh elvish emacs
 
 .PHONY: ssh
 .ONESHELL:
