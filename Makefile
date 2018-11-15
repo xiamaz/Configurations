@@ -70,7 +70,7 @@ bspwm-autonamer:
 
 # BASE PROGRAMS
 .PHONY: base
-base: tmux neovim fish st basefonts keyboard chinese ssh elvish emacs
+base: tmux neovim st basefonts keyboard chinese ssh elvish emacs git
 
 .PHONY: ssh
 .ONESHELL:
@@ -92,12 +92,7 @@ neovim: neovim.stow neovim.pkg
 emacs: emacs.stow emacs.pkg
 
 .PHONY: git
-git: git.stow
-
-.PHONY: fish
-fish: fish.stow fish.pkg
-	@curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
-	@fish -c "fisher"
+git: git.stow git-crypt.pkg
 
 .PHONY: elvish
 elvish: elvish.stow elvish.aur
@@ -135,7 +130,6 @@ keyboard: keyboard.stow xcape.pkg
 
 .PHONY: ctags
 ctags: universal-ctags-git.aur ctags.stow
-
 
 .PHONY: chinese
 chinese: ibus.pkg ibus-rime.pkg wqy-microhei.pkg wqy-zenhei.pkg
