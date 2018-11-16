@@ -10,14 +10,18 @@ HOSTSDIR = Hosts
 include packaging.mk stow.mk
 
 .PHONY: all
-all: bspwm apps base $(HOST)
+all: bspwm apps base $(HOST).host
 
 # host specific installs
 
-.PHONY: Thinkpad-W520
-Thinkpad-W520:
+.PHONY: Thinkpad-W520.host
+Thinkpad-W520.host:
 	$(MAKE) -C Utils/nvidia_toggle
 	sudo $(MAKE) -C Utils/nvidia_toggle install
+
+.PHONY: %.host
+%.host:
+	echo "Default host configuration"
 
 # DESKTOPS
 .PHONY: bspwm
@@ -41,7 +45,7 @@ latex: LaTeX.stow texlive-core.pkg texlive-science.pkg
 python: python.stow python-pyflakes.pkg python-pylint.pkg python-pip.pkg flake8.pkg
 
 .PHONY: R
-R: R.stow r.pkg gcc-fortran.pkg r-devtools.aur r-roxygen2.aur
+R: R.stow r.pkg gcc-fortran.pkg
 
 .PHONY: bspwm-autonamer
 .ONESHELL:
