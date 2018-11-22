@@ -56,6 +56,9 @@ case crt
 	nitrogen --restore
 	eval $HOME/.config/polybar/launch.sh $monitor
 	bspc monitor $monitor -d 1 2 3 4 5
+case reset
+	nitrogen --restore &
+	eval $HOME/.config/polybar/launch.sh
 case "*"
 	echo "Usage: $_ [add|rm|crt]"
 end
