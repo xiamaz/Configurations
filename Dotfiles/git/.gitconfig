@@ -7,3 +7,4 @@
 	excludesfile = /home/max/.config/gitignore_global
 [push]
 	followTags = true
+	default = simple
