@@ -1,4 +1,8 @@
-fn ls [@a]{ e:ls --color $@a }
+if (==s (uname -s) "Darwin") {
+	E:CLICOLOR = 1
+} else {
+	fn ls [@a]{ e:ls --color $@a }
+}
 edit:completion:matcher[argument] = [seed]{ edit:match-prefix $seed &smart-case=$true }
 
 # install packages if necessary
