@@ -51,7 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	tell application "Terminal"		if (it is not running) or (not (exists window 1 of it)) then			do script "SHELL='/usr/local/bin/elvish' tmux new-session -A -s main"		end if		activate	end tellend run</string>
+					<string>on run {input, parameters}	tell application "Terminal"		if (it is not running) or (not (exists window "tmux" of it)) then			do script "tmux new-session -A -s main"		end if		activate		windows where name contains "tmux"		if result is not {} then set index of item 1 of result to 1	end tellend run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
