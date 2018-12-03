@@ -164,6 +164,15 @@ set shortmess+=c  " hide some messages
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" gutentags config
+let g:gutentags_exclude_filetypes = ['.txt', '.md', '.rst', '.json', '.xml', '.sh', '.bash']
+let g:gutentags_cache_dir = '~/.cache/tags'
+let g:gutentags_file_list_command = {
+    \ 'markers': {
+        \ '.git': 'git ls-files',
+        \ '.hg': 'hg files',
+        \ },
+    \ }
 
 " latex completion using vimtex
  au InsertEnter * call ncm2#enable_for_buffer()
