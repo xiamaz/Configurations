@@ -89,6 +89,9 @@ git: git.stow git-crypt.pkg
 .PHONY: elvish
 elvish: elvish.stow elvish.aur
 
+.PHONY: zsh
+zsh: zsh.stow zsh.pkg
+
 .PHONY: st
 .ONESHELL:
 st: ncurses terminess-powerline-font-git.aur
