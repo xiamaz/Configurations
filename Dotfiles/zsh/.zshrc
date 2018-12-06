@@ -46,12 +46,12 @@ zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:
 case "$(uname -s)" in
 	Linux*)
 		alias ls='ls --color'
+		export PURE_PROMPT_SYMBOL=">"
+		export PURE_PROMPT_VICMD_SYMBOL="<"
+		export PURE_GIT_UP_ARROW="↑"
+		export PURE_GIT_DOWN_ARROW="↓"
 		;;
 	Darwin*)
 		export CLICOLOR=1
 		;;
 esac
-
-
-# enable cli colors
-export CLICOLOR=1
