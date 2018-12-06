@@ -28,10 +28,10 @@ has_vpn() {
 
 case $1 in
 	main)
-		raise_or_create "st-main-local-tmux" "tmux a"
+		raise_or_create "st-main-local-tmux" "tmux new-session -A -s main"
 		;;
 	home)
-		raise_or_create "st-main-home-tmux" "mosh home --port=$(has_vpn) -- tmux a"
+		raise_or_create "st-main-home-tmux" "mosh home --port=$(has_vpn) -- tmux new-session -A -s main"
 		;;
 	ssh)
 		raise_or_create "st-ssh-$2" "ssh $2"

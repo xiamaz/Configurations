@@ -6,7 +6,7 @@ super + shift + Return
 super + t
 	rofi -show ssh
 super + shift + t
-	st -e fish
+	st
 super + d
 	rofi -show combi -modi combi
 Print
