@@ -91,6 +91,8 @@ elvish: elvish.stow elvish.aur
 
 .PHONY: zsh
 zsh: zsh.stow zsh.pkg
+	@echo "Installing zgen at $(HOME)/.zgen"
+	@git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 .PHONY: st
 .ONESHELL:
