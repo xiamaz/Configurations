@@ -1,15 +1,8 @@
 # turn off the infernal correctall for filenames
 unsetopt correctall
-# enable cli colors
-export CLICOLOR=1
 
 source "${HOME}/.zgen/zgen.zsh"
 if ! zgen saved; then
-	# zgen oh-my-zsh
-	# # esc twice for sudo
-	# zgen oh-my-zsh plugins/sudo
-	# zgen oh-my-zsh plugins/gitfast
-
 	zgen load zsh-users/zsh-syntax-highlighting
 	zgen load zsh-users/zsh-history-substring-search
 	zgen load zsh-users/zsh-autosuggestions
@@ -48,3 +41,17 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';
+
+## OS dependent settings
+case "$(uname -s)" in
+	Linux*)
+		alias ls='ls --color'
+		;;
+	Darwin*)
+		export CLICOLOR=1
+		;;
+esac
+
+
+# enable cli colors
+export CLICOLOR=1
