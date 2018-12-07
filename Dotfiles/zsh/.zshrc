@@ -56,3 +56,7 @@ case "$(uname -s)" in
 		alias mosh='LC_ALL=en_US.UTF-8 mosh'
 		;;
 esac
+
+## Keybindings
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
