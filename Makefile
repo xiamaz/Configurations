@@ -90,9 +90,14 @@ git: git.stow git-crypt.pkg
 elvish: elvish.stow elvish.aur
 
 .PHONY: zsh
+.ONESHELL:
 zsh: zsh.stow zsh.pkg
-	@echo "Installing zgen at $(HOME)/.zgen"
-	@git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+	@if ! [ -d $(HOME)/.zgen ]; then
+		echo "Installing zgen at $(HOME)/.zgen"
+		git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+	else
+		echo "zgen already installed at $(HOME)/.zgen"
+	fi
 
 .PHONY: st
 .ONESHELL:
