@@ -53,5 +53,6 @@ case "$(uname -s)" in
 		;;
 	Darwin*)
 		export CLICOLOR=1
+		alias mosh='LC_ALL=en_US.UTF-8 mosh'
 		;;
 esac
