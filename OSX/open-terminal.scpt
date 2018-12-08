@@ -13,8 +13,12 @@ on run argv
 		if (it is not running) or ((windows where name contains termwin) is {}) then
 			do script termcmd
 		end if
-		activate
-		windows where name contains termwin
-		if result is not {} then set index of item 1 of result to 1
+		set filtered to windows where name contains termwin
+		if filtered is not {} then
+			set index of item 1 of filtered to 1
+			-- activate item 1 of filtered
+		end if
+		do shell script "open -a Terminal"
+		-- activate
 	end tell
 end run
