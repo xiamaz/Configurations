@@ -29,6 +29,8 @@ ifeq ($(shell uname -s),Linux)
 	else
 		echo "Not archlinux. Not managing package installation."
 	fi
+else
+	@echo "Not linux. Not managing package installation."
 endif
 
 .PHONY: yay
@@ -48,4 +50,6 @@ ifeq ($(shell uname -s),Linux)
 	else
 		echo "Not archlinux. Not managing package installation."
 	fi
+else
+	@echo "Not linux. Not managing package installation."
 endif
