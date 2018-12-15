@@ -60,3 +60,9 @@ esac
 ## Keybindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+## Conda configuration
+. /usr/local/miniconda3/etc/profile.d/conda.sh
+alias pl='conda info --envs'
+alias pa='conda activate'
+alias pd='conda deactivate'
