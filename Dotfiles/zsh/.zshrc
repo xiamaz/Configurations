@@ -62,7 +62,15 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 ## Conda configuration
-. /usr/local/miniconda3/etc/profile.d/conda.sh
-alias pl='conda info --envs'
-alias pa='conda activate'
-alias pd='conda deactivate'
+condaprofile="etc/profile.d/conda.sh"
+if [ -d $HOME/miniconda3 ]; then
+	. $HOME/miniconda3/$condaprofile
+	alias pl='conda info --envs'
+	alias pa='conda activate'
+	alias pd='conda deactivate'
+elif [ -d /usr/local/miniconda3 ]; then
+	. /usr/local/miniconda3/etc/profile.d/conda.sh
+	alias pl='conda info --envs'
+	alias pa='conda activate'
+	alias pd='conda deactivate'
+fi
