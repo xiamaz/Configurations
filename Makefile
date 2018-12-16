@@ -50,11 +50,11 @@ R: R.stow r.pkg gcc-fortran.pkg
 .PHONY: bspwm-autonamer
 .ONESHELL:
 bspwm-autonamer:
-	@if [ ! -d $$HOME/Git/bspwm-autonamer ]; then
-		git clone https://github.com/xiamaz/$@.git $$HOME/Git/$@
-	else
-		echo "Already cloned, just pulling."
-	fi
+ifeq ("$(wildcard $(HOME)/Git/bspwm-autonamer)", "")
+	@git clone https://github.com/xiamaz/$@.git $$HOME/Git/$@
+else
+	@echo "Already cloned, just pulling."
+endif
 	cd $$HOME/Git/$@
 	git pull
 	make install
@@ -67,12 +67,17 @@ base: tmux neovim st basefonts keyboard chinese ssh elvish emacs git
 .PHONY: ssh
 .ONESHELL:
 ssh: SSH.stow openssh.pkg mosh.pkg
-	@if ! [ -f "$(HOME)/.ssh/id_rsa" ]; then
-		ssh-keygen -b 4096 -t rsa -N "" -f ~/.ssh/id_rsa
-	fi
+ifeq ("$(wildcard $(HOME)/.ssh/id_rsa)", "")
+	ssh-keygen -b 4096 -t rsa -N "" -f ~/.ssh/id_rsa
+endif
 
 .PHONY: tmux
 tmux: tmux.stow tmux.pkg
+ifeq ("$(wildcard $(HOME)/.tmux/plugins/tpm)", "")
+	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+else
+	@echo "tpm already installed"
+endif
 	@echo "Issue C-a I to install packages defined in .tmux.conf."
 
 .PHONY: neovim
@@ -90,12 +95,12 @@ elvish: elvish.stow elvish.aur
 .PHONY: zsh
 .ONESHELL:
 zsh: zsh.stow zsh.pkg
-	@if ! [ -d $(HOME)/.zgen ]; then
-		echo "Installing zgen at $(HOME)/.zgen"
-		git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
-	else
-		echo "zgen already installed at $(HOME)/.zgen"
-	fi
+ifeq ("$(wildcard $(HOME)/.zgen)", "")
+	echo "Installing zgen at $(HOME)/.zgen"
+	git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+else
+	echo "zgen already installed at $(HOME)/.zgen"
+endif
 
 .PHONY: st
 .ONESHELL:
