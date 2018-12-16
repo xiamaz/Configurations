@@ -217,7 +217,7 @@
 	<key>ShowActiveProcessInTitle</key>
 	<false/>
 	<key>ShowActivityIndicatorInTab</key>
-	<true/>
+	<false/>
 	<key>ShowCommandKeyInTitle</key>
 	<false/>
 	<key>ShowComponentsWhenTabHasCustomTitle</key>
