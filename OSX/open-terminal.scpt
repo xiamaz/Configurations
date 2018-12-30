@@ -13,10 +13,8 @@ on run argv
 		if (it is not running) or ((windows where name contains termwin) is {}) then
 			do shell script termcmd
 		end if
-		set filtered to windows where name contains termwin
-		if filtered is not {} then
-			set index of item 1 of filtered to 1
-		end if
-		do shell script "open -a Terminal"
+		set selwin to first window whose name contains termwin
+		set frontmost of selwin to true
+		activate
 	end tell
 end run
