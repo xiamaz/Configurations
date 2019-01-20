@@ -21,15 +21,12 @@ Plug 'Yggdroot/indentLine'
 "" Theme plugins
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
-"" Linting engine
+
 Plug 'w0rp/ale' " deps: pylint, flake8
-"" Git tools
-"" Javascript plugins
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'kballard/vim-fish', {'for' : 'fish'}
 Plug 'peterhoeg/vim-qml', {'for' : 'qml'}
 Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
-Plug 'dmix/elvish.vim', { 'for': 'elvish'}
+Plug 'keith/swift.vim'
 "" Julia support
 " Plug 'JuliaEditorSupport/julia-vim'
 " Autocompletion
