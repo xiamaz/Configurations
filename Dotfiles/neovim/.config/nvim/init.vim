@@ -28,21 +28,21 @@ Plug 'peterhoeg/vim-qml', {'for' : 'qml'}
 Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
 Plug 'keith/swift.vim'
 "" Julia support
-" Plug 'JuliaEditorSupport/julia-vim'
+Plug 'JuliaEditorSupport/julia-vim'
 " Autocompletion
 Plug 'roxma/nvim-yarp'  " nvim framework
 Plug 'ncm2/ncm2'
 "" NCM Completion sources
 Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-tern', {'for': 'javascript'}
+Plug 'ncm2/ncm2-tern', {'for': 'javascript', 'do': 'yarn install'}
 Plug 'ncm2/ncm2-jedi', {'for': 'python'}
 Plug 'ncm2/ncm2-pyclang', {'for': 'c'}
 Plug 'ncm2/ncm2-vim', {'for': 'vim'}
 Plug 'ncm2/ncm2-go', {'for': 'go'}
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 " Sniplet support
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'SirVer/ultisnips'
@@ -67,7 +67,6 @@ call plug#end()
 
 "" Basic Settings
 syntax on
-let mapleader=","
 let maplocalleader = ";"
 " undo history persistent after closed file
 set undofile
@@ -76,24 +75,16 @@ filetype plugin indent on
 set autoindent
 " smart tabs configuration - use tabs for indent and spaces for align
 set noexpandtab copyindent preserveindent softtabstop=0 shiftwidth=4 tabstop=4
-set number
-set ignorecase smartcase " only case sensitive when using uppercase
+set number  " always show linenumbers
+set ignorecase smartcase  " search options
 set mouse=a
-" setup wordwrap
-set wrap linebreak formatoptions-=t breakindent
-" no beeping
-set vb t_vb=
-" split settings
-set splitbelow
-set splitright
-" set textwidth to 80 chars
-set textwidth=80
-" color background past 80 chars
-let &colorcolumn="80,".join(range(120,999),",")
-" disable linenumbers in terminal
-au TermOpen * setlocal nonu
-" Hide files instead of close
-set hidden
+set wrap linebreak formatoptions-=t breakindent  " setup wordwrap
+set vb t_vb=  " no beeping
+set splitbelow splitright  " split settings
+set textwidth=80  " set textwidth to 80 chars
+let &colorcolumn="80,".join(range(120,999),",")  " color background past 80 chars
+au TermOpen * setlocal nonu  " disable linenumbers in terminal
+set hidden  " Hide files instead of close
 
 "" Theme Settings
 if $TERM=~'linux'
@@ -108,37 +99,38 @@ end
 "" Plugin Configuration
 " Lightline
 let g:lightline = {
-      \  'colorscheme': 'Tomorrow_Night',
-      \  'component': {
-      \    'charvaluehex': '0x%B',
-      \  },
-      \  'component_expand': {
-      \    'linter_checking': 'lightline#ale#checking',
-      \    'linter_warnings': 'lightline#ale#warnings',
-      \    'linter_errors': 'lightline#ale#errors',
-      \    'linter_ok': 'lightline#ale#ok',
-      \  },
-      \  'component_type': {
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
-      \  },
-      \  'active': {
-      \     'right': [
-      \        [ 'lineinfo' ],
-      \        [ 'percent' ],
-      \        [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ],
-      \        ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'],
-      \     ]
-      \  },
-      \}
+			\  'colorscheme': 'Tomorrow_Night',
+			\  'component': {
+			\    'charvaluehex': '0x%B',
+			\  },
+			\  'component_expand': {
+			\    'linter_checking': 'lightline#ale#checking',
+			\    'linter_warnings': 'lightline#ale#warnings',
+			\    'linter_errors': 'lightline#ale#errors',
+			\    'linter_ok': 'lightline#ale#ok',
+			\  },
+			\  'component_type': {
+			\     'linter_checking': 'left',
+			\     'linter_warnings': 'warning',
+			\     'linter_errors': 'error',
+			\     'linter_ok': 'left',
+			\  },
+			\  'active': {
+			\     'right': [
+			\        [ 'lineinfo' ],
+			\        [ 'percent' ],
+			\        [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ],
+			\        ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'],
+			\     ]
+			\  },
+			\}
 " do not show the insert status, since we already have airline
 set noshowmode
 " VimWiki and calendar
 let g:calendar_monday = 1
 " Whitespace - Tabs line Spaces dotted
 let g:indentLine_char = '┆'
+let g:indentLine_setConceal = 0
 set list lcs=tab:\│\ 
 hi Whitespace ctermfg=19
 nnoremap <F6> :ToggleWhitespace<CR>
@@ -165,78 +157,82 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:gutentags_exclude_filetypes = ['.txt', '.md', '.rst', '.json', '.xml', '.sh', '.bash']
 let g:gutentags_cache_dir = '~/.cache/tags'
 let g:gutentags_file_list_command = {
-    \ 'markers': {
-        \ '.git': 'git ls-files',
-        \ '.hg': 'hg files',
-        \ },
-    \ }
+			\ 'markers': {
+			\ '.git': 'git ls-files',
+			\ '.hg': 'hg files',
+			\ },
+			\ }
 
 " latex completion using vimtex
- au InsertEnter * call ncm2#enable_for_buffer()
-    au Filetype tex call ncm2#register_source({
-        \ 'name' : 'vimtex-cmds',
-        \ 'priority': 8,
-        \ 'complete_length': -1,
-        \ 'scope': ['tex'],
-        \ 'matcher': {'name': 'prefix', 'key': 'word'},
-        \ 'word_pattern': '\w+',
-        \ 'complete_pattern': g:vimtex#re#ncm2#cmds,
-        \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-        \ })
-    au Filetype tex call ncm2#register_source({
-        \ 'name' : 'vimtex-labels',
-        \ 'priority': 8,
-        \ 'complete_length': -1,
-        \ 'scope': ['tex'],
-        \ 'matcher': {'name': 'combine',
-        \             'matchers': [
-        \               {'name': 'substr', 'key': 'word'},
-        \               {'name': 'substr', 'key': 'menu'},
-        \             ]},
-        \ 'word_pattern': '\w+',
-        \ 'complete_pattern': g:vimtex#re#ncm2#labels,
-        \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-        \ })
-    au Filetype tex call ncm2#register_source({
-        \ 'name' : 'vimtex-files',
-        \ 'priority': 8,
-        \ 'complete_length': -1,
-        \ 'scope': ['tex'],
-        \ 'matcher': {'name': 'combine',
-        \             'matchers': [
-        \               {'name': 'abbrfuzzy', 'key': 'word'},
-        \               {'name': 'abbrfuzzy', 'key': 'abbr'},
-        \             ]},
-        \ 'word_pattern': '\w+',
-        \ 'complete_pattern': g:vimtex#re#ncm2#files,
-        \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-        \ })
-    au Filetype tex call ncm2#register_source({
-        \ 'name' : 'bibtex',
-        \ 'priority': 8,
-        \ 'complete_length': -1,
-        \ 'scope': ['tex'],
-        \ 'matcher': {'name': 'combine',
-        \             'matchers': [
-        \               {'name': 'prefix', 'key': 'word'},
-        \               {'name': 'abbrfuzzy', 'key': 'abbr'},
-        \               {'name': 'abbrfuzzy', 'key': 'menu'},
-        \             ]},
-        \ 'word_pattern': '\w+',
-        \ 'complete_pattern': g:vimtex#re#ncm2#bibtex,
-        \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-        \ })
+au InsertEnter * call ncm2#enable_for_buffer()
+au Filetype tex call ncm2#register_source({
+			\ 'name' : 'vimtex-cmds',
+			\ 'priority': 8,
+			\ 'complete_length': -1,
+			\ 'scope': ['tex'],
+			\ 'matcher': {'name': 'prefix', 'key': 'word'},
+			\ 'word_pattern': '\w+',
+			\ 'complete_pattern': g:vimtex#re#ncm2#cmds,
+			\ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+			\ })
+au Filetype tex call ncm2#register_source({
+			\ 'name' : 'vimtex-labels',
+			\ 'priority': 8,
+			\ 'complete_length': -1,
+			\ 'scope': ['tex'],
+			\ 'matcher': {'name': 'combine',
+			\             'matchers': [
+			\               {'name': 'substr', 'key': 'word'},
+			\               {'name': 'substr', 'key': 'menu'},
+			\             ]},
+			\ 'word_pattern': '\w+',
+			\ 'complete_pattern': g:vimtex#re#ncm2#labels,
+			\ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+			\ })
+au Filetype tex call ncm2#register_source({
+			\ 'name' : 'vimtex-files',
+			\ 'priority': 8,
+			\ 'complete_length': -1,
+			\ 'scope': ['tex'],
+			\ 'matcher': {'name': 'combine',
+			\             'matchers': [
+			\               {'name': 'abbrfuzzy', 'key': 'word'},
+			\               {'name': 'abbrfuzzy', 'key': 'abbr'},
+			\             ]},
+			\ 'word_pattern': '\w+',
+			\ 'complete_pattern': g:vimtex#re#ncm2#files,
+			\ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+			\ })
+au Filetype tex call ncm2#register_source({
+			\ 'name' : 'bibtex',
+			\ 'priority': 8,
+			\ 'complete_length': -1,
+			\ 'scope': ['tex'],
+			\ 'matcher': {'name': 'combine',
+			\             'matchers': [
+			\               {'name': 'prefix', 'key': 'word'},
+			\               {'name': 'abbrfuzzy', 'key': 'abbr'},
+			\               {'name': 'abbrfuzzy', 'key': 'menu'},
+			\             ]},
+			\ 'word_pattern': '\w+',
+			\ 'complete_pattern': g:vimtex#re#ncm2#bibtex,
+			\ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+			\ })
 
 " language server settings
-" let g:LanguageClient_serverCommands = {
-"     \ 'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
-"     \     using LanguageServer;
-"     \     server = LanguageServer.LanguageServerInstance(STDIN, STDOUT, false);
-"     \     server.runlinter = true;
-"     \     run(server);
-"     \ '],
-"     \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
-"     \ }
+let g:LanguageClient_serverCommands = {
+    \ 'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
+    \     using LanguageServer;
+    \     using Pkg;
+    \     import StaticLint;
+    \     import SymbolServer;
+    \     env_path = dirname(Pkg.Types.Context().env.project_file);
+    \     server = LanguageServer.LanguageServerInstance(stdin, stdout, false, env_path, "", Dict());
+    \     server.runlinter = true;
+    \     run(server);
+    \ '],
+    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
+    \ }
 " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 " vimcmdline settings
@@ -299,3 +295,5 @@ inoremap <buffer> <silent> <End>  <C-o>g<End>
 " remove highlight with escape in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
+
+nnoremap <Leader>i  mzgg=G`z :retab<CR>

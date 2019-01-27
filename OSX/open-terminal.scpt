@@ -12,9 +12,10 @@ on run argv
 	tell application "Terminal"
 		if (it is not running) or ((windows where name contains termwin) is {}) then
 			do shell script termcmd
+		else
+			set selwin to first window whose name contains termwin
+			set frontmost of selwin to true
+			activate
 		end if
-		set selwin to first window whose name contains termwin
-		set frontmost of selwin to true
-		activate
 	end tell
 end run
