@@ -1,6 +1,22 @@
 # turn off the infernal correctall for filenames
 unsetopt correctall
 
+## Conda configuration
+condaprofile="etc/profile.d/conda.sh"
+
+_conda_aliases() {
+	alias pl='conda info --envs'
+	alias pa='conda activate'
+	alias pd='conda deactivate'
+}
+if [ -d $HOME/miniconda3 ]; then
+	. $HOME/miniconda3/$condaprofile
+	_conda_aliases
+elif [ -d /usr/local/miniconda3 ]; then
+	. /usr/local/miniconda3/etc/profile.d/conda.sh
+	_conda_aliases
+fi
+
 source "${HOME}/.zgen/zgen.zsh"
 if ! zgen saved; then
 	zgen load zsh-users/zsh-syntax-highlighting
@@ -62,19 +78,3 @@ esac
 ## Keybindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
-## Conda configuration
-condaprofile="etc/profile.d/conda.sh"
-
-_conda_aliases() {
-	alias pl='conda info --envs'
-	alias pa='conda activate'
-	alias pd='conda deactivate'
-}
-if [ -d $HOME/miniconda3 ]; then
-	. $HOME/miniconda3/$condaprofile
-	_conda_aliases
-elif [ -d /usr/local/miniconda3 ]; then
-	. /usr/local/miniconda3/etc/profile.d/conda.sh
-	_conda_aliases
-fi
