@@ -9,6 +9,8 @@ if ! zgen saved; then
 
 	zgen load zsh-users/zsh-completions src
 
+	zgen load Tarrasch/zsh-autoenv
+
 	# theme
 	zgen load mafredri/zsh-async
 	zgen load sindresorhus/pure
@@ -63,14 +65,16 @@ bindkey '^[[B' history-substring-search-down
 
 ## Conda configuration
 condaprofile="etc/profile.d/conda.sh"
+
+_conda_aliases() {
+	alias pl='conda info --envs'
+	alias pa='conda activate'
+	alias pd='conda deactivate'
+}
 if [ -d $HOME/miniconda3 ]; then
 	. $HOME/miniconda3/$condaprofile
-	alias pl='conda info --envs'
-	alias pa='conda activate'
-	alias pd='conda deactivate'
+	_conda_aliases
 elif [ -d /usr/local/miniconda3 ]; then
 	. /usr/local/miniconda3/etc/profile.d/conda.sh
-	alias pl='conda info --envs'
-	alias pa='conda activate'
-	alias pd='conda deactivate'
+	_conda_aliases
 fi

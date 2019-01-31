@@ -1,2 +1,4 @@
 # ctags file
-tags
+.DS_Store
+.autoenv.zsh
+.autoenv_leave.zsh
