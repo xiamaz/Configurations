@@ -26,6 +26,7 @@ Plug 'w0rp/ale' " deps: pylint, flake8
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'peterhoeg/vim-qml', {'for' : 'qml'}
 Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
 Plug 'keith/swift.vim'
 "" Julia support
 Plug 'JuliaEditorSupport/julia-vim'
