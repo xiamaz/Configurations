@@ -2,7 +2,7 @@
 
 on run argv
 	set termcmd to "open ~/Configurations/OSX/tmux.terminal"
-	set termwin to "/usr/local/bin/tmux new-session -A -s main"
+	set termwin to "tmux new-session -A -s main"
 	repeat with cmdname in argv
 		if (cmdname as string) is equal to "home" then
 			set termcmd to "open ~/Configurations/OSX/mosh-home.terminal"
