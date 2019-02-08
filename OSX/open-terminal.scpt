@@ -10,7 +10,9 @@ on run argv
 		end if
 	end repeat
 	tell application "Terminal"
-		if (it is not running) or ((windows where name contains termwin) is {}) then
+		if (it is not running) then
+			activate
+		else if ((windows where name contains termwin) is {}) then
 			do shell script termcmd
 		else
 			set selwin to first window whose name contains termwin
