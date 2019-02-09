@@ -160,7 +160,7 @@
 	AAAZAAAAAAAAAAAAAAAAAAAA2Q==
 	</data>
 	<key>BackgroundSettingsForInactiveWindows</key>
-	<true/>
+	<false/>
 	<key>Bell</key>
 	<true/>
 	<key>BlinkText</key>
