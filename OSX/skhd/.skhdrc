@@ -9,8 +9,11 @@ cmd - j : chunkc tiling::window --focus south
 cmd - k : chunkc tiling::window --focus north
 cmd - l : chunkc tiling::window --focus east
 
-cmd + shift - j : chunkc tiling::window --focus prev
-cmd + shift - k : chunkc tiling::window --focus next
+
+cmd + shift - h : chunkc tiling::desktop --rotate 90
+shift + cmd - j : chunkc tiling::window --warp next
+shift + cmd - k : chunkc tiling::window --warp prev
+cmd + shift - l : chunkc tiling::desktop --rotate 270
 
 cmd - 1 : chunkwm_focus_desktop.sh 1
 cmd - 2 : chunkwm_focus_desktop.sh 2
@@ -39,7 +42,7 @@ cmd + shift - a : chunkc tiling::window --toggle fullscreen
 cmd - s : chunkc tiling::desktop --layout float
 cmd + shift - s : chunkc tiling::window --toggle native-fullscreen
 
-cmd - space : chunkc tiling::desktop --layout monocle
+# cmd - space : chunkc tiling::desktop --layout monocle
 
 ctrl + cmd - q : chunkc tiling::window --use-insertion-point cancel
 ctrl + cmd - w : chunkc tiling::window --use-insertion-point north
