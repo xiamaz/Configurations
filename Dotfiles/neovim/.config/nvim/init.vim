@@ -12,58 +12,46 @@ Plug 'junegunn/vim-easy-align'
 Plug 'majutsushi/tagbar'   " deps: universal-ctags
 Plug 'kshenoy/vim-signature'  " show marks in gutter
 Plug 'krisajenkins/vim-projectlocal' " put a local vimrc in projects
-"" Vim Airline
-Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
-"" Whitespace Plugins
+Plug 'mbbill/undotree'  " menu with undo
+Plug 'itchyny/lightline.vim' | Plug 'maximbaz/lightline-ale'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Yggdroot/indentLine'
-"" Theme plugins
 Plug 'chriskempson/base16-vim'
-Plug 'vim-airline/vim-airline-themes'
-
+Plug 'Chiel92/vim-autoformat'
+" Code utils
 Plug 'w0rp/ale' " deps: pylint, flake8
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'peterhoeg/vim-qml', {'for' : 'qml'}
+Plug 'ncm2/ncm2' | Plug 'roxma/nvim-yarp'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'jalvesaq/vimcmdline', {'for': ['python', 'julia']}
+Plug 'ludovicchabant/vim-gutentags'
+
+Plug 'Vimjas/vim-python-pep8-indent', {'for' : 'python'}
+
+Plug 'pangloss/vim-javascript', {'for': 'javascript'} | Plug 'MaxMEllon/vim-jsx-pretty', {'for': 'javascript'}
+Plug 'Valloric/MatchTagAlways', {'for' : 'html'}
 Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
-Plug 'keith/swift.vim'
-"" Julia support
+Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'JuliaEditorSupport/julia-vim'
-" Autocompletion
-Plug 'roxma/nvim-yarp'  " nvim framework
-Plug 'ncm2/ncm2'
+Plug 'ekalinin/Dockerfile.vim'
+
 "" NCM Completion sources
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-tern', {'for': 'javascript', 'do': 'yarn install'}
+Plug 'ncm2/ncm2-cssomni', {'for': ['css', 'html']}
 Plug 'ncm2/ncm2-jedi', {'for': 'python'}
 Plug 'ncm2/ncm2-pyclang', {'for': 'c'}
-Plug 'ncm2/ncm2-vim', {'for': 'vim'}
+Plug 'ncm2/ncm2-vim', {'for': 'vim'} | Plug 'Shougo/neco-vim', {'for': 'vim'}
 Plug 'ncm2/ncm2-go', {'for': 'go'}
+Plug 'gaalcaras/ncm-R', {'for': 'r'}
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-" Sniplet support
+			\ 'branch': 'next',
+			\ 'do': 'bash install.sh',
+			\ }
+Plug 'ncm2/ncm2-markdown-subscope', {'for': 'markdown'}
+Plug 'ncm2/ncm2-html-subscope', {'for': 'html'}
+Plug 'ncm2/ncm2-rst-subscope', {'for': 'rst'}
 Plug 'ncm2/ncm2-ultisnips'
-Plug 'SirVer/ultisnips'
-"" ---------------------
-" python repl
-Plug 'jalvesaq/vimcmdline', {'for': 'python'}
-" Python plugins
-Plug 'Vimjas/vim-python-pep8-indent', {'for' : 'python'}
-" rst plugin
-Plug 'Rykka/riv.vim', {'for': 'rst'}
-Plug 'Rykka/InstantRst', {'for': 'rst'}
-" latex plugin
-Plug 'lervag/vimtex', {'for': 'tex'}
-" dockerfile plugin
-Plug 'ekalinin/Dockerfile.vim'
-" Webdev plugins
-Plug 'Valloric/MatchTagAlways', {'for' : 'html'}
-Plug 'mattn/emmet-vim', {'for': 'html'}
-" tag file management
-Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 "" Basic Settings
@@ -98,6 +86,7 @@ else
 end
 
 "" Plugin Configuration
+let g:undotree_WindowLayout = 3
 " Lightline
 let g:lightline = {
 			\  'colorscheme': 'Tomorrow_Night',
@@ -125,16 +114,13 @@ let g:lightline = {
 			\     ]
 			\  },
 			\}
-" do not show the insert status, since we already have airline
+" do not show the insert status, since we have lightline
 set noshowmode
-" VimWiki and calendar
-let g:calendar_monday = 1
 " Whitespace - Tabs line Spaces dotted
 let g:indentLine_char = '┆'
 let g:indentLine_setConceal = 0
-set list lcs=tab:\│\ 
+set list lcs=tab:\│\ ,nbsp:␣,extends:⟩,precedes:⟨,
 hi Whitespace ctermfg=19
-nnoremap <F6> :ToggleWhitespace<CR>
 " Nvim-R disable assign operator keybinding
 let R_assign = 0
 let R_app = "rtichoke"
@@ -143,7 +129,6 @@ let R_hl_term = 0
 " let R_args = []  " if you had set any
 let R_bracketed_paste = 1
 " Tagbar settings
-nmap <F7> :TagbarToggle<CR>
 let g:tagbar_left = 1
 " ncm2 completion manager settings
 " enable ncm2 for all buffers
@@ -222,22 +207,21 @@ au Filetype tex call ncm2#register_source({
 
 " language server settings
 let g:LanguageClient_serverCommands = {
-    \ 'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
-    \     using LanguageServer;
-    \     using Pkg;
-    \     import StaticLint;
-    \     import SymbolServer;
-    \     env_path = dirname(Pkg.Types.Context().env.project_file);
-    \     server = LanguageServer.LanguageServerInstance(stdin, stdout, false, env_path, "", Dict());
-    \     server.runlinter = true;
-    \     run(server);
-    \ '],
-    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
-    \ }
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+			\ 'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
+			\     using LanguageServer;
+			\     using Pkg;
+			\     import StaticLint;
+			\     import SymbolServer;
+			\     env_path = dirname(Pkg.Types.Context().env.project_file);
+			\     server = LanguageServer.LanguageServerInstance(stdin, stdout, false, env_path, "", Dict());
+			\     server.runlinter = true;
+			\     run(server);
+			\ '],
+			\ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
+			\ }
 
 " vimcmdline settings
-let cmdline_app = {'python': 'ipython3'}
+let cmdline_app                = {'python': 'ipython3'}
 let cmdline_map_start          = '<LocalLeader>rf'
 let cmdline_map_send           = '<LocalLeader>l'
 let cmdline_map_send_and_stay  = '<LocalLeader><Space>'
@@ -245,13 +229,13 @@ let cmdline_map_source_fun     = '<LocalLeader>f'
 let cmdline_map_send_paragraph = '<LocalLeader>p'
 let cmdline_map_send_block     = '<LocalLeader>b'
 let cmdline_map_quit           = '<LocalLeader>rq'
-let cmdline_vsplit = 1
-let cmdline_term_width = 80
+let cmdline_vsplit             = 1
+let cmdline_term_width         = 80
 "vim riv rst editor
-let g:riv_disable_folding = 1
-let g:riv_section_levels = '*=-^"'
+let g:riv_disable_folding      = 1
+let g:riv_section_levels       = '*=-^"'
 " instantRst
-let g:instant_rst_browser = 'firefox'
+let g:instant_rst_browser      = 'firefox'
 
 " sniplet settings
 " Press enter key to trigger snippet expansion
@@ -259,29 +243,30 @@ let g:instant_rst_browser = 'firefox'
 inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 " c-j c-k for moving in snippet
-let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsExpandTrigger            = "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger       = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger      = "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit                = "vertical"
 
 " Ale linting settings
-let g:ale_r_lintr_options = 'with_defaults(object_name_linter = NULL, line_length_linter(120), closed_curly_linter = NULL, open_curly_linter = NULL, snake_case_linter = NULL, camel_case_linter = NULL, multiple_dots_linter = NULL)'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_echo_msg_format = '[%linter%] %code%:%s [%severity%]'
-let g:ale_linters = {'python': ['flake8', 'pylint']}
+let g:ale_r_lintr_options       = 'with_defaults(object_name_linter = NULL, line_length_linter(120), closed_curly_linter = NULL, open_curly_linter = NULL, snake_case_linter = NULL, camel_case_linter = NULL, multiple_dots_linter = NULL)'
+let g:ale_lint_on_text_changed  = 'never'
+let g:ale_echo_msg_format       = '[%linter%] %code%:%s [%severity%]'
+let g:ale_linters               = {'python': ['flake8', 'pylint']}
 let g:ale_python_flake8_options = '--ignore=F821'
 
 " latex settings
 let g:vimtex_compiler_progname = 'nvr'
-let g:tex_flavor = "latex"
-let g:tex_conceal = ""
+let g:tex_flavor               = "latex"
+let g:tex_conceal              = ""
 
 " Clipboard settings
 set clipboard=unnamedplus
 
 " keybindings for window switching
 tnoremap <Esc> <C-\><C-n>
+inoremap <c-c> <ESC>
 
 "" Custom keybindings
 " setup arrowkeys for visual scroll
@@ -298,3 +283,17 @@ nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 
 nnoremap <Leader>i  mzgg=G`z :retab<CR>
+
+" Autoformat on buffer save
+autocmd FileType vim,tex let b:autoformat_autoindent=0
+au BufWrite * :Autoformat
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+nnoremap <F4> :call LanguageClient_contextMenu()<CR>
+nnoremap <F5> :UndotreeToggle<cr>
+nnoremap <F6> :ToggleWhitespace<CR>
+nnoremap <F7> :TagbarToggle<CR>
