@@ -10,10 +10,15 @@ cmd - j : chunkc tiling::window --focus south
 cmd - k : chunkc tiling::window --focus north
 cmd - l : chunkc tiling::window --focus east
 
+cmd + ctrl - space : chunkc tiling::window --use-insertion-point cancel
+cmd + ctrl - h : chunkc tiling::window --use-insertion-point west
+cmd + ctrl - j : chunkc tiling::window --use-insertion-point south
+cmd + ctrl - k : chunkc tiling::window --use-insertion-point north
+cmd + ctrl - l : chunkc tiling::window --use-insertion-point east
 
 cmd + shift - h : chunkc tiling::desktop --rotate 90
-shift + cmd - j : chunkc tiling::window --warp next
-shift + cmd - k : chunkc tiling::window --warp prev
+cmd + shift - j : chunkc tiling::window --warp next
+cmd + shift - k : chunkc tiling::window --warp prev
 cmd + shift - l : chunkc tiling::desktop --rotate 270
 
 cmd - 1 : chunkwm_focus_desktop.sh 1
@@ -39,13 +44,9 @@ shift + cmd - e : chunkc tiling::window --send-to-monitor next; chunkc tiling::m
 
 cmd - a : chunkc tiling::desktop --layout bsp
 cmd + shift - a : chunkc tiling::window --toggle fullscreen
+cmd + ctrl - a : chunkc tiling::window --toggle parent
 cmd - s : chunkc tiling::desktop --layout float
-cmd + shift - s : chunkc tiling::window --toggle native-fullscreen
+cmd + shift - s : chunkc tiling::window --toggle sticky
+cmd + ctrl - s : chunkc tiling::window --toggle float
 
 # cmd - space : chunkc tiling::desktop --layout monocle
-
-ctrl + cmd - q : chunkc tiling::window --use-insertion-point cancel
-ctrl + cmd - w : chunkc tiling::window --use-insertion-point north
-ctrl + cmd - a : chunkc tiling::window --use-insertion-point west
-ctrl + cmd - s : chunkc tiling::window --use-insertion-point south
-ctrl + cmd - d : chunkc tiling::window --use-insertion-point east
