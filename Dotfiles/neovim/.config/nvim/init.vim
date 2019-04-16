@@ -219,6 +219,7 @@ let g:LanguageClient_serverCommands = {
 			\ '],
 			\ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
 			\ }
+let g:ncm2_pyclang#library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
 
 " vimcmdline settings
 let cmdline_app                = {'python': 'ipython3'}
@@ -285,8 +286,11 @@ nnoremap <esc>^[ <esc>^[
 nnoremap <Leader>i  mzgg=G`z :retab<CR>
 
 " Autoformat on buffer save
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 autocmd FileType vim,tex let b:autoformat_autoindent=0
-au BufWrite * :Autoformat
+noremap <F3> :Autoformat<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
