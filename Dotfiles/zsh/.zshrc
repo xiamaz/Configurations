@@ -78,3 +78,11 @@ esac
 ## Keybindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+dlocal() {
+	unset DOCKER_HOST DOCKER_TLS_VERIFY
+}
+
+ddell() {
+	export DOCKER_HOST=tcp://dell-t5610:2376 DOCKER_TLS_VERIFY=1
+}

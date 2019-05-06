@@ -37,10 +37,8 @@ shift + cmd - 5 : chunkwm_move_window_desktop.sh 5
 shift + cmd - 6 : chunkwm_move_window_desktop.sh 6
 shift + cmd - 7 : chunkwm_move_window_desktop.sh 7
 
-cmd - w : chunkc tiling::monitor -f prev
-
-shift + cmd - w  : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
-shift + cmd - e : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
+cmd - w : chunkc tiling::monitor -f next
+shift + cmd - w  : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
 
 cmd - a : chunkc tiling::desktop --layout bsp
 cmd + shift - a : chunkc tiling::window --toggle fullscreen

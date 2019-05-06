@@ -5,6 +5,6 @@ monitor_id=$(chunkc tiling::query --monitor id)
 selected_desktop_id=$(chunkc tiling::query --desktops-for-monitor $monitor_id | cut -d " " -f $1)
 case $selected_desktop_id in
 	*[[:alnum:]]*)
-		chunkc tiling::desktop --focus $selected_desktop_id
+		chunkc tiling::desktop --focus index $selected_desktop_id
 		;;
 esac
