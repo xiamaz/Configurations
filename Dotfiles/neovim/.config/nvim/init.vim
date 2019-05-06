@@ -28,6 +28,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'Vimjas/vim-python-pep8-indent', {'for' : 'python'}
 
 Plug 'pangloss/vim-javascript', {'for': 'javascript'} | Plug 'MaxMEllon/vim-jsx-pretty', {'for': 'javascript'}
+Plug 'iloginow/vim-stylus'
 Plug 'Valloric/MatchTagAlways', {'for' : 'html'}
 Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
@@ -40,6 +41,7 @@ Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-tern', {'for': 'javascript', 'do': 'yarn install'}
 Plug 'ncm2/ncm2-cssomni', {'for': ['css', 'html']}
 Plug 'ncm2/ncm2-jedi', {'for': 'python'}
+Plug 'ncm2/ncm2-racer', {'for': 'rust'}
 Plug 'ncm2/ncm2-pyclang', {'for': 'c'}
 Plug 'ncm2/ncm2-vim', {'for': 'vim'} | Plug 'Shougo/neco-vim', {'for': 'vim'}
 Plug 'ncm2/ncm2-go', {'for': 'go'}
@@ -123,7 +125,7 @@ set list lcs=tab:\│\ ,nbsp:␣,extends:⟩,precedes:⟨,
 hi Whitespace ctermfg=19
 " Nvim-R disable assign operator keybinding
 let R_assign = 0
-let R_app = "rtichoke"
+let R_app = "radian"
 let R_cmd = "R"
 let R_hl_term = 0
 " let R_args = []  " if you had set any
@@ -222,7 +224,7 @@ let g:LanguageClient_serverCommands = {
 let g:ncm2_pyclang#library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
 
 " vimcmdline settings
-let cmdline_app                = {'python': 'ipython3'}
+let cmdline_app                = {'python': 'ipython3', 'julia': 'julia'}
 let cmdline_map_start          = '<LocalLeader>rf'
 let cmdline_map_send           = '<LocalLeader>l'
 let cmdline_map_send_and_stay  = '<LocalLeader><Space>'
