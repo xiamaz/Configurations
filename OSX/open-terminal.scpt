@@ -1,23 +1,16 @@
 #!/usr/bin/osascript
 
 on run argv
-	set termcmd to "open ~/Configurations/OSX/tmux.terminal"
-	set termwin to "tmux new-session -A -s main"
-	repeat with cmdname in argv
-		if (cmdname as string) is equal to "home" then
-			set termcmd to "open ~/Configurations/OSX/mosh-home.terminal"
-			set termwin to "mosh home"
-		end if
-	end repeat
-	tell application "Terminal"
-		if (it is not running) then
-			activate
-		else if ((windows where name contains termwin) is {}) then
-			do shell script termcmd
+	set termwin to "tmux"
+	set termprof to "tmux"
+	tell application "iTerm"
+		if (it is not running) or ((windows where name contains termwin) is {}) then
+			create window with profile termprof
 		else
-			set selwin to first window whose name contains termwin
-			set frontmost of selwin to true
 			activate
+			tell first window whose name contains termwin
+				select
+			end
 		end if
 	end tell
 end run

@@ -1,5 +1,5 @@
 cmd - return : /Users/max/Configurations/OSX/open-terminal.scpt
-cmd + shift - return : /Users/max/Configurations/OSX/open-terminal.scpt home
+cmd + shift - return : osascript -e "tell application \"iTerm2\" to create window with default profile"
 
 # chunkwm keybindings
 cmd - q : chunkc tiling::window --close
