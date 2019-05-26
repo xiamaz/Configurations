@@ -4,11 +4,29 @@ unsetopt correctall
 ## Conda configuration
 condaprofile="etc/profile.d/conda.sh"
 
+_create_conda_env() {
+	name=$1
+	conda create -y -n $name python=3.7 jedi pylint flake8
+	conda activate $name
+	pip install neovim
+}
+
+_remove_conda_env() {
+	name=$1
+	if [ \( -n $CONDA_DEFAULT_ENV \) -a \( $CONDA_DEFAULT_ENV = $name \) ]; then
+		conda deactivate
+	fi
+	conda env remove -n $name
+}
+
 _conda_aliases() {
+	alias pmk='_create_conda_env'
 	alias pl='conda info --envs'
 	alias pa='conda activate'
 	alias pd='conda deactivate'
+	alias prm='_remove_conda_env'
 }
+
 if [ -d $HOME/miniconda3 ]; then
 	. $HOME/miniconda3/$condaprofile
 	_conda_aliases
