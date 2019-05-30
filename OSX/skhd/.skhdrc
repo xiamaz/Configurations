@@ -41,10 +41,8 @@ cmd - w : chunkc tiling::monitor -f next
 shift + cmd - w  : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
 
 cmd - a : chunkc tiling::desktop --layout bsp
-cmd + shift - a : chunkc tiling::window --toggle fullscreen
+cmd + shift - a : chunkc tiling::desktop --layout monocle
 cmd + ctrl - a : chunkc tiling::window --toggle parent
 cmd - s : chunkc tiling::desktop --layout float
-cmd + shift - s : chunkc tiling::window --toggle sticky
 cmd + ctrl - s : chunkc tiling::window --toggle float
 
-# cmd - space : chunkc tiling::desktop --layout monocle
