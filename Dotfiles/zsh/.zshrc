@@ -30,6 +30,9 @@ _conda_aliases() {
 if [ -d $HOME/miniconda3 ]; then
 	. $HOME/miniconda3/$condaprofile
 	_conda_aliases
+elif [ -d $HOME/miniconda ]; then
+	. $HOME/miniconda/$condaprofile
+	_conda_aliases
 elif [ -d /usr/local/miniconda3 ]; then
 	. /usr/local/miniconda3/etc/profile.d/conda.sh
 	_conda_aliases
