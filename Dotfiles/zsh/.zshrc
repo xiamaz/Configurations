@@ -19,12 +19,22 @@ _remove_conda_env() {
 	conda env remove -n $name
 }
 
+_export_conda_env() {
+	if [ -n $CONDA_DEFAULT_ENV ]; then
+		echo "Writing $CONDA_DEFAULT_ENV config to environment.yml"
+		conda env export --no-builds > environment.yml
+	else
+		echo "Not inside env"
+	fi
+}
+
 _conda_aliases() {
 	alias pmk='_create_conda_env'
 	alias pl='conda info --envs'
 	alias pa='conda activate'
 	alias pd='conda deactivate'
 	alias prm='_remove_conda_env'
+	alias pexport='_export_conda_env'
 }
 
 if [ -d $HOME/miniconda3 ]; then
