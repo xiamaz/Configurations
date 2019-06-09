@@ -56,6 +56,9 @@ if ! zgen saved; then
 
 	zgen load zsh-users/zsh-completions src
 
+	zgen load robbyrussell/oh-my-zsh
+	zgen load robbyrussell/oh-my-zsh plugins/kubectl
+
 	zgen load Tarrasch/zsh-autoenv
 
 	# theme
