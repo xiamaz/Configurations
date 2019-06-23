@@ -7,6 +7,7 @@ endfunction
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf'
 Plug 'junegunn/vim-easy-align'
 Plug 'majutsushi/tagbar'   " deps: universal-ctags
@@ -27,7 +28,11 @@ Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'Vimjas/vim-python-pep8-indent', {'for' : 'python'}
 
-Plug 'pangloss/vim-javascript', {'for': 'javascript'} | Plug 'MaxMEllon/vim-jsx-pretty', {'for': 'javascript'}
+Plug 'othree/yajs.vim', {'for': 'javascript'}
+Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+Plug 'MaxMEllon/vim-jsx-pretty', {'for': ['javascript', 'typescript']}
+Plug 'Quramy/vim-js-pretty-template', {'for': ['javascript', 'typescript']}
+Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': 'typescript'}
 Plug 'iloginow/vim-stylus'
 Plug 'Valloric/MatchTagAlways', {'for' : 'html'}
 Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
