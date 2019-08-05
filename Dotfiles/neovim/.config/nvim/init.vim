@@ -27,38 +27,43 @@ Plug 'jalvesaq/vimcmdline', {'for': ['python', 'julia']}
 Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'Vimjas/vim-python-pep8-indent', {'for' : 'python'}
-
-Plug 'othree/yajs.vim', {'for': 'javascript'}
-Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
-Plug 'MaxMEllon/vim-jsx-pretty', {'for': ['javascript', 'typescript']}
-Plug 'Quramy/vim-js-pretty-template', {'for': ['javascript', 'typescript']}
-Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': 'typescript'}
-Plug 'iloginow/vim-stylus'
-Plug 'Valloric/MatchTagAlways', {'for' : 'html'}
-Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
-Plug 'lervag/vimtex', {'for': 'tex'}
-Plug 'JuliaEditorSupport/julia-vim'
 Plug 'ekalinin/Dockerfile.vim'
 
-"" NCM Completion sources
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-tern', {'for': 'javascript', 'do': 'yarn install'}
-Plug 'ncm2/ncm2-cssomni', {'for': ['css', 'html']}
 Plug 'ncm2/ncm2-jedi', {'for': 'python'}
 Plug 'ncm2/ncm2-racer', {'for': 'rust'}
 Plug 'ncm2/ncm2-pyclang', {'for': 'c'}
 Plug 'ncm2/ncm2-vim', {'for': 'vim'} | Plug 'Shougo/neco-vim', {'for': 'vim'}
-Plug 'ncm2/ncm2-go', {'for': 'go'}
-Plug 'gaalcaras/ncm-R', {'for': 'r'}
-Plug 'autozimu/LanguageClient-neovim', {
-			\ 'branch': 'next',
-			\ 'do': 'bash install.sh',
-			\ }
 Plug 'ncm2/ncm2-markdown-subscope', {'for': 'markdown'}
-Plug 'ncm2/ncm2-html-subscope', {'for': 'html'}
 Plug 'ncm2/ncm2-rst-subscope', {'for': 'rst'}
 Plug 'ncm2/ncm2-ultisnips'
+
+if $NEOVIM_JS == '1'
+    Plug 'othree/yajs.vim', {'for': 'javascript'}
+    Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+    Plug 'MaxMEllon/vim-jsx-pretty', {'for': ['javascript', 'typescript']}
+    Plug 'Quramy/vim-js-pretty-template', {'for': ['javascript', 'typescript']}
+    Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': 'typescript'}
+    Plug 'iloginow/vim-stylus'
+    Plug 'Valloric/MatchTagAlways', {'for' : 'html'}
+    Plug 'ncm2/ncm2-cssomni', {'for': ['css', 'html']}
+    Plug 'ncm2/ncm2-html-subscope', {'for': 'html'}
+endif
+if $NEOVIM_GO == '1'
+    Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
+    Plug 'ncm2/ncm2-go', {'for': 'go'}
+endif
+if $NEOVIM_SCI == '1'
+    Plug 'lervag/vimtex', {'for': 'tex'}
+    Plug 'jalvesaq/Nvim-R', {'for' : 'r'}
+    Plug 'gaalcaras/ncm-R', {'for': 'r'}
+    Plug 'JuliaEditorSupport/julia-vim'
+    Plug 'autozimu/LanguageClient-neovim', {
+    			\ 'branch': 'next',
+    			\ 'do': 'bash install.sh',
+    			\ }
+endif
 call plug#end()
 
 "" Basic Settings
