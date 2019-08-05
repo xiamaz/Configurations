@@ -141,7 +141,8 @@ let R_hl_term = 0
 " let R_args = []  " if you had set any
 let R_bracketed_paste = 1
 " Tagbar settings
-let g:tagbar_left = 1
+let g:tagbar_left = 0
+let g:tagbar_sort = 0
 " ncm2 completion manager settings
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
