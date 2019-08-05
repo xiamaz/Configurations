@@ -1,48 +1,85 @@
 cmd - return : /Users/max/Configurations/OSX/open-terminal.scpt
 cmd + shift - return : osascript -e "tell application \"iTerm2\" to create window with default profile"
 
+cmd - h : yabai -m window --focus west
+cmd - j : yabai -m window --focus south
+cmd - k : yabai -m window --focus north
+cmd - l : yabai -m window --focus east
+cmd + alt - h : yabai -m window --swap west
+cmd + alt - j : yabai -m window --swap south
+cmd + alt - k : yabai -m window --swap north
+cmd + alt - l : yabai -m window --swap east
+cmd - 0 : yabai -m space --balance
+
+# cmd - ` : yabai -m space --focus last
+# cmd - 1 : yabai -m space --focus 1
+# cmd - 2 : yabai -m space --focus 2
+# cmd - 3 : yabai -m space --focus 3
+# cmd - 4 : yabai -m space --focus 4
+# cmd - 5 : yabai -m space --focus 5
+# cmd - 6 : yabai -m space --focus 6
+# cmd - 7 : yabai -m space --focus 7
+# cmd - 8 : yabai -m space --focus 8
+# cmd - 9 : yabai -m space --focus 9
+shift + cmd - 1 : yabai -m window --space 1
+shift + cmd - 2 : yabai -m window --space 2
+shift + cmd - 3 : yabai -m window --space 3
+shift + cmd - 4 : yabai -m window --space 4
+shift + cmd - 5 : yabai -m window --space 5
+shift + cmd - 6 : yabai -m window --space 6
+shift + cmd - 7 : yabai -m window --space 7
+shift + cmd - 8 : yabai -m window --space 8
+shift + cmd - 9 : yabai -m window --space 9
+
+cmd - w  : yabai -m display --focus last
+shift + cmd - w  : yabai -m window --display last; yabai -m display --focus last
+
+shift + cmd - a : yabai -m window --toggle zoom-fullscreen
+cmd - a : yabai -m space --layout bsp
+cmd - s : yabai -m space --layout float
+
 # chunkwm keybindings
-cmd - q : chunkc tiling::window --close
-cmd + shift - q : osascript -e "tell application \"Finder\" to set p to item 1 of (get file of (processes whose frontmost = true)) as text" -e "tell application p to quit"
-
-cmd - h : chunkc tiling::window --focus west
-cmd - j : chunkc tiling::window --focus south
-cmd - k : chunkc tiling::window --focus north
-cmd - l : chunkc tiling::window --focus east
-
-cmd + ctrl - space : chunkc tiling::window --use-insertion-point cancel
-cmd + ctrl - h : chunkc tiling::window --use-insertion-point west
-cmd + ctrl - j : chunkc tiling::window --use-insertion-point south
-cmd + ctrl - k : chunkc tiling::window --use-insertion-point north
-cmd + ctrl - l : chunkc tiling::window --use-insertion-point east
-
-cmd + shift - h : chunkc tiling::desktop --rotate 90
-cmd + shift - j : chunkc tiling::window --warp next
-cmd + shift - k : chunkc tiling::window --warp prev
-cmd + shift - l : chunkc tiling::desktop --rotate 270
-
-cmd - 1 : chunkwm_focus_desktop.sh 1
-cmd - 2 : chunkwm_focus_desktop.sh 2
-cmd - 3 : chunkwm_focus_desktop.sh 3
-cmd - 4 : chunkwm_focus_desktop.sh 4
-cmd - 5 : chunkwm_focus_desktop.sh 5
-cmd - 6 : chunkwm_focus_desktop.sh 6
-cmd - 7 : chunkwm_focus_desktop.sh 7
-
-shift + cmd - 1 : chunkwm_move_window_desktop.sh 1
-shift + cmd - 2 : chunkwm_move_window_desktop.sh 2
-shift + cmd - 3 : chunkwm_move_window_desktop.sh 3
-shift + cmd - 4 : chunkwm_move_window_desktop.sh 4
-shift + cmd - 5 : chunkwm_move_window_desktop.sh 5
-shift + cmd - 6 : chunkwm_move_window_desktop.sh 6
-shift + cmd - 7 : chunkwm_move_window_desktop.sh 7
-
-cmd - w : chunkc tiling::monitor -f next
-shift + cmd - w  : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
-
-cmd - a : chunkc tiling::desktop --layout bsp
-cmd + shift - a : chunkc tiling::desktop --layout monocle
-cmd + ctrl - a : chunkc tiling::window --toggle parent
-cmd - s : chunkc tiling::desktop --layout float
-cmd + ctrl - s : chunkc tiling::window --toggle float
+# cmd - q : chunkc tiling::window --close
+# cmd + shift - q : osascript -e "tell application \"Finder\" to set p to item 1 of (get file of (processes whose frontmost = true)) as text" -e "tell application p to quit"
+# 
+# cmd - h : chunkc tiling::window --focus west
+# cmd - j : chunkc tiling::window --focus south
+# cmd - k : chunkc tiling::window --focus north
+# cmd - l : chunkc tiling::window --focus east
+# 
+# cmd + ctrl - space : chunkc tiling::window --use-insertion-point cancel
+# cmd + ctrl - h : chunkc tiling::window --use-insertion-point west
+# cmd + ctrl - j : chunkc tiling::window --use-insertion-point south
+# cmd + ctrl - k : chunkc tiling::window --use-insertion-point north
+# cmd + ctrl - l : chunkc tiling::window --use-insertion-point east
+# 
+# cmd + shift - h : chunkc tiling::desktop --rotate 90
+# cmd + shift - j : chunkc tiling::window --warp next
+# cmd + shift - k : chunkc tiling::window --warp prev
+# cmd + shift - l : chunkc tiling::desktop --rotate 270
+# 
+# cmd - 1 : chunkwm_focus_desktop.sh 1
+# cmd - 2 : chunkwm_focus_desktop.sh 2
+# cmd - 3 : chunkwm_focus_desktop.sh 3
+# cmd - 4 : chunkwm_focus_desktop.sh 4
+# cmd - 5 : chunkwm_focus_desktop.sh 5
+# cmd - 6 : chunkwm_focus_desktop.sh 6
+# cmd - 7 : chunkwm_focus_desktop.sh 7
+# 
+# shift + cmd - 1 : chunkwm_move_window_desktop.sh 1
+# shift + cmd - 2 : chunkwm_move_window_desktop.sh 2
+# shift + cmd - 3 : chunkwm_move_window_desktop.sh 3
+# shift + cmd - 4 : chunkwm_move_window_desktop.sh 4
+# shift + cmd - 5 : chunkwm_move_window_desktop.sh 5
+# shift + cmd - 6 : chunkwm_move_window_desktop.sh 6
+# shift + cmd - 7 : chunkwm_move_window_desktop.sh 7
+# 
+# cmd - w : chunkc tiling::monitor -f next
+# shift + cmd - w  : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
+# 
+# cmd - a : chunkc tiling::desktop --layout bsp
+# cmd + shift - a : chunkc tiling::desktop --layout monocle
+# cmd + ctrl - a : chunkc tiling::window --toggle parent
+# cmd - s : chunkc tiling::desktop --layout float
+# cmd + ctrl - s : chunkc tiling::window --toggle float
 
