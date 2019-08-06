@@ -19,6 +19,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'Yggdroot/indentLine'
 Plug 'chriskempson/base16-vim'
 Plug 'Chiel92/vim-autoformat'
+Plug 'drmikehenry/vim-extline'
+ Plug 'jlanzarotta/bufexplorer'
 " Code utils
 Plug 'w0rp/ale' " deps: pylint, flake8
 Plug 'ncm2/ncm2' | Plug 'roxma/nvim-yarp'
@@ -68,6 +70,7 @@ call plug#end()
 
 "" Basic Settings
 syntax on
+let mapleader = ";"
 let maplocalleader = ";"
 " undo history persistent after closed file
 set undofile
