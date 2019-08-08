@@ -1,0 +1,8 @@
+{
+"neovim": {"Darwin": "brew install neovim python3;pip3 install neovim"},
+"zsh": {"Darwin": "brew install zsh"},
+"stow": {"Darwin": "brew install stow"},
+"ctags": {"Darwin": "brew install ctags", "Archlinux": "yay -S --noconfirm universal-ctags-git"},
+"tmux": {"Darwin": "brew install tmux"},
+"conda": {"Darwin": "brew cask install miniconda"}
+}

@@ -2,50 +2,72 @@
 # Handle installation of package dependencies
 # Do it using very stupid name resolution first
 
-# Install package manager for archaur
-install_manual_archaur() {
-	name="$1"
-	cd /tmp
-	wget https://aur.archlinux.org/cgit/aur.git/snapshot/${name}.tar.gz
-	tar -xf /tmp/${name}.tar.gz
-	cd /tmp/${name}
-	makepkg -s
-	sudo pacman -U --noconfirm ${name}*.pkg.*
-}
-
-# Install package by name using both official and aur packages
-install_package_archaur() {
-	pkgname="$1"
-	manager="yay"
-	if ! command -v $manager > /dev/null; then
-		install_manual_archaur $manager
-	fi
-	if [ -z "`pacman -Qs | grep $pkgname`" ]; then
-		$manager -S --noconfirm $pkgname
-	else
-		echo "$pkgname already installed."
-	fi
-}
-
-# Install debian packages from official sources
-install_package_debian() {
-	pkgnames=$1
-	manager="apt-get"
-	if ! command -v $manager > /dev/null; then
-		echo "$manager not installed. Giving up."
+check_brew() {
+	if command -v brew; then
 		return
 	fi
-	sudo $manager -y install $pkgname
+	# Install brew using terrible script curling
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+	if ! command -v jq; then
+		brew install jq
+	fi
 }
 
-# Translate package names
-translate_names() {
-	prog="$1"
-	case $prog in
-	tmux)
-		;;
-	*)
-		echo "Unknown program metaname $prog"
-		;;
-	esac
+check_yay() {
+	if command -v yay; then
+		return
+	fi
+	cd /tmp
+	wget https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
+	tar -xf /tmp/yay.tar.gz
+	cd /tmp/yay
+	makepkg -s
+	sudo pacman -U --noconfirm yay*.pkg.*
+
+	if ! command -v jq; then
+		sudo pacman -S jq
+	fi
 }
+
+pkg_method() {
+	jq -r ".$2.$1" <packages.json
+}
+
+install_mac() {
+	check_brew
+	install_cmd=$(pkg_method "Darwin" $1)
+	if [ "$install_cmd" = "null" ]; then
+		echo "$1 not found in packages.json. Try default brew install"
+		brew install $1
+	else
+		eval $install_cmd
+	fi
+}
+
+install_archlinux() {
+	check_yay
+	install_cmd=$(pkg_method "Archlinux" $1)
+}
+
+pkg_name=$1
+
+if [ $# -ne 1 ]; then
+	echo "Usage: $0 pkg-name"
+	exit
+fi
+
+
+case $(uname -s) in
+Darwin)
+	install_mac $pkg_name
+	;;
+Linux)
+	if [ -n `grep archlinux /etc/os-release` ]; then
+		install_archlinux $pkg_name
+	fi
+	;;
+*)
+	echo "Unrecognized"
+	;;
+esac

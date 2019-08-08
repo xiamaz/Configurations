@@ -7,13 +7,17 @@ export HOST
 DOTS = Dotfiles
 HOSTSDIR = Hosts
 
-include packaging.mk stow.mk
+include stow.mk
 
 .PHONY: all
 all: bspwm apps base $(HOST).host
 
-# host specific installs
+.PHONY: %.pkg
+.ONESHELL:
+%.pkg:
+	./install_package.sh $*
 
+# host specific installs
 .PHONY: Thinkpad-W520.host
 Thinkpad-W520.host:
 	$(MAKE) -C Utils/nvidia_toggle
@@ -42,7 +46,7 @@ zimwiki: zimwiki.stow zim.pkg
 latex: LaTeX.stow texlive-core.pkg texlive-science.pkg
 
 .PHONY: python
-python: python.stow python-pyflakes.pkg python-pylint.pkg python-pip.pkg flake8.pkg
+python: conda.pkg
 
 .PHONY: R
 R: R.stow r.pkg gcc-fortran.pkg
@@ -62,7 +66,7 @@ endif
 
 # BASE PROGRAMS
 .PHONY: base
-base: tmux neovim st basefonts keyboard chinese ssh elvish emacs git
+base: tmux neovim zsh ssh git python
 
 .PHONY: ssh
 .ONESHELL:
@@ -81,16 +85,13 @@ endif
 	@echo "Issue C-a I to install packages defined in .tmux.conf."
 
 .PHONY: neovim
-neovim: neovim.stow neovim.pkg
+neovim: neovim.stow neovim.pkg ctags
 
 .PHONY: emacs
 emacs: emacs.stow emacs.pkg
 
 .PHONY: git
 git: git.stow git-crypt.pkg
-
-.PHONY: elvish
-elvish: elvish.stow elvish.aur
 
 .PHONY: zsh
 .ONESHELL:
@@ -135,7 +136,7 @@ keyboard: keyboard.stow xcape.pkg
 	$(MAKE) -C System keyboard
 
 .PHONY: ctags
-ctags: universal-ctags-git.aur ctags.stow
+ctags: ctags.pkg ctags.stow
 
 .PHONY: chinese
 chinese: ibus.pkg ibus-rime.pkg wqy-microhei.pkg wqy-zenhei.pkg
