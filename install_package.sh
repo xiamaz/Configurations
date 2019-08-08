@@ -31,7 +31,7 @@ check_yay() {
 }
 
 pkg_method() {
-	jq -r ".$2.$1" <packages.json
+	jq -r ".\"$2\".\"$1\"" <packages.json
 }
 
 install_mac() {
