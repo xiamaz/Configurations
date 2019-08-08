@@ -70,10 +70,17 @@ base: tmux neovim zsh ssh git python
 
 .PHONY: ssh
 .ONESHELL:
-ssh: git SSH.stow openssh.pkg mosh.pkg
+ssh: # git SSH.stow openssh.pkg mosh.pkg
 ifeq ("$(wildcard $(HOME)/.ssh/id_rsa)", "")
 	ssh-keygen -b 4096 -t rsa -N "" -f ~/.ssh/id_rsa
 endif
+	read -p "ssh server to get configuration from: " remote
+	echo $$remote
+	ssh $$remote "cd ~/Configurations;/usr/local/bin/git-crypt export-key /tmp/configurations.key"
+	scp $$remote:/tmp/configurations.key /tmp/configurations.key
+	git crypt unlock /tmp/configurations.key
+	rm /tmp/configurations.key
+	ssh $$remote "rm /tmp/configurations.key"
 
 .PHONY: tmux
 tmux: tmux.stow tmux.pkg
