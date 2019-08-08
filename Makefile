@@ -70,7 +70,7 @@ base: tmux neovim zsh ssh git python
 
 .PHONY: ssh
 .ONESHELL:
-ssh: SSH.stow openssh.pkg mosh.pkg
+ssh: git SSH.stow openssh.pkg mosh.pkg
 ifeq ("$(wildcard $(HOME)/.ssh/id_rsa)", "")
 	ssh-keygen -b 4096 -t rsa -N "" -f ~/.ssh/id_rsa
 endif
@@ -92,6 +92,7 @@ emacs: emacs.stow emacs.pkg
 
 .PHONY: git
 git: git.stow git-crypt.pkg
+	@echo "Unlock with key: git-crypt unlock /path/to/key"
 
 .PHONY: zsh
 .ONESHELL:
