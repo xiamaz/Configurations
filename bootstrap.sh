@@ -24,7 +24,7 @@ Darwin)
 			echo "/usr/local/bin/zsh" | sudo tee /etc/shells > /dev/null
 		fi
 	fi
-	chsh /usr/local/bin/zsh
+	chsh -s /usr/local/bin/zsh
 
 	if ! command -v gmake; then
 		brew install make
