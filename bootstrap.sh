@@ -30,6 +30,10 @@ Darwin)
 		brew install make
 	fi
 	alias make="gmake"
+
+	if [ ! -f /usr/local/bin/git-crypt ]; then
+		brew install git-crypt
+	fi
 	;;
 Linux)
 	if [ -n `grep archlinux /etc/os-release` ]; then
@@ -43,6 +47,9 @@ Linux)
 		fi
 		if ! command -v jq; then
 			sudo pacman -S jq
+		fi
+		if ! command -v git-crypt; then
+			sudo pacman -S git-crypt
 		fi
 	else
 		echo "Distro not supported yet"
@@ -61,8 +68,6 @@ if [ ! -f /tmp/dotfiles.key ]; then
 	echo "No key found to unlock dotfiles aborting..."
 	exit
 fi
-
-make git-crypt.pkg
 
 if [ ! -d $HOME/.dotfiles.git ]; then
 	git clone --bare https://github.com/xiamaz/.dotfiles.git $HOME/.dotfiles.git
