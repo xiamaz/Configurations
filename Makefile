@@ -66,7 +66,7 @@ endif
 
 # BASE PROGRAMS
 .PHONY: base
-base: tmux neovim zsh ssh git python
+base: tmux neovim ssh git python
 
 .PHONY: ssh
 .ONESHELL:
@@ -83,7 +83,7 @@ endif
 	ssh $$remote "rm /tmp/configurations.key"
 
 .PHONY: tmux
-tmux: tmux.stow tmux.pkg
+tmux: tmux.pkg
 ifeq ("$(wildcard $(HOME)/.tmux/plugins/tpm)", "")
 	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 else
@@ -92,24 +92,14 @@ endif
 	@echo "Issue C-a I to install packages defined in .tmux.conf."
 
 .PHONY: neovim
-neovim: neovim.stow neovim.pkg ctags
+neovim: neovim.pkg ctags
 
 .PHONY: emacs
 emacs: emacs.stow emacs.pkg
 
 .PHONY: git
-git: git.stow git-crypt.pkg
+git: git-crypt.pkg
 	@echo "Unlock with key: git-crypt unlock /path/to/key"
-
-.PHONY: zsh
-.ONESHELL:
-zsh: zsh.stow zsh.pkg
-ifeq ("$(wildcard $(HOME)/.zgen)", "")
-	echo "Installing zgen at $(HOME)/.zgen"
-	git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
-else
-	echo "zgen already installed at $(HOME)/.zgen"
-endif
 
 .PHONY: st
 .ONESHELL:

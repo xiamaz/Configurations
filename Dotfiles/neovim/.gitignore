@@ -1,4 +1,0 @@
-# ignore plugin folders
-.config/nvim/plugged
-.config/nvim/autoload/plug.vim.old
-.config/nvim/.netrwhist
