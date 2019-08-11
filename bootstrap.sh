@@ -69,9 +69,13 @@ if [ ! -f /tmp/dotfiles.key ]; then
 	exit
 fi
 
+cgit() {
+	git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME $@
+}
+
+
 if [ ! -d $HOME/.dotfiles.git ]; then
 	git clone --bare https://github.com/xiamaz/.dotfiles.git $HOME/.dotfiles.git
-	alias cgit='git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 	mkdir -p .config-backup
 	cgit checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
 	cgit checkout
