@@ -2,10 +2,13 @@
 # Prerequisites: dotfiles.key at /tmp
 # Bootstrap an initial blank setup
 
+GREP=grep
+
 # Prepare package management
 case $(uname -s) in
 Darwin)
 	echo "Preconfiguring Mac OS"
+	GREP=egrep
 	if ! command -v brew; then
 		echo "Installing homebrew"
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -36,7 +39,7 @@ Darwin)
 	fi
 	;;
 Linux)
-	if [ -n `grep archlinux /etc/os-release` ]; then
+	if grep archlinux /etc/os-release > /dev/null; then
 		if ! command -v yay; then
 			cd /tmp
 			wget https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
@@ -51,8 +54,11 @@ Linux)
 		if ! command -v git-crypt; then
 			sudo pacman -S git-crypt
 		fi
+	elif grep debian /etc/os-release > /dev/null; then
+		sudo apt-get install -y jq git-crypt
 	else
 		echo "Distro not supported yet"
+		exit
 	fi
 	;;
 esac
@@ -63,10 +69,18 @@ if [ ! -d $HOME/.zgen ]; then
 fi
 
 # Clone dotfiles repo
-echo "Adding dotfiles"
+HAS_KEY="yes"
 if [ ! -f /tmp/dotfiles.key ]; then
-	echo "No key found to unlock dotfiles aborting..."
-	exit
+	echo "No key found to unlock dotfiles in /tmp/dotfiles.key..."
+	read -p "Continuing without unlock key? (y/N) " ans
+	case ans in
+	[Yy]*)
+		HAS_KEY=
+		;;
+	*)
+		exit
+		;;
+	esac
 fi
 
 cgit() {
@@ -74,12 +88,42 @@ cgit() {
 }
 
 
-if [ ! -d $HOME/.dotfiles.git ]; then
-	git clone --bare https://github.com/xiamaz/.dotfiles.git $HOME/.dotfiles.git
-	mkdir -p .config-backup
-	cgit checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+echo "Adding dotfiles"
+
+mvcreate() {
+	mkdir -p $(dirname "$2")
+	mv "$1" "$2"
+}
+
+download_dot() {
+	git clone --bare https://github.com/xiamaz/.dotfiles.git "$1"
+	mkdir -p $HOME/.config-backup
+	cgit checkout 2>&1 | $GREP -P "\s+\." | awk {'print $1'} | while IFS= read -r line; do
+		dest=$HOME/.config-backup/$line
+		mkdir -p "$(dirname $dest)"
+		mv "$HOME/$line" "$dest"
+	done
 	cgit checkout
+}
+
+DOTDIR="$HOME/.dotfiles.git"
+if [ -d "$DOTDIR" ]; then
+	read -p "Remove existing dotfiles dir at $DOTDIR? (y/N) " ans
+	case $ans in
+	[Yy]*)
+		echo "Removing dotfiles..."
+		rm -rf "$DOTDIR"
+		download_dot "$DOTDIR"
+		;;
+	esac
+else
+	download_dot "$DOTDIR"
+fi
+
+if [ $HAS_KEY ]; then
 	cgit crypt unlock /tmp/dotfiles.key
+else
+	echo "Repo not unlocked. SSH config might be wrong."
 fi
 
 # Configure SSH keys
