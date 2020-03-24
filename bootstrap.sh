@@ -73,7 +73,7 @@ HAS_KEY="yes"
 if [ ! -f /tmp/dotfiles.key ]; then
 	echo "No key found to unlock dotfiles in /tmp/dotfiles.key..."
 	read -p "Continuing without unlock key? (y/N) " ans
-	case ans in
+	case $ans in
 	[Yy]*)
 		HAS_KEY=
 		;;
