@@ -1,7 +1,7 @@
 #!/bin/dash
 TARGET_INDEX=$1
 
-SPACE_QUERY=$(yabai -m query --spaces)
+SPACE_QUERY=$(yabai -m query --spaces | sed '$s/},/}]/')
 CUR_SPACE=$(jq '.[] | select(.focused == 1).index' <<EOF
 $SPACE_QUERY
 EOF
