@@ -23,3 +23,11 @@ $ cgit checkout
 ```
 
 Resolve any issues pointed out and rerun the command.
+
+Installing tpm for tmux
+
+```
+$ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+Remember to `Ctrl+a I` to install plugins while inside tmux.
