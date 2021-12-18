@@ -31,3 +31,9 @@ $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
 Remember to `Ctrl+a I` to install plugins while inside tmux.
+
+Install zgen for zsh
+
+```
+$ git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+```
