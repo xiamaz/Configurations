@@ -14,6 +14,13 @@ for preq in $PREREQUISITES; do
 		echo "$preq found."
 	fi
 done
+
+echo "Checking git connectivity"
+ssh -T git@github.com
+if [ $? == 255 ]; then
+	echo "Failed to login to git. Setup ssh github connection first."
+	exit
+fi
 echo ""
 
 if [ $MISSING_PREQ == 1 ]; then
@@ -50,15 +57,11 @@ echo ""
 
 # Clone dotfiles repo
 echo "dotfiles: Installation"
-cgit() {
-	git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME $@
-}
-
 
 DOTDIR="$HOME/.dotfiles.git"
 if [ ! -d $DOTDIR ]; then
-	git clone --bare https://github.com/xiamaz/.dotfiles.git "$1"
+	git clone --bare git@github.com:xiamaz/.dotfiles.git "$1"
 fi
 
 echo "Checking out dotfiles, might lead to conflicts. Resolve manually."
-cgit checkout
+git --git-dir=$DOTDIR --work-tree=$HOME checkout
