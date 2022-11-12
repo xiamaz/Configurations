@@ -32,9 +32,14 @@ $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 Remember to `Ctrl+a I` to install plugins while inside tmux.
 
-Install zinit for zsh
+Install zgenom
 
 ```
-$ mkdir -p ".zinit"
-$ git clone https://github.com/zdharma-continuum/zinit.git .zinit/bin
+git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
+```
+
+Install starship
+
+```
+curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir $HOME/.local/bin
 ```
